@@ -1,0 +1,8 @@
+#URL mapping for REST API Demo
+RewriteEngine on
+
+#old stuff kept for reference
+#RewriteRule ^monsterService/monsters$ api/monsterService.php [NC]
+#RewriteRule ^monsterService/monsters/([0-9]+)$ api/monsterService.php?monsterID=$1 [NC]
+#RewriteRule ^monsterService/types$ api/monsterTypeService.php [NC]
+#RewriteRule ^monsterService/types/(\w+)$ api/monsterTypeService.php?typeName=$1 [NC]
