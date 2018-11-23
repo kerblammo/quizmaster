@@ -160,7 +160,7 @@ class UserAccessor{
         try {
             $this->getByUsernameStatement->bindParam(":username", $name);
             $this->getByUsernameStatement->execute();
-            $dbResult = $this->getByUsernameStatement->fetch(PDO::FETCH_ASSOC);
+            $dbResult = $this->getByUsernameStatement->fetchAll(PDO::FETCH_ASSOC);
             
             foreach ($dbResult as $r){
                 $id = $r['id'];
