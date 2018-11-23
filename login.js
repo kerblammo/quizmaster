@@ -14,10 +14,8 @@ function handleLogin(){
             "username": userName,
             "password": password
         };
-
-
         var url = "quizmaster/account/userName";
-        var method = "POST";
+        var method = "GET";
 
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function () {
@@ -26,7 +24,8 @@ function handleLogin(){
                 if (resp.search("ERROR") >= 0) {
                     alert(resp);
                 } else {
-                    enable();
+                   
+                    enable(xmlhttp.responseText);
                    
                 }
             }
@@ -36,9 +35,22 @@ function handleLogin(){
     }
 }
 
-function enable() {
+function enable(text) {
      document.querySelector("#centerLogin").classList.add("hidden");
-     
+     var data = JSON.parse(text);
+     //now check what kind of user it ist
+     //if its a super enable these
+     if(data.id==1){
+         
+     }
+     //if an admin
+     if(data.id==2){
+         
+     }
+     //if its a user
+     if(data.id==3){
+         
+     }
 }
 function isFormValid() {
     if (document.querySelector("#loginUser").value == "") {
