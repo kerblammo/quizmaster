@@ -8,13 +8,15 @@ function handleLogin(){
   //  alert("worked");
   
   if (isFormValid()) {
-      var userName=querySelector("#loginUser").value;
-      var password=querySelector("#loginPass").value;
+      var userName=document.querySelector("#loginUser").value;
+      var password=document.querySelector("#loginPass").value;
         var obj = {
             "username": userName,
             "password": password
         };
-        var url = "quizmaster/account/userName";
+        var login=JSON.stringify(obj);
+        var url = "quizmaster/account/login/"+login;
+               
         var method = "GET";
 
         var xmlhttp = new XMLHttpRequest();
@@ -24,18 +26,19 @@ function handleLogin(){
                 if (resp.search("ERROR") >= 0) {
                     alert(resp);
                 } else {
-                   
+                   console.log(resp);
                     enable(xmlhttp.responseText);
                    
                 }
             }
         };
         xmlhttp.open(method, url, true);
-        xmlhttp.send(JSON.stringify(obj));
+        xmlhttp.send(JSON.stringify(login));
     }
 }
 
 function enable(text) {
+    alert("yah!");
      document.querySelector("#centerLogin").classList.add("hidden");
      var data = JSON.parse(text);
      //now check what kind of user it ist
@@ -59,11 +62,7 @@ function isFormValid() {
     } else if (document.querySelector("#loginPass").value == "") {
         alert('Please enter Password');
         return false;
-    } else if (isset(document.querySelector("#loginConfirm"))) {
-        if((document.querySelector("#loginConfirm").value == ""))
-        alert('Please confirm Password');
-        return false;
-    }
+    } 
     return true;
 }
 

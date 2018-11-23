@@ -1,8 +1,8 @@
 <?php
 
-$projectRoot = filter_input(INPUT_SERVER, "DOCUMENT_ROOT") . '/AdamAssign6/';
-require_once 'ConnectionManager.php';
-require_once ($projectRoot . '/entity/user.php');
+
+require_once 'connectionManager.php';
+require_once  '../entity/user.php';
 
 class UserAccessor{
     
@@ -135,6 +135,7 @@ class UserAccessor{
                 $password = $dbResult['password'];
                 $deactivated = $dbResult['deactived'];
                 $result = new User($userid, $permissionId, $username, $password, $deactivated);
+                
             }
         } catch (Exception $ex) {
             $result = NULL;
@@ -160,7 +161,7 @@ class UserAccessor{
         try {
             $this->getByUsernameStatement->bindParam(":username", $name);
             $this->getByUsernameStatement->execute();
-            $dbResult = $this->getByUsernameStatement->fetch(PDO::FETCH_ASSOC);
+            $dbResult = $this->getByUsernameStatement->fetchAll(PDO::FETCH_ASSOC);
             
             foreach ($dbResult as $r){
                 $id = $r['id'];

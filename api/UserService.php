@@ -1,8 +1,8 @@
 <?php
 
-$projectRoot = filter_input(INPUT_SERVER, "DOCUMENT_ROOT") . '/QuizMasterBackend';
-require_once ($projectRoot . '/db/UserAccessor.php');
-require_once ($projectRoot . '/entity/User.php');
+
+require_once '../db/userAccessor.php';
+require_once '../entity/User.php';
 
 //check which verb sent and act accordingly
 $method = filter_input(INPUT_SERVER, "REQUEST_METHOD");
@@ -76,7 +76,7 @@ function attemptLogin() {
 
     try {
         //accessor
-        $acc = new UserAccessor();
+        $acc = new userAccessor();
         $results = json_encode($acc->verifyUserLogin($user), JSON_NUMERIC_CHECK);
         echo $results;
     } catch (Exception $ex) {
