@@ -1,6 +1,6 @@
 <?php
 
-$projectRoot = filter_input(INPUT_SERVER, "DOCUMENT_ROOT") . '/AdamAssign6/';
+$projectRoot = filter_input(INPUT_SERVER, "DOCUMENT_ROOT") . '/QuizMasterBackend';
 require_once 'ConnectionManager.php';
 require_once ($projectRoot . '/entity/user.php');
 

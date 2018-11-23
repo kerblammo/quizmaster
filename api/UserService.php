@@ -119,6 +119,6 @@ function doDelete() {
             echo "ERROR: " . $ex->getMessage();
         }
     } else {
-        echo "ERROR: ID if user to delete / deactivate not supplied";
+        echo "ERROR: ID of user to delete / deactivate not supplied";
     }
 }
