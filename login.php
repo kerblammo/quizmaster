@@ -8,6 +8,7 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="css/index.css">
+        <script src="login.js"></script>
         <title>Quiz Webpage</title>
     </head>
     <body>
@@ -32,10 +33,10 @@ and open the template in the editor.
                     <h2>Log in</h2>
                 </div>
                 <div id="loginInner">
-                    <p>Username <input type="text" name="loginUser"></p>
-                    <p>Password <input type="text" name="loginPass"></p>
+                    <p>Username <input id="loginUser" type="text" name="loginUser"></p>
+                    <p>Password <input id="loginPass" type="text" name="loginPass"></p>
                     <div id="loginInnerBot">
-                        <p><button>Log in!</button></p>
+                        <p><button id="loginBtn">Log in!</button></p>
                         <hr>
                         <p>Don't have an account?</p>
                         <p><button>Sign up!</button></p>
