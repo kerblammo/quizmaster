@@ -8,7 +8,7 @@ class UserAccessor{
     
     //CRUD strings
     private $getByIdStatementString = "SELECT * FROM users WHERE id = :id";
-    private $getByUsernameStatementString = "SELECT * FROM users WHERE username = :username";
+    private $getByUsernameStatementString = "SELECT * FROM users WHERE username LIKE '%:username%'";
     private $verifyUserLoginStatementString = "SELECT * FROM users WHERE username = :username AND password = :password";
     private $deleteStatementString = "DELETE FROM users WHERE id = :id";
     private $insertStatementString = "INSERT INTO users values (:id, :permissionId, :username, :password)";
@@ -155,23 +155,27 @@ class UserAccessor{
      * @return User entity, possibly null
      */
     public function getUserByUsername($name){
-        $result = NULL;
+        $result = [];
         
         try {
             $this->getByUsernameStatement->bindParam(":username", $name);
             $this->getByUsernameStatement->execute();
             $dbResult = $this->getByUsernameStatement->fetch(PDO::FETCH_ASSOC);
             
+            foreach ($dbResult as $r){
+                $id = $r['id'];
+                $permissionId = $r['permissionId'];
+                $username = $r['username'];
+                $password = $r['password'];
+                $deactivated = $r['deactivated'];
+                $obj = new User($id, $permissionId, $username, $password, $deactivated); 
+                array_push($result, $obj);
+            }
             if ($dbResult){
-                $id = $dbResult['id'];
-                $permissionId = $dbResult['permissionId'];
-                $username = $dbResult['username'];
-                $password = $dbResult['password'];
-                $deactivated = $dbResult['deactivated'];
-                $result = new User($id, $permissionId, $username, $password, $deactivated);
+                
             }
         } catch (Exception $ex) {
-            $result = NULL;
+            $result = [];
         } finally {
             if (!is_null($this->getByUsernameStatement)){
                 $this->getByUsernameStatement->closeCursor();
