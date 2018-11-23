@@ -28,9 +28,11 @@ function doGet() {
     } else if (filter_has_var(INPUT_GET, "username")) {
 
         getByUsername();
-    } else {
+    } else if (filter_has_var(INPUT_GET, "login")){
 
         attemptLogin();
+    } else {
+        getAllUsers();
     }
 }
 
@@ -76,6 +78,20 @@ function attemptLogin() {
         //accessor
         $acc = new UserAccessor();
         $results = json_encode($acc->verifyUserLogin($user), JSON_NUMERIC_CHECK);
+        echo $results;
+    } catch (Exception $ex) {
+        echo "ERROR: " . $ex->getMessage();
+    }
+}
+
+/**
+ * Get all users from database
+ */
+function getAllUsers(){
+    
+    try {
+        $acc = new UserAccessor();
+        $results = json_encode($acc->getAllUsers());
         echo $results;
     } catch (Exception $ex) {
         echo "ERROR: " . $ex->getMessage();
