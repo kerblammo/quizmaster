@@ -1,5 +1,6 @@
 html,
 body {
+   
     margin: 0;
     height: 100%;
     width: 100%;
@@ -269,7 +270,7 @@ th {
     border: solid thin black;
     width: 25%;
     height: auto;
-    background-color: cyan;
+    background-color: pink;
     border-radius: 15%;
 }
 
