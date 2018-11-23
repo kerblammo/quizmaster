@@ -212,7 +212,7 @@ class UserAccessor{
                 $result = new User($id, $permissionId, $name, $pass, $deactivated);
             }
         } catch (Exception $ex) {
-            $result = false;
+            $result = NULL;
         } finally {
             if (!is_null($this->verifyUserLoginStatement)){
                 $this->verifyUserLoginStatement->closeCursor();
