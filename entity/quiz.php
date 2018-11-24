@@ -6,7 +6,6 @@ class Quiz implements JsonSerializable{
     private $authorId;
     private $title;
     private $description;
-    private $evaluationScheme;
     private $tags;
     
     function getId() {
@@ -25,10 +24,6 @@ class Quiz implements JsonSerializable{
         return $this->description;
     }
 
-    function getEvaluationScheme() {
-        return $this->evaluationScheme;
-    }
-
     function getTags() {
         return $this->tags;
     }
@@ -43,12 +38,11 @@ class Quiz implements JsonSerializable{
      * @param integer[] $evaluationScheme
      * @param string[] $tags
      */
-    function __construct($id, $authorId, $title, $description, $evaluationScheme, $tags) {
+    function __construct($id, $authorId, $title, $description, $tags) {
         $this->id = $id;
         $this->authorId = $authorId;
         $this->title = $title;
         $this->description = $description;
-        $this->evaluationScheme = $evaluationScheme;
         $this->tags = $tags;
     }
 
