@@ -8,7 +8,7 @@ class UserAccessor{
     
     //CRUD strings
     private $getByIdStatementString = "SELECT * FROM users WHERE id = :id";
-    private $getByUsernameStatementString = "SELECT * FROM users WHERE username LIKE '%:username%'";
+    private $getByUsernameStatementString = "SELECT * FROM users WHERE username LIKE :username";
     private $verifyUserLoginStatementString = "SELECT * FROM users WHERE username = :username AND password = :password";
     private $deleteStatementString = "DELETE FROM users WHERE id = :id";
     private $insertStatementString = "INSERT INTO users values (:id, :permissionId, :username, :password)";
@@ -85,11 +85,11 @@ class UserAccessor{
             $stmt->execute();
             $dbResults = $stmt->fetchAll(PDO::FETCH_ASSOC);
             foreach ($dbResults as $r){
-                $id = $r['id'];
-                $permissionId = $r['permissionId'];
-                $username = $r['username'];
-                $password = $r['password'];
-                $deactivated = $r['deactivated'];
+                $id = $r['Id'];
+                $permissionId = $r['PermissionId'];
+                $username = $r['Username'];
+                $password = $r['Password'];
+                $deactivated = $r['Deactivated'];
                 $obj = new User($id, $permissionId, $username, $password, $deactivated);
                 array_push($result, $obj);
             }
@@ -133,7 +133,7 @@ class UserAccessor{
                 $permissionId = $dbResult['PermissionId'];
                 $username = $dbResult['Username'];
                 $password = $dbResult['Password'];
-                $deactivated = $dbResult['Deactived'];
+                $deactivated = $dbResult['Deactivated'];
                 $result = new User($userid, $permissionId, $username, $password, $deactivated);
             }
         } catch (Exception $ex) {
@@ -156,14 +156,15 @@ class UserAccessor{
      */
     public function getUserByUsername($name){
         $result = [];
-        
+        //today I learned that the wildcards have to be added here, before binding the parameter
+        $name = '%'.$name.'%';
         try {
             $this->getByUsernameStatement->bindParam(":username", $name);
             $this->getByUsernameStatement->execute();
             $dbResult = $this->getByUsernameStatement->fetchAll(PDO::FETCH_ASSOC);
             
             foreach ($dbResult as $r){
-                $id = $r['id'];
+                $id = $r['Id'];
                 $permissionId = $r['PermissionId'];
                 $username = $r['Username'];
                 $password = $r['Password'];
@@ -189,13 +190,13 @@ class UserAccessor{
      * Verify if username / password combination exists
      * on database
      * 
-     * @param User $user sample user with credentials to check 
+     * @param string $username username to log in with
+     * @param string $password password to log in with
      * @return User entity matching credentials
      */
-    public function verifyUserLogin($user){
+    public function verifyUserLogin($username, $password){
         $result = NULL;
-        $username = $user->getUsername();
-        $password = $user->getPassword();
+        
         
         try {
             $this->verifyUserLoginStatement->bindParam(":username", $username);

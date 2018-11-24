@@ -25,12 +25,12 @@ function doGet() {
     if (filter_has_var(INPUT_GET, "id")) {
 
         getById();
-    } else if (filter_has_var(INPUT_GET, "username")) {
-
-        getByUsername();
-    } else if (filter_has_var(INPUT_GET, "login")){
+    } else if (filter_has_var(INPUT_GET, "password")) {
 
         attemptLogin();
+    } else if (filter_has_var(INPUT_GET, "username")){
+
+        getByUsername();
     } else {
         getAllUsers();
     }
@@ -68,16 +68,14 @@ function getByUsername() {
  * Get the user that matches the credentials supplied
  */
 function attemptLogin() { 
-    $body = file_get_contents("php://input");
-    $contents = json_decode($body, true);
-
-    //make new user
-    $user = new User($contents['id'], $contents['permissionId'], $contents['username'], $contents['password'], $contents['deactivated']);
+    
+    $username = filter_input(INPUT_GET, 'username');
+    $password = filter_input(INPUT_GET, 'password');
 
     try {
         //accessor
         $acc = new UserAccessor();
-        $results = json_encode($acc->verifyUserLogin($user), JSON_NUMERIC_CHECK);
+        $results = json_encode($acc->verifyUserLogin($username, $password), JSON_NUMERIC_CHECK);
         echo $results;
     } catch (Exception $ex) {
         echo "ERROR: " . $ex->getMessage();
