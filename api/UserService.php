@@ -19,6 +19,12 @@ if ($method === "GET") {
 /**
  * Handle get requests
  */
+function doPost(){
+   if (filter_has_var(INPUT_GET, "login")){
+
+        attemptLogin();
+    }
+}
 function doGet() {
     //three ways to get: credentials, by id, and by username
 
@@ -28,10 +34,7 @@ function doGet() {
     } else if (filter_has_var(INPUT_GET, "username")) {
 
         getByUsername();
-    } else if (filter_has_var(INPUT_GET, "login")){
-
-        attemptLogin();
-    } else {
+    }  else {
         getAllUsers();
     }
 }
@@ -42,7 +45,7 @@ function doGet() {
 function getById() {
     try {
         $id = filter_input(INPUT_GET, "id");
-        $acc = new UserAccessor();
+        $acc = new userAccessor();
         $results = json_encode($acc->getUserById($id), JSON_NUMERIC_CHECK);
         echo $results;
     } catch (Exception $ex) {
@@ -56,7 +59,7 @@ function getById() {
 function getByUsername() {
     try {
         $username = filter_input(INPUT_GET, 'username');
-        $acc = new UserAccessor();
+        $acc = new userAccessor();
         $results = json_encode($acc->getUserByUsername($username), JSON_NUMERIC_CHECK);
         echo $results;
     } catch (Exception $ex) {
@@ -69,16 +72,17 @@ function getByUsername() {
  */
 function attemptLogin() { 
     $body = file_get_contents("php://input");
-    $contents = json_decode($body);
+    $contents = json_decode($body, true);
+    
 
-    //make new user
     $user = new User($contents['id'], $contents['permissionId'], $contents['username'], $contents['password'], $contents['deactivated']);
+    
 
-    try {
-        //accessor
-        $acc = new userAccessor();
+   try {
+//        //accessor
+        $acc = new UserAccessor();
         $results = json_encode($acc->verifyUserLogin($user), JSON_NUMERIC_CHECK);
-        echo $results;
+      echo $results;
     } catch (Exception $ex) {
         echo "ERROR: " . $ex->getMessage();
     }
@@ -90,7 +94,7 @@ function attemptLogin() {
 function getAllUsers(){
     
     try {
-        $acc = new UserAccessor();
+        $acc = new userAccessor();
         $results = json_encode($acc->getAllUsers());
         echo $results;
     } catch (Exception $ex) {
@@ -108,7 +112,7 @@ function doDelete() {
     if (filter_has_var(INPUT_GET, 'id')){
         $id = filter_input(INPUT_GET, 'id');
         try {
-            $acc = new UserAccessor();
+            $acc = new userAccessor();
             $user = new User($id, 0, "", "", true);
             $results = $acc->deleteUser($user);
             if (!$results){
