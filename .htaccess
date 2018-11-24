@@ -8,4 +8,6 @@ RewriteRule ^quizmaster/account/([0-9]+)$ api/UserService.php?id=$1 [NC]
 RewriteRule ^quizmaster/account/byName/(\w+)$ api/UserService.php?username=$1 [NC]
 RewriteRule ^quizmaster/account/login/(\w+)/(\w+)$ api/UserService.php?username=$1&password=$2 [NC]
 
+#quiz service
+
 
