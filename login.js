@@ -66,7 +66,8 @@ function enable(text) {
     if (text == "null") {
       alert("Please check user name and password");
     } else {
-        document.querySelector("#loginOpt").innerHTML="Log Out"
+        document.querySelector("#loginOpt").innerHTML="Log Out";
+        document.querySelector("#profile").innerHTML="Settings";
         
         document.querySelector("#centerLogin").classList.add("hidden");
         var data = JSON.parse(text);
