@@ -67,6 +67,7 @@ function enable(text) {
       alert("Please check user name and password");
     } else {
         document.querySelector("#loginOpt").innerHTML="Log Out";
+        //need to change everywhere       
         document.querySelector("#profile").innerHTML="Settings";
         
         document.querySelector("#centerLogin").classList.add("hidden");
