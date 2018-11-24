@@ -28,7 +28,7 @@ function test() {
 
 function handleLogin() {
     //  alert("worked");
-
+if(document.querySelector("#loginOpt").innerHTML=="Login"){
     if (isFormValid()) {
         var userName = document.querySelector("#loginUser").value;
         var password = document.querySelector("#loginPass").value;
@@ -60,11 +60,14 @@ function handleLogin() {
         xmlhttp.send(JSON.stringify(myObj));
     }
 }
+}
 
 function enable(text) {
     if (text == "null") {
       alert("Please check user name and password");
     } else {
+        document.querySelector("#loginOpt").innerHTML="Log Out"
+        
         document.querySelector("#centerLogin").classList.add("hidden");
         var data = JSON.parse(text);
         //now check what kind of user it ist
