@@ -111,7 +111,7 @@ class UserAccessor{
      * @return array User objects, possibly empty
      */
     public function getAllUsers(){
-        return getUsersByQuery("SELECT * FROM users");
+        return $this->getUsersByQuery("SELECT * FROM users");
     }
     
     /**
@@ -129,11 +129,11 @@ class UserAccessor{
             $dbResult = $this->getByIdStatement->fetch(PDO::FETCH_ASSOC);
             
             if ($dbResult){
-                $userid = $dbResult['id'];
-                $permissionId = $dbResult['permissionId'];
-                $username = $dbResult['username'];
-                $password = $dbResult['password'];
-                $deactivated = $dbResult['deactived'];
+                $userid = $dbResult['Id'];
+                $permissionId = $dbResult['PermissionId'];
+                $username = $dbResult['Username'];
+                $password = $dbResult['Password'];
+                $deactivated = $dbResult['Deactived'];
                 $result = new User($userid, $permissionId, $username, $password, $deactivated);
             }
         } catch (Exception $ex) {
@@ -164,10 +164,10 @@ class UserAccessor{
             
             foreach ($dbResult as $r){
                 $id = $r['id'];
-                $permissionId = $r['permissionId'];
-                $username = $r['username'];
-                $password = $r['password'];
-                $deactivated = $r['deactivated'];
+                $permissionId = $r['PermissionId'];
+                $username = $r['Username'];
+                $password = $r['Password'];
+                $deactivated = $r['Deactivated'];
                 $obj = new User($id, $permissionId, $username, $password, $deactivated); 
                 array_push($result, $obj);
             }
@@ -204,11 +204,11 @@ class UserAccessor{
             $dbResult = $this->verifyUserLoginStatement->fetch(PDO::FETCH_ASSOC);
             
             if ($dbResult){
-                $id = $dbResult['id'];
-                $permissionId = $dbResult['permissionId'];
-                $name = $dbResult['username'];
-                $pass = $dbResult['password'];
-                $deactivated = $dbResult['deactivated'];
+                $id = $dbResult['Id'];
+                $permissionId = $dbResult['PermissionId'];
+                $name = $dbResult['Username'];
+                $pass = $dbResult['Password'];
+                $deactivated = $dbResult['Deactivated'];
                 $result = new User($id, $permissionId, $name, $pass, $deactivated);
             }
         } catch (Exception $ex) {

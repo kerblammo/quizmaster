@@ -69,7 +69,7 @@ function getByUsername() {
  */
 function attemptLogin() { 
     $body = file_get_contents("php://input");
-    $contents = json_decode($body);
+    $contents = json_decode($body, true);
 
     //make new user
     $user = new User($contents['id'], $contents['permissionId'], $contents['username'], $contents['password'], $contents['deactivated']);
