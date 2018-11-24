@@ -19,11 +19,11 @@ and open the template in the editor.
             function submitHandler() {
                 console.log('click');
                 //get id
-                var id = document.querySelector('#param1').value;
-                var permissionId = null;
+                var id = 1;
+                var permissionId = 2;
                 var username = document.querySelector('#param1').value;
                 var password = document.querySelector('#param2').value;
-                var deactivated = null;
+                var deactivated = 0;
                 //basic user object, may not be required with each call
                 var item = {
                     "id": id,
@@ -34,7 +34,7 @@ and open the template in the editor.
                 };
                 console.log('parameters set'); 
                 //ajax call
-                var url = "quizmaster/account/login/" + username + "/" + password;
+                var url = "quizmaster/account";
                 var xmlhttp = new XMLHttpRequest();
                 xmlhttp.onreadystatechange = function () {
                     if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
@@ -45,7 +45,7 @@ and open the template in the editor.
                         
                     }
                 };
-                xmlhttp.open("GET", url, true); 
+                xmlhttp.open("POST", url, true); 
                 xmlhttp.send(JSON.stringify(item));
             }
 

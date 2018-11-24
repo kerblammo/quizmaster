@@ -11,7 +11,7 @@ class UserAccessor{
     private $getByUsernameStatementString = "SELECT * FROM users WHERE username LIKE :username";
     private $verifyUserLoginStatementString = "SELECT * FROM users WHERE username = :username AND password = :password";
     private $deleteStatementString = "DELETE FROM users WHERE id = :id";
-    private $insertStatementString = "INSERT INTO users values (:id, :permissionId, :username, :password)";
+    private $insertStatementString = "INSERT INTO users (permissionId, username, password) values (:permissionId, :username, :password)";
     private $updatePasswordStatementString = "UPDATE users SET password = :password WHERE id = :id";
     private $updateDeactivatedStatementString = "UPDATE users SET deactivated = :deactivated WHERE id = :id";
     
@@ -256,20 +256,16 @@ class UserAccessor{
      */
     public function insertUser($user){
         
-        $id = $user->getId();
         $permissionId = $user->getPermissionId();
-        $username = $user->getPermissionId();
+        $username = $user->getUsername();
         $password = $user->getPassword();
-        $deactivated = $user->getDeactivated();
         
         try {
-            $this->insertStatement->bindParam(":id", $id);
             $this->insertStatement->bindParam(":permissionId", $permissionId);
             $this->insertStatement->bindParam(":username", $username);
-            $this->insertStatement->bindParam(":password", $password);
-            $this->insertStatement->bindParam(":deactivated", $deactivated);
+            $this->insertStatement->bindParam(":password", $password); 
             $success = $this->insertStatement->execute();
-        } catch (Exception $ex) {
+        } catch (Exception $ex) { 
             $success = false;
         } finally {
             if (!is_null($this->insertStatement)){
