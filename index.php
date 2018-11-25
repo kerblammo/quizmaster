@@ -8,6 +8,7 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <script src="index.js"></script>
+        
         <link rel="stylesheet" type="text/css" href="css/index.css">
         <title>Quiz Webpage</title>
     </head>

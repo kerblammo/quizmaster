@@ -66,6 +66,7 @@ function enable(text) {
     if (text == "null") {
       alert("Please check user name and password");
     } else {
+       //  window.location.href = "index.php";
         document.querySelector("#loginOpt").innerHTML="Log Out";
         //need to change everywhere       
         document.querySelector("#profile").innerHTML="Settings";
