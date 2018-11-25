@@ -18,7 +18,7 @@ and open the template in the editor.
             </div>
             <div id="topMenuNav">
                 <div class="navLeft">
-                    <a href="index.php"><button>Home</button></a><a href="search.php"><button>Quizzes</button></a><a href="search.php"><button>Results</button></a><a href="index.php"><button>Search</button></a><a href="editor.php"><button>Editor</button></a>
+                    <a href="index.php"><button>Home</button></a><a href="search.php"><button>Search</button></a><a href="editor.php"><button>Editor</button></a>
                 </div>
                 <div class="navRight">
                     <a href="login.php"><button>Log</button></a><a href="index.php"><button>Profile</button></a>
@@ -49,7 +49,21 @@ and open the template in the editor.
                 </div>
                 <div id="holderLarge">
                     <div id="output">
-                        Output here
+                        <div id="outputData">
+                            hello
+                        </div>
+                        
+                        <div id="outputData">
+                            hi
+                        </div>
+                        
+                        <div id="outputData">
+                            data
+                        </div>
+                        
+                        <div id="outputData">
+                            here
+                        </div>
                     </div>
                 </div>
             </div>

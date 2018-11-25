@@ -189,7 +189,7 @@ th {
 #holderSmall{
     float: left;
     width: 50%;
-    height: 15%;
+    height: auto;
 }
 
 #holderMid{
@@ -249,8 +249,16 @@ th {
     float: bottom;
     border: solid thin green;
     background-color: cadetblue;
-    height: 75%;
+    height: auto;
     width: 100%;
+}
+
+#outputData{
+    float: left;
+    width: 20%;
+    margin: auto;
+    background-color: aqua;
+    height: 15%;
 }
 
 /* 
@@ -271,7 +279,7 @@ th {
     width: 25%;
     height: auto;
     background-color: cyan;
-    border-radius: 15%;
+    border-radius: .5em;
 }
 
 #loginInner{
@@ -296,3 +304,25 @@ th {
 /* 
  * Editor Page css 
  */
+
+#buttonLeft{
+    float: right;
+    padding: 1%;
+}
+
+#buttonRight{
+    float: left;
+    padding: 1%;
+}
+
+#buttonLeft button, #buttonRight button{
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    font-size: 32px;
+    padding: 15% 25% 15% 25%;
+    margin: 10%;
+    background-color: aqua;
+    border-radius: .5em;
+}
+

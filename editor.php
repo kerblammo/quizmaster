@@ -18,7 +18,7 @@ and open the template in the editor.
             </div>
             <div id="topMenuNav">
                 <div class="navLeft">
-                    <a href="index.php"><button>Home</button></a><a href="search.php"><button>Quizzes</button></a><a href="search.php"><button>Results</button></a><a href="index.php"><button>Search</button></a><a href="editor.php"><button>Editor</button></a>
+                    <a href="index.php"><button>Home</button></a><a href="search.php"><button>Search</button></a><a href="editor.php"><button>Editor</button></a>
                 </div>
                 <div class="navRight">
                     <a href="login.php"><button>Log</button></a><a href="index.php"><button>Profile</button></a>
@@ -28,10 +28,17 @@ and open the template in the editor.
         </div>
         <div id="center">
             <div id="searchBySelector">
-                <div id="leftRadio"><input type="radio" name="editBy" value="quizzes" checked>Search Quizzes</div><div id="rightRadio"><input type="radio" name="editBy" value="results">Search Results</div>
+                <div id="leftRadio"><input type="radio" name="editBy" value="quizzes" checked>Quiz Editor</div><div id="rightRadio"><input type="radio" name="editBy" value="questions">Question Editor</div>
             </div>
-            <div id="greeting">
-                <h2>Welcome to the editor.</h2>
+            <div id="holderSmall">
+                <div id="buttonLeft">
+                    <button>Create New</button>
+                </div>
+            </div>
+            <div id="holderSmall">
+                <div id="buttonRight">
+                    <button>Edit Existing</button>
+                </div>
             </div>
         </div>
         <div id="botMenu">
