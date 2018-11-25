@@ -9,5 +9,9 @@ RewriteRule ^quizmaster/account/byName/(\w+)$ api/UserService.php?username=$1 [N
 RewriteRule ^quizmaster/account/login/(\w+)/(\w+)$ api/UserService.php?username=$1&password=$2 [NC]
 
 #quiz service
+RewriteRule ^quizmaster/quiz$ api/QuizService.php [NC]
+RewriteRule ^quizmaster/quiz/([0-9]+)$ api/QuizService.php?id=$1 [NC]
+RewriteRule ^quizmaster/quiz/byName/([\w\s]+)$ api/QuizService.php?name=$1 [NC]
+RewriteRule ^quizmaster/quiz/byTag/([\w\s]+)$ api/QuizService.php?tag=$1 [NC]
 
 

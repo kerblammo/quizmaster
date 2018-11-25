@@ -11,7 +11,7 @@ class QuizAccessor {
     private $getByNameStatementString = "SELECT * FROM quiz WHERE title LIKE :title";
     private $getByTagStatementString = "SELECT * FROM quiz WHERE tags LIKE :tags";
     private $deleteStatementString = "DELETE FROM quiz WHERE id = :id";
-    private $insertStatementString = "INSERT INTO quiz (authorId, title, description, tags) VALUES (:authorId, :title, :description, :tags";
+    private $insertStatementString = "INSERT INTO quiz (authorId, title, description, tags) VALUES (:authorId, :title, :description, :tags)";
     private $updateStatementString = "UPDATE quiz SET title = :title, description = :description, tags = :tags WHERE id = :id";
     
     //connection
@@ -247,6 +247,7 @@ class QuizAccessor {
             $this->insertStatement->bindParam(":tags", $tags);
             $success = $this->insertStatement->execute();
         } catch (Exception $ex) {
+            echo $ex->getMessage();
             $success = false;
         } finally {
             if (!is_null($this->insertStatement)){
@@ -257,7 +258,12 @@ class QuizAccessor {
         
     }
     
-    
+    /**
+     * Modify a quiz in the database. Supply a quiz with
+     * matching ID to change all its parameters
+     * @param Quiz $quiz
+     * @return boolean
+     */
     public function updateQuiz($quiz){
         
         $id = $quiz->getId();
