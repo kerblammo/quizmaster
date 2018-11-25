@@ -18,11 +18,7 @@ and open the template in the editor.
             </div>
             <div id="topMenuNav">
                 <div class="navLeft">
-<<<<<<< HEAD
                     <a href="index.php"><button>Home</button></a><a href="search.php"><button>Search</button></a><a href="editor.php"><button>Editor</button></a>
-=======
-                    <a href="index.php"><button>Home</button></a><a href="search.php"><button>Quizzes</button></a><a href="search.php"><button>Results</button></a><a href="index.php"><button>Search</button></a><a href="editor.php"><button class="hidden">Editor</button></a>
->>>>>>> 101ac196f3a7592c2bfe35883fdc7f02130817a1
                 </div>
                 <div class="navRight">
                     <a href="login.php"><button id="loginOpt">Login</button></a><a href="index.php"><button>Profile</button></a>
