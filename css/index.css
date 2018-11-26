@@ -89,21 +89,6 @@ th {
     margin: 0px;
 }
 
-#topMenuNav button{
-    background-color: #333;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    padding: 0;
-    border: none;
-    background: none;
-}
-
-#topMenuNav button:hover{
-    background-color: #111;
-    color: white;
-}
-
 .navLeft{
     float: left;
     width: 50%;
@@ -116,27 +101,71 @@ th {
     height: 100%;
 }
 
-.navLeft button{
-    height: 100%;
-    width: 19%;
-    background-color: gray;
+.navLeft button, .navRight button{
+    background-color: #333;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    padding: 0;
+    border: none;
+    background: none;
     margin: 0px;
+    height: 100%;
 }
 
-.navRight button{
+.navLeft button:hover, .navRight button:hover{
+    background-color: #111;
+    color: white;
+}
+
+.navLeft button{
+    float: left;
+    width: 19%;
+}
+
+.navRight button{    
     float: right;
-    height: 100%;
     width: 20%;
-    background-color: gray;
-    margin: 0px;
+    
 }
 
 #center {
     background-color: pink;
     width: 100%;
-    height: 85%;
+    height: 87.5%;
     margin: auto;
 }
+
+#botMenu {
+    background-color: #333;
+    width: 100%;
+    height: 2.5%;
+    margin: 0px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    color: white;
+    text-align: center;
+    border-top: solid thin black;
+}
+
+.row{
+    width: 100%;
+}
+
+.column50{
+    width: 50%;
+}
+
+.column25{
+    width: 25%;
+}
+
+/*
+ *
+ * Home / Dashboard Page css
+ *
+ */
 
 #greeting {
     background-color: green;
@@ -146,16 +175,38 @@ th {
     margin: 0;
 }
 
-#botMenu {
-    background-color: green;
-    width: 100%;
-    height: 5%;
-    margin: 0px;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    color: white;
-    text-align: center;
+#featured{
+    background-color: lightseagreen;
+    float: left;
+    width: 70%;
+    height: 95%;
+    margin: 0;
+}
+
+#featuredData{
+    
+}
+
+#featuredDataHolder{
+    
+}
+
+#latest{
+    background-color: lightskyblue;
+    float: right;
+    width: 30%;
+    height: 95%;
+    margin: 0;
+}
+
+#latestData{
+    
+}
+
+#latestDataHolder{
+    clear: both;
+    width: 85%;
+    background-color: white;
 }
 
 /*
@@ -189,7 +240,7 @@ th {
 #holderSmall{
     float: left;
     width: 50%;
-    height: 15%;
+    height: auto;
 }
 
 #holderMid{
@@ -215,12 +266,12 @@ th {
 
 #searchByResults{
     border: solid thin black;
-    margin: 5%;
-    width: 40%;
-    height: 12.5%;
-    padding: 1%;
+    margin: 0% 5% 0 5%;
     float: right;
+    width: 80%;
+    height: 100%;
     background-color: blue;
+    padding: 5% 0 0 5%; 
     color: white;
 }
 
@@ -249,8 +300,16 @@ th {
     float: bottom;
     border: solid thin green;
     background-color: cadetblue;
-    height: 75%;
+    height: auto;
     width: 100%;
+}
+
+#outputData{
+    text-align: center;
+    float: left;
+    margin: auto;
+    background-color: aqua;
+    height: 50%;
 }
 
 /* 
@@ -271,7 +330,7 @@ th {
     width: 25%;
     height: auto;
     background-color: cyan;
-    border-radius: 15%;
+    border-radius: .5em;
 }
 
 #loginInner{
@@ -296,3 +355,43 @@ th {
 /* 
  * Editor Page css 
  */
+
+#sideLeft{
+    float: right;
+    padding: 1%;
+}
+
+#sideRight{
+    float: left;
+    padding: 1%;
+}
+
+#createNew, #editExisting{
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    font-size: 32px;
+    padding: 15% 25% 15% 25%;
+    margin: 10%;
+    background-color: aqua;
+    border-radius: .5em;
+}
+
+#searchPanel{
+    border: solid thin black;
+    border-radius: .5em;
+}
+
+#searchBox{
+    border: solid thin black;
+    border-radius: .5em;
+}
+
+#infoPanel{
+    border: solid thin black;
+    border-radius: .5em;
+}
+
+#infoPanel input{
+    width: 90%;
+}
