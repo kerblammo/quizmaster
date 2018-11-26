@@ -31,10 +31,16 @@ function doGet() {
     if (filter_has_var(INPUT_GET, "id")) {
 
         getById();
-    } else if (filter_has_var(INPUT_GET, "username")) {
+
+    } else if (filter_has_var(INPUT_GET, "password")) {
+
+        attemptLogin();
+    } else if (filter_has_var(INPUT_GET, "username")){
 
         getByUsername();
-    }  else {
+    } else {
+
+	
         getAllUsers();
     }
 }
@@ -71,18 +77,19 @@ function getByUsername() {
  * Get the user that matches the credentials supplied
  */
 function attemptLogin() { 
-    $body = file_get_contents("php://input");
-    $contents = json_decode($body, true);
-    
 
-    $user = new User($contents['id'], $contents['permissionId'], $contents['username'], $contents['password'], $contents['deactivated']);
     
+    $username = filter_input(INPUT_GET, 'username');
+    $password = filter_input(INPUT_GET, 'password');
+
 
    try {
 //        //accessor
         $acc = new UserAccessor();
-        $results = json_encode($acc->verifyUserLogin($user), JSON_NUMERIC_CHECK);
-      echo $results;
+
+        $results = json_encode($acc->verifyUserLogin($username, $password), JSON_NUMERIC_CHECK);
+        echo $results;
+
     } catch (Exception $ex) {
         echo "ERROR: " . $ex->getMessage();
     }
@@ -123,6 +130,44 @@ function doDelete() {
             echo "ERROR: " . $ex->getMessage();
         }
     } else {
-        echo "ERROR: ID if user to delete / deactivate not supplied";
+        echo "ERROR: ID of user to delete / deactivate not supplied";
+    }
+}
+
+/**
+ * Attempt to change a user's password
+ */
+function doPut(){
+    if (filter_has_var(INPUT_GET, 'id')){
+        $body = file_get_contents('php://input');
+        $contents = json_decode($body, true);
+        $user = new User($contents['id'], $contents['permissionId'], $contents['username'], $contents['password'], $contents['deactivated']);
+        $id = filter_input(INPUT_GET, 'id');
+        try {
+            $acc = new UserAccessor();
+            $results = json_encode($acc->updatePassword($user));
+            echo $results;
+            
+        } catch (Exception $ex) {
+            echo "ERROR: " . $ex->getMessage();
+        }
+    } else {
+        echo "ERROR: ID of user to modify not supplied";
+    }
+}
+
+/**
+ * Attempt to add a new user to the database
+ */
+function doPost(){
+    $body = file_get_contents('php://input');
+    $contents = json_decode($body, true);
+    $user = new User($contents['id'], $contents['permissionId'], $contents['username'], $contents['password'], $contents['deactivated']);
+    try {
+        $acc = new UserAccessor();
+        $results = json_encode($acc->insertUser($user));
+        echo $results;
+    } catch (Exception $ex) {
+        echo "ERROR: " . $ex->getMessage();
     }
 }
