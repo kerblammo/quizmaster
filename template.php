@@ -32,11 +32,15 @@ and open the template in the editor.
             </div>
         </div>
         <div id="footer">
-            
+            <div class="navLeft">
+                <a href="about.php"><button>About Us</button></a>
+            </div>
+            <div class="navRight">
+                <a href="about.php#contact"><button>Contact Us</button></a><a href="profile.php#settings"><button>Settings</button></a>
+            </div>
         </div>
         
-        <?php
-        // put your code here
-        ?>
+        
+        
     </body>
 </html>

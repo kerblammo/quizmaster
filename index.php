@@ -31,13 +31,43 @@ and open the template in the editor.
             <div id="greeting">
                 <h2>Hey %USER%, check out these quizzes!</h2>
             </div>
+            <div id="featured">
+                <div id="featuredDataHolder">
+                    <div id="featuredData" class="row">
+                        Featured 1
+                    </div>
+                    <div class="row">
+                        Featured 2
+                    </div>
+                </div>
+            </div>
+            <div id="latest">
+                <div id="latestDataHolder">
+                    <div id="latestData" class="row">
+                        Latest
+                    </div>
+                    <div id="latestData" class="row">
+                        Latest
+                    </div>
+                    <div id="latestData" class="row">
+                        Latest
+                    </div>
+                    <div id="latestData" class="row">
+                        Latest
+                    </div>
+                </div>
+            </div>
         </div>
         <div id="botMenu">
-            
+            <div class="navLeft">
+                <a href="index.php"><button>About Us</button></a>
+            </div>
+            <div class="navRight">
+                <a href="login.php"><button id="loginOpt">Contact Us</button></a><a href="index.php"><button>Settings</button></a>
+            </div>
         </div>
         
-        <?php
-        // put your code here
-        ?>
+        
+        
     </body>
 </html>
