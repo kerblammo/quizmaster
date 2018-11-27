@@ -39,9 +39,9 @@ if(document.querySelector("#loginOpt").innerHTML=="Login"){
         myObj.permissionId = 1;
         myObj.deactivated = 0;
 
-        var url = "quizmaster/account/login";
+        var url = "quizmaster/account/login/"+userName+"/"+password;
 
-        var method = "POST";
+        var method = "GET";
 
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function () {
@@ -52,6 +52,7 @@ if(document.querySelector("#loginOpt").innerHTML=="Login"){
                 } else {
                     console.log(resp);
                     enable(xmlhttp.responseText);
+                  localStorage.setItem("user", myObj);
 
                 }
             }
