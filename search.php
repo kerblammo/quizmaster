@@ -9,6 +9,7 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="css/index.css">
         <title>Quiz Webpage</title>
+        <script src="scripts/search.js"></script>
     </head>
     <body>
         
@@ -52,7 +53,7 @@ and open the template in the editor.
                             <option>Score Range</option>
                             <option>User</option>
                         </select>
-                        <p>Search Term:<input type="text" name="searchTermInput"><button>Seach</button></p>
+                        <p>Search Term:<input type="text" name="searchTermInput"><button id="searchQuiz">Seach</button></p>
                     </div>
                 </div>
                 <div id="holderLarge">
@@ -89,7 +90,6 @@ and open the template in the editor.
                                 </div>
                             </div>
                         </div>
-
                         <div id="outputData" class="column25">
                             <div id="searchBox">
                                 <div id="quizName">
@@ -103,7 +103,6 @@ and open the template in the editor.
                                 </div>
                             </div>
                         </div>
-
                         <div id="outputData" class="column25">
                             <div id="searchBox">
                                 <div id="quizName">

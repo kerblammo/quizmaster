@@ -39,9 +39,9 @@ if(document.querySelector("#loginOpt").innerHTML=="Login"){
         myObj.permissionId = 1;
         myObj.deactivated = 0;
 
-        var url = "quizmaster/account/login";
+        var url = "quizmaster/account/login/"+userName+"/"+password;
 
-        var method = "POST";
+        var method = "GET";
 
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function () {
@@ -52,6 +52,9 @@ if(document.querySelector("#loginOpt").innerHTML=="Login"){
                 } else {
                     console.log(resp);
                     enable(xmlhttp.responseText);
+                    
+                 window.localStorage.setItem("userLoggedIn", userName);
+              
 
                 }
             }
@@ -66,7 +69,7 @@ function enable(text) {
     if (text == "null") {
       alert("Please check user name and password");
     } else {
-       //  window.location.href = "index.php";
+       
         document.querySelector("#loginOpt").innerHTML="Log Out";
         //need to change everywhere       
         document.querySelector("#profile").innerHTML="Settings";

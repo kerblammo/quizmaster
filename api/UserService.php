@@ -19,12 +19,8 @@ if ($method === "GET") {
 /**
  * Handle get requests
  */
-function doPost(){
-   if (filter_has_var(INPUT_GET, "login")){
 
-        attemptLogin();
-    }
-}
+
 function doGet() {
     //three ways to get: credentials, by id, and by username
 
