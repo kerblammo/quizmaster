@@ -1,6 +1,10 @@
 window.onload = function () {
+ 
     
-if (localStorage.getItem("user") !== null) {
+  //localStorage.clear();
+    
+if (localStorage.getItem("userLoggedIn") !== null) {
+    console.log(localStorage.getItem('userLoggedIn'));
       document.querySelector("#loginOpt").innerHTML="Log Out";
         //need to change everywhere       
         document.querySelector("#profile").innerHTML="Settings";

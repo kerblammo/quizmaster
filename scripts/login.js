@@ -52,7 +52,9 @@ if(document.querySelector("#loginOpt").innerHTML=="Login"){
                 } else {
                     console.log(resp);
                     enable(xmlhttp.responseText);
-                  localStorage.setItem("user", myObj);
+                    
+                 window.localStorage.setItem("userLoggedIn", userName);
+              
 
                 }
             }
@@ -67,7 +69,7 @@ function enable(text) {
     if (text == "null") {
       alert("Please check user name and password");
     } else {
-       //  window.location.href = "index.php";
+       
         document.querySelector("#loginOpt").innerHTML="Log Out";
         //need to change everywhere       
         document.querySelector("#profile").innerHTML="Settings";
