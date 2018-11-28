@@ -18,10 +18,10 @@ and open the template in the editor.
             </div>
             <div id="topMenuNav">
                 <div class="navLeft">
-                    <a href="index.php"><button>Home</button></a><a href="search.php"><button>Quizzes</button></a><a href="search.php"><button>Results</button></a><a href="index.php"><button>Search</button></a><a href="editor.php"><button>Editor</button></a>
+                    <a href="index.php"><button>Home</button></a><a href="search.php"><button>Search</button></a><a href="editor.php"><button>Editor</button></a>
                 </div>
                 <div class="navRight">
-                    <a href="login.php"><button>Log</button></a><a href="index.php"><button>Profile</button></a>
+                    <a href="login.php"><button id="loginOpt">Login</button></a><a href="index.php"><button>Profile</button></a>
                 </div>
             </div>
             
@@ -39,47 +39,55 @@ and open the template in the editor.
                             <option>Tag</option>
                             <option>Word</option>
                         </select>
-                        <p>Search Term:<input type="text" name="searchTermInput"></p>
+                        <p>Search Term:<input type="text" name="searchTermInput"><button>Seach</button></p>
                     </div>
                 </div>
                 <div id="holderSmall">
-                    <div id="emptySpacer">
-
+                    <div id="searchByResults">
+                        Search By:
+                        <select>
+                            <option>Quiz Tag</option>
+                            <option>Question Tag</option>
+                            <option>Date Range</option>
+                            <option>Score Range</option>
+                            <option>User</option>
+                        </select>
+                        <p>Search Term:<input type="text" name="searchTermInput"><button>Seach</button></p>
                     </div>
                 </div>
                 <div id="holderLarge">
                     <div id="output">
-                        Output here
+                        <div class="row">
+                            <div id="outputData" class="column25">
+                                hello
+                            </div>
+
+                            <div id="outputData" class="column25">
+                                hi
+                            </div>
+
+                            <div id="outputData" class="column25">
+                                data
+                            </div>
+
+                            <div id="outputData" class="column25">
+                                here
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div id="displayResult">
-                <div id="emptySpacer">
-                    
-                </div>
-                <div id="searchByResults">
-                    Search By:
-                    <select>
-                        <option>Quiz Tag</option>
-                        <option>Question Tag</option>
-                        <option>Date Range</option>
-                        <option>Score Range</option>
-                        <option>User</option>
-                    </select>
-                    <p>Search Term:<input type="text" name="searchTermInput"></p>
-                </div>
-                <div id="outputResults output">
-                    Output here
-                </div>
-            </div>
-            
         </div>
         <div id="botMenu">
-            
+            <div class="navLeft">
+                <a href="index.php"><button>About Us</button></a>
+            </div>
+            <div class="navRight">
+                <a href="login.php"><button id="loginOpt">Contact Us</button></a><a href="index.php"><button>Settings</button></a>
+            </div>
         </div>
         
-        <?php
-        // put your code here
-        ?>
+        
+        
     </body>
 </html>
