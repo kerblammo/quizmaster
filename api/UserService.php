@@ -2,7 +2,7 @@
 
 
 require_once '../db/userAccessor.php';
-require_once '../entity/User.php';
+//require_once '../entity/User.php';
 
 //check which verb sent and act accordingly
 $method = filter_input(INPUT_SERVER, "REQUEST_METHOD");
@@ -31,9 +31,9 @@ function doGet() {
     } else if (filter_has_var(INPUT_GET, "password")) {
 
         attemptLogin();
-//    } else if (filter_has_var(INPUT_GET, "username")){
-//
-//        getByUsername();
+    } else if (filter_has_var(INPUT_GET, "username")){
+
+        getByUsername();
     } else {
 
 	
