@@ -45,7 +45,7 @@ function getTitle(){
     try {
         $name = filter_input(INPUT_GET, 'title');
         $acc = new QuestionAccessor();
-        $results = json_encode($acc->getQuestionByName($name));
+        $results = json_encode($acc->getQuestionsByName($name));
         echo $results;
     } catch (Exception $ex) {
         echo "ERROR: " . $ex->getMessage();
@@ -65,9 +65,9 @@ function getChoice(){
 
 function getTag(){
     try {
-        $tag = filter_input(INPUT_GET, 'tag');
+        $tag = filter_input(INPUT_GET, 'tags');
         $acc = new QuestionAccessor();
-        $results = json_encode($acc->getQuestionByTag($tag));
+        $results = json_encode($acc->getQuestionsByTag($tag));
         echo $results;
     } catch (Exception $ex) {
         echo "ERROR: " . $ex->getMessage();
