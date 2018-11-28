@@ -1,8 +1,8 @@
 <?php
 
-
-require_once '../db/userAccessor.php';
-require_once '../entity/User.php';
+$projectRoot = filter_input(INPUT_SERVER, "DOCUMENT_ROOT") . '/QuizMasterBackend';
+require_once ($projectRoot . '/db/UserAccessor.php');
+require_once ($projectRoot . '/entity/User.php');
 
 //check which verb sent and act accordingly
 $method = filter_input(INPUT_SERVER, "REQUEST_METHOD");
@@ -19,15 +19,12 @@ if ($method === "GET") {
 /**
  * Handle get requests
  */
-
-
 function doGet() {
     //three ways to get: credentials, by id, and by username
 
     if (filter_has_var(INPUT_GET, "id")) {
 
         getById();
-
     } else if (filter_has_var(INPUT_GET, "password")) {
 
         attemptLogin();
@@ -35,8 +32,6 @@ function doGet() {
 
         getByUsername();
     } else {
-
-	
         getAllUsers();
     }
 }
@@ -47,7 +42,7 @@ function doGet() {
 function getById() {
     try {
         $id = filter_input(INPUT_GET, "id");
-        $acc = new userAccessor();
+        $acc = new UserAccessor();
         $results = json_encode($acc->getUserById($id), JSON_NUMERIC_CHECK);
         echo $results;
     } catch (Exception $ex) {
@@ -61,7 +56,7 @@ function getById() {
 function getByUsername() {
     try {
         $username = filter_input(INPUT_GET, 'username');
-        $acc = new userAccessor();
+        $acc = new UserAccessor();
         $results = json_encode($acc->getUserByUsername($username), JSON_NUMERIC_CHECK);
         echo $results;
     } catch (Exception $ex) {
@@ -73,19 +68,15 @@ function getByUsername() {
  * Get the user that matches the credentials supplied
  */
 function attemptLogin() { 
-
     
     $username = filter_input(INPUT_GET, 'username');
     $password = filter_input(INPUT_GET, 'password');
 
-
-   try {
-//        //accessor
+    try {
+        //accessor
         $acc = new UserAccessor();
-
         $results = json_encode($acc->verifyUserLogin($username, $password), JSON_NUMERIC_CHECK);
         echo $results;
-
     } catch (Exception $ex) {
         echo "ERROR: " . $ex->getMessage();
     }
@@ -97,7 +88,7 @@ function attemptLogin() {
 function getAllUsers(){
     
     try {
-        $acc = new userAccessor();
+        $acc = new UserAccessor();
         $results = json_encode($acc->getAllUsers());
         echo $results;
     } catch (Exception $ex) {
@@ -115,7 +106,7 @@ function doDelete() {
     if (filter_has_var(INPUT_GET, 'id')){
         $id = filter_input(INPUT_GET, 'id');
         try {
-            $acc = new userAccessor();
+            $acc = new UserAccessor();
             $user = new User($id, 0, "", "", true);
             $results = $acc->deleteUser($user);
             if (!$results){

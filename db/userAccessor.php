@@ -1,10 +1,8 @@
 <?php
 
-
 $projectRoot = filter_input(INPUT_SERVER, "DOCUMENT_ROOT") . '/QuizMasterBackend';
 require_once 'ConnectionManager.php';
 require_once ($projectRoot . '/entity/user.php');
-
 
 class UserAccessor{
     
@@ -137,7 +135,6 @@ class UserAccessor{
                 $password = $dbResult['Password'];
                 $deactivated = $dbResult['Deactivated'];
                 $result = new User($userid, $permissionId, $username, $password, $deactivated);
-                
             }
         } catch (Exception $ex) {
             $result = NULL;
