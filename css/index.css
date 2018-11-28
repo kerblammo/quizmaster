@@ -173,6 +173,8 @@ th {
     width: 70%;
     height: 5%;
     margin: 0;
+    font-size: 24px;
+    padding: 0 0 0 5%;
 }
 
 #featured{
@@ -184,15 +186,26 @@ th {
 }
 
 #featuredData{
-    
+    background-color: white;
+    border: solid thin black;
+    border-radius: 1em;
+    width: 80%;
+    height: 17.5%;
+    margin: 2.5% auto;
+    padding: 5%;
+    position: relative;
 }
 
 #featuredDataHolder{
-    
+    padding: 1%;
+    clear: both;
+    width: 100%;
+    height: 98%;
+    background-color: white;
 }
 
 #latest{
-    background-color: lightskyblue;
+    background-color: red;
     float: right;
     width: 30%;
     height: 95%;
@@ -200,13 +213,29 @@ th {
 }
 
 #latestData{
-    
+    background-color: white;
+    border: solid thin black;
+    border-radius: 1em;
+    width: 60%;
+    height: 12.5%;
+    margin: 5% auto;
+    padding: 5%;
+    position: relative;
 }
 
 #latestDataHolder{
+    text-align: center;
+    padding: 0.5% 0;
     clear: both;
-    width: 85%;
+    width: 100%;
+    height: 100%;
     background-color: white;
+}
+
+#viewAll{
+    text-align: center;
+    width: 100%;
+    margin: auto;
 }
 
 /*
@@ -298,9 +327,8 @@ th {
 
 #output{
     float: bottom;
-    border: solid thin green;
     background-color: cadetblue;
-    height: auto;
+    height: 100%;
     width: 100%;
 }
 
@@ -310,6 +338,40 @@ th {
     margin: auto;
     background-color: aqua;
     height: 50%;
+}
+
+#searchBox{
+    background-color: white;
+    border: solid thin black;
+    width: 60%;
+    height: 45%;
+    margin: 5% auto;
+    padding: 5%;
+    position: relative; 
+}
+
+#quizName{
+    text-align: left;
+    width: 100%;
+    height: auto;
+    position: relative; 
+    text-decoration: underline;
+}
+
+#quizDescription{
+    text-align: left;
+    width: 100%;
+    height: auto;
+    position: relative; 
+}
+
+#btnTakeQuiz{
+    text-align: right;
+    margin: 5% 0 1% 0;
+    width: 90%;
+    height: auto;
+    position: absolute;
+    bottom: 0;
 }
 
 /* 
@@ -395,3 +457,4 @@ th {
 #infoPanel input{
     width: 90%;
 }
+

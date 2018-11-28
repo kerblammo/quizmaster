@@ -57,21 +57,64 @@ and open the template in the editor.
                 </div>
                 <div id="holderLarge">
                     <div id="output">
-                        <div class="row">
-                            <div id="outputData" class="column25">
-                                hello
+                        <!-- 
+                        * These are example boxes and should be built in javascript and loaded into the "output" div
+                        -->
+                        <div id="outputData" class="column25">
+                            <div id="searchBox">
+                                <div id="quizName">
+                                    This is where the quiz name goes.
+                                </div>
+                                <div id="quizDescription">
+                                    <p>This is where the quiz description goes.</p>
+                                </div>
+                                <div id="btnTakeQuiz">
+                                    <button>Take Quiz</button>
+                                </div>
                             </div>
-
-                            <div id="outputData" class="column25">
-                                hi
+                        </div>
+                        <!-- 
+                        * End of a single example box
+                        -->
+                        <div id="outputData" class="column25">
+                            <div id="searchBox">
+                                <div id="quizName">
+                                    This is where the quiz name goes.
+                                </div>
+                                <div id="quizDescription">
+                                    <p>This is where the quiz description goes.</p>
+                                </div>
+                                <div id="btnTakeQuiz">
+                                    <button>Take Quiz</button>
+                                </div>
                             </div>
+                        </div>
 
-                            <div id="outputData" class="column25">
-                                data
+                        <div id="outputData" class="column25">
+                            <div id="searchBox">
+                                <div id="quizName">
+                                    This is where the quiz name goes.
+                                </div>
+                                <div id="quizDescription">
+                                    <p>This is where the quiz description goes.</p>
+                                </div>
+                                <div id="btnTakeQuiz">
+                                    <button>Take Quiz</button>
+                                </div>
                             </div>
+                        </div>
 
-                            <div id="outputData" class="column25">
-                                here
+                        <div id="outputData" class="column25">
+                            <div id="searchBox">
+                                <div id="quizName">
+                                    This is where the quiz name goes.
+                                </div>
+                                <div id="quizDescription">
+                                    <p>This is where the quiz description goes.</p>
+                                </div>
+                                <div id="btnTakeQuiz">
+                                    <button>Take Quiz</button>
+                                </div>
                             </div>
                         </div>
                     </div>
