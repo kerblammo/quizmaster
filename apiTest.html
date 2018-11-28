@@ -18,23 +18,26 @@ and open the template in the editor.
 
             function submitHandler() {
                 console.log('click');
+                var method = "PUT";
                 //get id
-                var id = 2;
-                var authorId = 1;
-                var title = document.querySelector('#param1').value;
-                var description = document.querySelector('#param2').value;
-                var tags = "pop culture";
+                var id = 33;
+                var questionText = 'What is my favorite colour?';
+                var choices = "yellow,blue,red,green";
+                var description = "This is an example of a subjective question";
+                var answer = "green";
+                var tags = "colours,easy";
                 //basic user object, may not be required with each call
                 var item = {
                     "id": id,
-                    "authorId": authorId,
-                    "title" : title,
+                    "questionText": questionText,
                     "description" : description,
+                    "choices" : choices,
+                    "answer" : answer,
                     "tags" : tags
                 };
                 console.log('parameters set'); 
                 //ajax call
-                var url = "quizmaster/quiz";
+                var url = "quizmaster/question";
                 var xmlhttp = new XMLHttpRequest();
                 xmlhttp.onreadystatechange = function () {
                     if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
@@ -45,7 +48,7 @@ and open the template in the editor.
                         
                     }
                 };
-                xmlhttp.open("GET", url, true); 
+                xmlhttp.open(method, url, true); 
                 xmlhttp.send(JSON.stringify(item));
             }
 
