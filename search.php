@@ -35,7 +35,7 @@ and open the template in the editor.
                 <div id="holderSmall">
                     <div id="searchByQuiz">
                         Search By:
-                        <select>
+                        <select id="searchQuix">
                             <option>ID</option>
                             <option>Tag</option>
                             <option>Word</option>
@@ -46,7 +46,7 @@ and open the template in the editor.
                 <div id="holderSmall">
                     <div id="searchByResults">
                         Search By:
-                        <select>
+                        <select >
                             <option>Quiz Tag</option>
                             <option>Question Tag</option>
                             <option>Date Range</option>

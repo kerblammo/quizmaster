@@ -31,9 +31,9 @@ function doGet() {
     } else if (filter_has_var(INPUT_GET, "password")) {
 
         attemptLogin();
-    } else if (filter_has_var(INPUT_GET, "username")){
-
-        getByUsername();
+//    } else if (filter_has_var(INPUT_GET, "username")){
+//
+//        getByUsername();
     } else {
 
 	

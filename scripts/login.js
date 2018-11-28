@@ -51,9 +51,10 @@ if(document.querySelector("#loginOpt").innerHTML=="Login"){
                     alert(resp);
                 } else {
                     console.log(resp);
-                    enable(xmlhttp.responseText);
-                    
-                 window.localStorage.setItem("userLoggedIn", userName);
+                    enable();
+                    //save to local storage
+               localStorage.setItem("userLoggedIn", userName);
+               
               
 
                 }
@@ -65,10 +66,8 @@ if(document.querySelector("#loginOpt").innerHTML=="Login"){
 }
 }
 
-function enable(text) {
-    if (text == "null") {
-      alert("Please check user name and password");
-    } else {
+function enable() {
+  
        
         document.querySelector("#loginOpt").innerHTML="Log Out";
         //need to change everywhere       
@@ -85,7 +84,7 @@ function enable(text) {
         if (data.id == 2) {
             alert("This is an admin");
         }
-    }
+    
 }
 
 
