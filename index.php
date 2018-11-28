@@ -7,7 +7,7 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-        <script src="index.js"></script>
+        <script src="scripts/index.js"></script>
         
         <link rel="stylesheet" type="text/css" href="css/index.css">
         <title>Quiz Webpage</title>

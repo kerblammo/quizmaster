@@ -1,7 +1,7 @@
 window.onload = function () {
  
     
-  //localStorage.clear();
+ 
     
 if (localStorage.getItem("userLoggedIn") !== null) {
     console.log(localStorage.getItem('userLoggedIn'));
