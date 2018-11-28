@@ -38,16 +38,16 @@ and open the template in the editor.
             * Buttons here are shown initially
             -->
             <div id="selectButtonEdit">
-            <div id="holderSmall">
-                <div id="sideLeft">
-                    <button id="createNew">Create New</button>
+                <div id="holderSmall">
+                    <div id="sideLeft">
+                        <button id="createNew">Create New</button>
+                    </div>
                 </div>
-            </div>
-            <div id="holderSmall">
-                <div id="sideRight">
-                    <button id="editExisting">Edit Existing</button>
+                <div id="holderSmall">
+                    <div id="sideRight">
+                        <button id="editExisting">Edit Existing</button>
+                    </div>
                 </div>
-            </div>
             </div>
             
             <!--
@@ -286,10 +286,10 @@ and open the template in the editor.
         </div>
         <div id="botMenu">
             <div class="navLeft">
-                <a href="index.php"><button>About Us</button></a>
+                <a href="about.php"><button>About Us</button></a>
             </div>
             <div class="navRight">
-                <a href="login.php"><button id="loginOpt">Contact Us</button></a><a href="index.php"><button>Settings</button></a>
+                <a href="about.php#contact"><button>Contact Us</button></a><a href="profile.php"><button>Settings</button></a>
             </div>
         </div>
         

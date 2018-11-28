@@ -64,7 +64,7 @@ th {
 }
 
 #topMenuLogo {
-    background-color: white;
+    background-color: whitesmoke;
     float: left;
     width: 100%;
     height: 55%;
@@ -130,7 +130,7 @@ th {
 }
 
 #center {
-    background-color: pink;
+    background-color: white;
     width: 100%;
     height: 87.5%;
     margin: auto;
@@ -173,6 +173,8 @@ th {
     width: 70%;
     height: 5%;
     margin: 0;
+    font-size: 24px;
+    padding: 0 0 0 5%;
 }
 
 #featured{
@@ -184,15 +186,26 @@ th {
 }
 
 #featuredData{
-    
+    background-color: whitesmoke;
+    border: solid thin black;
+    border-radius: 1em;
+    width: 80%;
+    height: 17.5%;
+    margin: 2.5% auto;
+    padding: 5%;
+    position: relative;
 }
 
 #featuredDataHolder{
-    
+    padding: 1%;
+    clear: both;
+    width: 100%;
+    height: 98%;
+    background-color: white;
 }
 
 #latest{
-    background-color: lightskyblue;
+    background-color: red;
     float: right;
     width: 30%;
     height: 95%;
@@ -200,13 +213,29 @@ th {
 }
 
 #latestData{
-    
+    background-color: whitesmoke;
+    border: solid thin black;
+    border-radius: 1em;
+    width: 60%;
+    height: 12.5%;
+    margin: 5% auto;
+    padding: 5%;
+    position: relative;
 }
 
 #latestDataHolder{
+    text-align: center;
+    padding: 0.5% 0;
     clear: both;
-    width: 85%;
+    width: 100%;
+    height: 100%;
     background-color: white;
+}
+
+#viewAll{
+    text-align: center;
+    width: 100%;
+    margin: auto;
 }
 
 /*
@@ -216,24 +245,16 @@ th {
  */
 
 #searchBySelector{
-    background-color: green;
+    color: white;
     width: 90%;
     height: 3.5%;
     padding: 1%;
     margin: auto;
 }
 
-#displayQuiz{
+#display{
     width: 90%;
-    border: solid thin black;
     height: 90%;
-    margin: auto;
-}
-
-#displayResult{
-    width: 80%;
-    border: solid thin black;
-    height: 80%;
     margin: auto;
 }
 
@@ -254,16 +275,17 @@ th {
     height: 75%;
 }
 
-#searchByQuiz{
+#searchByQuiz, #searchByResults{
     border: solid thin black;
     margin: 0% 5% 0 5%;
     float: right;
     width: 80%;
     height: 100%;
-    background-color: red;
-    padding: 5% 0 0 5%; 
+    background-color: whitesmoke;
+    padding: 1% 0 0 5%; 
 }
 
+/* This might not be required...
 #searchByResults{
     border: solid thin black;
     margin: 0% 5% 0 5%;
@@ -271,13 +293,13 @@ th {
     width: 80%;
     height: 100%;
     background-color: blue;
-    padding: 5% 0 0 5%; 
-    color: white;
+    padding: 1% 0 0 5%; 
 }
+*/
 
 #emptySpacer{
     float: right;
-    background-color: coral;
+    background-color: black;
     width: 48%;
     height: 12.5%;
 }
@@ -298,9 +320,7 @@ th {
 
 #output{
     float: bottom;
-    border: solid thin green;
-    background-color: cadetblue;
-    height: auto;
+    height: 100%;
     width: 100%;
 }
 
@@ -312,13 +332,47 @@ th {
     height: 50%;
 }
 
+#searchBox{
+    background-color: whitesmoke;
+    border: solid thin black;
+    width: 60%;
+    height: 45%;
+    margin: 5% auto;
+    padding: 5%;
+    position: relative; 
+}
+
+#quizName{
+    text-align: left;
+    width: 100%;
+    height: auto;
+    position: relative; 
+    text-decoration: underline;
+}
+
+#quizDescription{
+    text-align: left;
+    width: 100%;
+    height: auto;
+    position: relative; 
+}
+
+#btnTakeQuiz{
+    text-align: right;
+    margin: 5% 0 1% 0;
+    width: 90%;
+    height: auto;
+    position: absolute;
+    bottom: 0;
+}
+
 /* 
  * Login Page css 
  */
 
 #centerLogin{
     padding: 10% 0 0 0;
-    background-color: pink;
+    background-color: white;
     width: 100%;
     height: 85%;
     margin: auto;
@@ -394,4 +448,8 @@ th {
 
 #infoPanel input{
     width: 90%;
+}
+
+#searchData{
+    border: solid thin black;
 }
