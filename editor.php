@@ -8,7 +8,6 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="css/index.css">
-        <script src="scripts/editor.js"></script>
         <title>Quiz Webpage</title>
     </head>
     <body>
@@ -19,21 +18,23 @@ and open the template in the editor.
             </div>
             <div id="topMenuNav">
                 <div class="navLeft">
+
                     <a href="index.php"><button>Home</button></a><a href="search.php"><button>Search</button></a><a href="editor.php"><button id="editor"class="hidden">Editor</button></a>
+
                 </div>
                 <div class="navRight">
-                    <a href="login.php"><button id="loginOpt">Login</button></a><a href="index.php"><button>Profile</button></a>
+                    <a href="login.php"><button>Log</button></a><a href="index.php"><button>Profile</button></a>
                 </div>
             </div>
             
         </div>
         <div id="center">
             <div id="searchBySelector">
-                <div id="leftRadio"><input type="radio" id="radQuiz" name="editBy" value="quizzes" checked>Quiz Editor</div><div id="rightRadio"><input type="radio" id="radQuestion" name="editBy" value="questions">Question Editor</div>
+                <div id="leftRadio"><input type="radio" name="editBy" value="quizzes" checked>Search Quizzes</div><div id="rightRadio"><input type="radio" name="editBy" value="results">Search Results</div>
             </div>
-            <div class="row">
-                <button id="startOver">Start Over</button>
-            </div>
+            <div id="greeting">
+                <h2>Welcome to the editor.</h2>
+
             <!--
             * Buttons here are shown initially
             -->
@@ -291,9 +292,11 @@ and open the template in the editor.
             <div class="navRight">
                 <a href="about.php#contact"><button>Contact Us</button></a><a href="profile.php"><button>Settings</button></a>
             </div>
+
         </div>
         
-        
-        
+        <?php
+        // put your code here
+        ?>
     </body>
 </html>

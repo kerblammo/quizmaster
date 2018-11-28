@@ -18,10 +18,10 @@ and open the template in the editor.
             </div>
             <div id="topMenuNav">
                 <div class="navLeft">
-                    <a href="index.php"><button>Home</button></a><a href="search.php"><button>Search</button></a><a href="editor.php"><button>Editor</button></a>
+                    <a href="index.php"><button>Home</button></a><a href="search.php"><button>Quizzes</button></a><a href="search.php"><button>Results</button></a><a href="index.php"><button>Search</button></a><a href="editor.php"><button>Editor</button></a>
                 </div>
                 <div class="navRight">
-                    <a href="login.php"><button id="loginOpt">Login</button></a><a href="index.php"><button>Profile</button></a>
+                    <a href="login.php"><button>Log</button></a><a href="index.php"><button>Profile</button></a>
                 </div>
             </div>
             
@@ -31,6 +31,7 @@ and open the template in the editor.
                 <h2>Hey %USER%, check out these quizzes!</h2>
             </div>
         </div>
+
         <div id="botMenu">
             <div class="navLeft">
                 <a href="about.php"><button>About Us</button></a>
@@ -39,5 +40,6 @@ and open the template in the editor.
                 <a href="about.php#contact"><button>Contact Us</button></a><a href="profile.php"><button>Settings</button></a>
             </div>
         </div>
+
     </body>
 </html>
