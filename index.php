@@ -6,10 +6,9 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <meta charset="UTF-8">
-        <script src="scripts/index.js"></script>
-        
+        <meta charset="UTF-8">        
         <link rel="stylesheet" type="text/css" href="css/index.css">
+        <script src="scripts/index.js"></script>
         <title>Quiz Webpage</title>
     </head>
     <body>
@@ -129,10 +128,10 @@ and open the template in the editor.
         </div>
         <div id="botMenu">
             <div class="navLeft">
-                <a href="index.php"><button>About Us</button></a>
+                <a href="about.php"><button>About Us</button></a>
             </div>
             <div class="navRight">
-                <a href="login.php"><button id="loginOpt">Contact Us</button></a><a href="index.php"><button>Settings</button></a>
+                <a href="about.php#contact"><button>Contact Us</button></a><a href="profile.php"><button>Settings</button></a>
             </div>
         </div>
         

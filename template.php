@@ -31,16 +31,13 @@ and open the template in the editor.
                 <h2>Hey %USER%, check out these quizzes!</h2>
             </div>
         </div>
-        <div id="footer">
+        <div id="botMenu">
             <div class="navLeft">
                 <a href="about.php"><button>About Us</button></a>
             </div>
             <div class="navRight">
-                <a href="about.php#contact"><button>Contact Us</button></a><a href="profile.php#settings"><button>Settings</button></a>
+                <a href="about.php#contact"><button>Contact Us</button></a><a href="profile.php"><button>Settings</button></a>
             </div>
         </div>
-        
-        
-        
     </body>
 </html>
