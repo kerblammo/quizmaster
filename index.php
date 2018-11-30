@@ -19,15 +19,15 @@ and open the template in the editor.
             </div>
             <div id="topMenuNav">
                 <div class="navLeft">
-                    <a href="index.php"><button>Home</button></a><a href="search.php"><button>Search</button></a><a href="editor.php"><button>Editor</button></a>
+                    <a href="index.php"><button>Home</button></a><a href="search.php"><button>Search</button></a><a href="editor.php"><button id="editor" class="hidden">Editor</button></a>
                 </div>
                 <div class="navRight">
-                    <a href="login.php"><button id="loginOpt">Login</button></a><a href="index.php"><button id="profile">Profile</button></a>
+                    <a href="login.php"><button id="loginOpt">Login</button></a><a href="index.php"><button id="profile" class="hidden">Profile</button></a>
                 </div>
             </div>
             
         </div>
-        <div id="center">
+        <div id="center" class="white">
             <div id="greeting">
                 Hey %USER%, check out these quizzes!
             </div>
@@ -44,7 +44,9 @@ and open the template in the editor.
                             <p>This is where the quiz description goes.</p>
                         </div>
                         <div id="btnTakeQuiz">
-                            <button>Take Quiz</button>
+                            <form action="quiz.php" id="takeQuiz" method="POST">
+                                <button type="submit" >Take Quiz</button>
+                            </form>
                         </div>
                     </div>
                     <div id="featuredData">
@@ -55,7 +57,9 @@ and open the template in the editor.
                             <p>This is where the quiz description goes.</p>
                         </div>
                         <div id="btnTakeQuiz">
-                            <button>Take Quiz</button>
+                            <form action="quiz.php" id="takeQuiz" method="POST">
+                                <button type="submit" >Take Quiz</button>
+                            </form>
                         </div>
                     </div>
                     <!-- 
@@ -81,7 +85,9 @@ and open the template in the editor.
                             <p>This is where the quiz description goes.</p>
                         </div>
                         <div id="btnTakeQuiz">
-                            <button>Take Quiz</button>
+                            <form action="quiz.php" id="takeQuiz" method="POST">
+                                <button type="submit" >Take Quiz</button>
+                            </form>
                         </div>
                     </div>
                     <!-- 
@@ -95,7 +101,9 @@ and open the template in the editor.
                             <p>This is where the quiz description goes.</p>
                         </div>
                         <div id="btnTakeQuiz">
-                            <button>Take Quiz</button>
+                            <form action="quiz.php" id="takeQuiz" method="POST">
+                                <button type="submit" >Take Quiz</button>
+                            </form>
                         </div>
                     </div>
                     <div id="latestData">
@@ -106,7 +114,9 @@ and open the template in the editor.
                             <p>This is where the quiz description goes.</p>
                         </div>
                         <div id="btnTakeQuiz">
-                            <button>Take Quiz</button>
+                            <form action="quiz.php" id="takeQuiz" method="POST">
+                                <button type="submit" >Take Quiz</button>
+                            </form>
                         </div>
                     </div>
                     <div id="latestData">
@@ -117,7 +127,9 @@ and open the template in the editor.
                             <p>This is where the quiz description goes.</p>
                         </div>
                         <div id="btnTakeQuiz">
-                            <button>Take Quiz</button>
+                            <form action="quiz.php" id="takeQuiz" method="POST">
+                                <button type="submit" >Take Quiz</button>
+                            </form>
                         </div>
                     </div>
                     <!-- 

@@ -19,10 +19,10 @@ and open the template in the editor.
             </div>
             <div id="topMenuNav">
                 <div class="navLeft">
-                    <a href="index.php"><button>Home</button></a><a href="search.php"><button>Search</button></a><a href="editor.php"><button>Editor</button></a>
+                    <a href="index.php"><button>Home</button></a><a href="search.php"><button>Search</button></a><a href="editor.php"><button id="editor" class="hidden">Editor</button></a>
                 </div>
                 <div class="navRight">
-                    <a href="login.php"><button id="loginOpt">Login</button></a><a href="index.php"><button>Profile</button></a>
+                    <a href="login.php"><button id="loginOpt">Login</button></a><a href="index.php"><button id="profile" class="hidden">Profile</button></a>
                 </div>
             </div>
             
@@ -40,12 +40,13 @@ and open the template in the editor.
             <div id="selectButtonEdit">
                 <div id="holderSmall">
                     <div id="sideLeft">
-                        <button id="createNew">Create New</button>
+                        <button id="btnCreateNew">Create New</button>
                     </div>
                 </div>
+                
                 <div id="holderSmall">
                     <div id="sideRight">
-                        <button id="editExisting">Edit Existing</button>
+                        <button id="btnEditExisting">Edit Existing</button>
                     </div>
                 </div>
             </div>
@@ -257,8 +258,10 @@ and open the template in the editor.
                 <div id="holderSmall">
                     <div id="sideRight">
                         <div id="infoPanel">
-                            <p>Quiz Name -- Quiz ID</p>
-                            <p><input type="text" value=""><input type="text" value=""></p>
+                            <p>Quiz Name</p>
+                            <p><input type="text" value=""></p>
+                            <p>Quiz ID</p>
+                            <p><input type="text" value=""></p>
                             <p>Quiz / Question Tags</p>
                             <p><input type="text" value=""></p>
                             <p>Quiz / Question Description</p>
@@ -270,50 +273,52 @@ and open the template in the editor.
                 *************** QUIZ EDITOR: QUESTION ADD TO QUIZ ****************
                 * Shown if user hits create new, or chooses a quiz to edit
                 -->
-                <div id="holderSmall">
-                    <div id="sideLeft">
-                        <div id="questionSearch">
-                            <div id="seachBox">
-                                <p>
-                                    Question List
-                                </p>
-                            </div>
-                            <div id="searchData">
-                                <ul id="highlightListAddToQuiz">
-                                    <li>Result1</li>
-                                    <li>Result2</li>
-                                    <li>Result3</li>
-                                    <li>Result4</li>
-                                </ul>
-                            </div>
-                            <div id="searchDataButtons">
-                                <button>Create New Question</button>
+                <div class="row">
+                    <div id="holderSmall">
+                        <div id="sideLeft">
+                            <div id="quizQuestionSearch">
+                                <div id="seachBox">
+                                    <p>
+                                        Question List
+                                    </p>
+                                </div>
+                                <div id="quizSearchData">
+                                    <ul id="highlightListAddToQuiz">
+                                        <li>Result1</li>
+                                        <li>Result2</li>
+                                        <li>Result3</li>
+                                        <li>Result4</li>
+                                    </ul>
+                                </div>
+                                <div id="searchDataButtons">
+                                    <button>Create New Question</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                
-                <div id="questionPassButtons">
-                    <p><button id="btnSend"> > </button></p>
-                    <p><button id="btnRemove"> < </button></p>
-                </div>
-                
-                <div id="holderSmall">
-                    <div id="sideRight">
-                        <div id="questionAdded">
-                            <div id="seachBox">
-                                <p>Questions on Quiz</p>
-                            </div>
-                            <div id="searchData">
-                                <ul id="highlightListInQuiz">
-                                    <li>Result1</li>
-                                    <li>Result2</li>
-                                    <li>Result3</li>
-                                    <li>Result4</li>
-                                </ul>
-                            </div>
-                            <div id="searchDataButtons">
-                                <button>Save Quiz</button>
+
+                    <div id="questionPassButtons">
+                        <p><button id="btnSend"> > </button></p>
+                        <p><button id="btnRemove"> < </button></p>
+                    </div>
+
+                    <div id="holderSmall">
+                        <div id="sideRight">
+                            <div id="questionAdded">
+                                <div id="seachBox">
+                                    <p>Questions on Quiz</p>
+                                </div>
+                                <div id="searchData">
+                                    <ul id="highlightListInQuiz">
+                                        <li>Result1</li>
+                                        <li>Result2</li>
+                                        <li>Result3</li>
+                                        <li>Result4</li>
+                                    </ul>
+                                </div>
+                                <div id="searchDataButtons">
+                                    <button>Save Quiz</button>
+                                </div>
                             </div>
                         </div>
                     </div>

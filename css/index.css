@@ -55,11 +55,71 @@ th {
 
 .hidden {
     display: none;
+    /*
+    opacity: 0.25;
+    
+    */
 }
 
 .highlighted {
     background-color: yellow;
 }
+
+/*
+ * Backgrounds with classes
+ */
+
+.blue{
+    background-image: url("../images/Blue.jpg");
+    height: 100%; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.green{
+    background-image: url("../images/Green.jpg");
+    height: 100%; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.purple{
+    background-image: url("../images/Purple.jpg");
+    height: 100%; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.red{
+    background-image: url("../images/Red.jpg");
+    height: 100%; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.white{
+    background-image: url("../images/White.jpg");
+    height: 100%; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.yellow{
+    background-image: url("../images/Yellow.jpg");
+    height: 100%; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/*
+ * Base for all pages
+ */
 
 #topMenu {
     width: 100%;
@@ -134,7 +194,6 @@ th {
 }
 
 #center {
-    background-color: white;
     width: 100%;
     height: 87.5%;
     margin: auto;
@@ -172,9 +231,11 @@ th {
  */
 
 #greeting {
-    background-color: green;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px black;
     float: left;
-    width: 70%;
+    width: 30%;
     height: 5%;
     margin: 0;
     font-size: 24px;
@@ -182,7 +243,6 @@ th {
 }
 
 #featured{
-    background-color: lightseagreen;
     float: left;
     width: 70%;
     height: 95%;
@@ -205,11 +265,9 @@ th {
     clear: both;
     width: 100%;
     height: 98%;
-    background-color: white;
 }
 
 #latest{
-    background-color: red;
     float: right;
     width: 30%;
     height: 95%;
@@ -233,7 +291,6 @@ th {
     clear: both;
     width: 100%;
     height: 100%;
-    background-color: white;
 }
 
 #viewAll{
@@ -332,7 +389,6 @@ th {
     text-align: center;
     float: left;
     margin: auto;
-    background-color: aqua;
     height: 50%;
 }
 
@@ -425,7 +481,7 @@ th {
     padding: 1%;
 }
 
-#createNew, #editExisting{
+#btnCreateNew, #btnEditExisting{
     text-align: center;
     height: 100%;
     width: 100%;
@@ -438,6 +494,7 @@ th {
 
 #searchPanel{
     border: solid thin black;
+    
     border-radius: .5em;
 }
 
@@ -458,11 +515,19 @@ th {
 }
 
 #searchData{
+    
+}
+
+#quizSearchData{
     border: solid thin black;
 }
 
-#questionSearch{
+#quizQuestionSearch{
     border: solid thin black;
+    padding: 5% 2.5%;
+}
+
+#questionSearch{
     padding: 5% 2.5%;
 }
 

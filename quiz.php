@@ -22,9 +22,9 @@
             </div>
             
         </div>
-        <div id="center">
+        <div id="center" class="white">
             <div id="greeting">
-                <h2>Hey %USER%, check out these quizzes!</h2>
+                <h2>This is the quiz page!</h2>
             </div>
         </div>
         <div id="botMenu">

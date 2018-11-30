@@ -7,16 +7,9 @@
 window.onload = function () {
     document.querySelector("#leftRadio").addEventListener("click",hideQuestion);
     document.querySelector("#rightRadio").addEventListener("click",hideQuiz);
-    document.querySelector("#btnCreateNew").addEventListener("click",createNew);
-    document.querySelector("#btnEditExisting").addEventListener("click",editExisting);
+    document.querySelector("#createNew").addEventListener("click",createNew);
+    document.querySelector("#editExisting").addEventListener("click",editExisting);
     document.querySelector("#startOver").addEventListener("click",startOver);
-    document.querySelector("#highlightListQuestion").addEventListener("click", handleRowClick);
-    document.querySelector("#highlightListQuiz").addEventListener("click", handleRowClick);
-    document.querySelector("#highlightListChoice").addEventListener("click", handleRowClick);
-    document.querySelector("#highlightListAddToQuiz").addEventListener("click", handleRowClick);
-    document.querySelector("#highlightListInQuiz").addEventListener("click", handleRowClick);
-    document.querySelector("#btnSend").addEventListener("click", sendQuestion);
-    document.querySelector("#btnRemove").addEventListener("click", removeQuestion);
     
     //first load, this will clear the proper divs, show buttons, and set default to quiz
     loadAreas();
@@ -41,16 +34,6 @@ function hideQuiz(){
     loadAreas();
 }
 
-function startOver(){
-    if (editMode == "quiz") {
-        startedQuizEdit = 0;
-    } 
-    else{
-        startedQuestionEdit = 0;
-    }
-    loadAreas();
-}
-
 function createNew(){
     if (editMode == "quiz") {
         startedQuizEdit = 1;
@@ -71,45 +54,15 @@ function editExisting(){
     loadAreas();
 }
 
-function sendQuestion(){
-    //adds selected question to list of added questions
-    var toSend = document.querySelector(".highlighted");
-    if (toSend.parentNode.id == "highlightListAddToQuiz") {
-        //alert("you try to pass the thing");
-        var sending = document.querySelector("#highlightListAddToQuiz .highlighted").innerHTML;
-        var placeHere = document.querySelector("#highlightListInQuiz");
-        placeHere.innerHTML += "<li>" + sending + "</li>";
+function startOver(){
+    if (editMode == "quiz") {
+        startedQuizEdit = 0;
     } 
+    else{
+        startedQuestionEdit = 0;
     }
+    loadAreas();
     
-function removeQuestion(){
-    //removes selected question from list of added questions
-    var toRemove = document.querySelector(".highlighted");
-    if (toRemove.parentNode.id == "highlightListInQuiz") {
-        //alert("you took out the thing");
-        var removing = document.querySelector("#highlightListInQuiz .highlighted");
-        removing.parentNode.removeChild(removing);
-}
-}
-
-function clearSelections() {
-    var rows = document.querySelectorAll("ul");
-    for (var i = 0; i < rows.length; i++) {
-        rows[i].classList.remove("highlighted");
-    }
-    
-    var rows = document.querySelectorAll("li");
-    for (var i = 0; i < rows.length; i++) {
-        rows[i].classList.remove("highlighted");
-    }
-}
-
-function handleRowClick(e) {
-    clearSelections();
-    e.target.classList.add("highlighted");
-    
-//    document.querySelector("#btnDel").removeAttribute("disabled");
-//    document.querySelector("#btnUpd").removeAttribute("disabled");
 }
 
 function hideAll(){

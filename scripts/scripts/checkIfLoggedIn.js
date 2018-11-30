@@ -1,10 +1,6 @@
-  window.onload = function () {
-    document.querySelector('#searchQuiz').addEventListener('click', submitHandler);
-                console.log('Handlers set');
-                document.querySelector("#searchByResults").classList.add("hidden");
-             
-    
-                    if (localStorage.getItem("userLoggedIn") !== null) {
+window.onload = function () {
+
+    if (localStorage.getItem("userLoggedIn") !== null) {
         console.log(localStorage.getItem('userLoggedIn'));
         document.querySelector("#loginOpt").innerHTML = "Log Out";
         document.querySelector("#profile").classList.remove("hidden");
@@ -27,18 +23,7 @@ function handleDisplayLogin() {
         alert("Goodbye");
         window.location.href = 'index.php';
     }
-                
-  }
+
+}
 
 
-function submitHandler(){
-    
-}
-function changeSearch(){
-    if(document.querySelector('#searchBy').value==="results") {
-        document.querySelector("#searchByResults").classList.remove("hidden");
-    }
-    else{
-         document.querySelector("#searchByResults").classList.add("hidden");
-    }
-}

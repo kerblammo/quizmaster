@@ -19,15 +19,15 @@ and open the template in the editor.
             </div>
             <div id="topMenuNav">
                 <div class="navLeft">
-                    <a href="index.php"><button>Home</button></a><a href="search.php"><button>Search</button></a><a href="editor.php"><button>Editor</button></a>
+                    <a href="index.php"><button>Home</button></a><a href="search.php"><button>Search</button></a><a href="editor.php"><button id="editor" class="hidden">Editor</button></a>
                 </div>
                 <div class="navRight">
-                    <a href="login.php"><button id="loginOpt">Login</button></a><a href="index.php"><button>Profile</button></a>
+                    <a href="login.php"><button id="loginOpt">Login</button></a><a href="index.php"><button id="profile" class="hidden">Profile</button></a>
                 </div>
             </div>
             
         </div>
-        <div id="center">
+        <div id="center" class="yellow">
             <div id="searchBySelector">
                 <div id="leftRadio"><input type="radio" name="searchBy" value="quizzes" checked>Search Quizzes</div><div id="rightRadio"><input type="radio" name="searchBy" value="results">Search Results</div>
             </div>
