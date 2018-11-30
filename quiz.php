@@ -1,9 +1,5 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+
 <html>
     <head>
         <meta charset="UTF-8">
@@ -18,16 +14,18 @@ and open the template in the editor.
             </div>
             <div id="topMenuNav">
                 <div class="navLeft">
-                    <a href="index.php"><button>Home</button></a><a href="search.php"><button>Search</button></a><a href="editor.php"><button>Editor</button></a>
+                    <a href="index.php"><button>Home</button></a><a href="search.php"><button>Search</button></a><a href="editor.php"><button id="editor" class="hidden">Editor</button></a>
                 </div>
                 <div class="navRight">
-                    <a href="login.php"><button id="loginOpt">Login</button></a><a href="index.php"><button>Profile</button></a>
+                    <a href="login.php"><button id="loginOpt">Login</button></a><a href="index.php"><button id="profile" class="hidden">Profile</button></a>
                 </div>
             </div>
             
         </div>
-        <div id="center">
-                <h2>This is the about page!</h2>
+        <div id="center" class="white">
+            <div id="greeting">
+                <h2>This is the quiz page!</h2>
+            </div>
         </div>
         <div id="botMenu">
             <div class="navLeft">

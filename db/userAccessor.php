@@ -1,15 +1,17 @@
 <?php
 
+
 $projectRoot = filter_input(INPUT_SERVER, "DOCUMENT_ROOT") . '/QuizMasterBackend';
 require_once 'ConnectionManager.php';
 require_once ($projectRoot . '/entity/user.php');
+
 
 class UserAccessor{
     
     //CRUD strings
     private $getByIdStatementString = "SELECT * FROM users WHERE id = :id";
     private $getByUsernameStatementString = "SELECT * FROM users WHERE username LIKE :username";
-    private $verifyUserLoginStatementString = "SELECT * FROM users WHERE Username = :username AND Password = :password";
+    private $verifyUserLoginStatementString = "SELECT * FROM users WHERE username = :username AND password = :password";
     private $deleteStatementString = "DELETE FROM users WHERE id = :id";
     private $insertStatementString = "INSERT INTO users (permissionId, username, password) values (:permissionId, :username, :password)";
     private $updatePasswordStatementString = "UPDATE users SET password = :password WHERE id = :id";
@@ -135,6 +137,7 @@ class UserAccessor{
                 $password = $dbResult['Password'];
                 $deactivated = $dbResult['Deactivated'];
                 $result = new User($userid, $permissionId, $username, $password, $deactivated);
+                
             }
         } catch (Exception $ex) {
             $result = NULL;
