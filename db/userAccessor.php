@@ -1,17 +1,19 @@
 <?php
 
-$projectRoot = filter_input(INPUT_SERVER, "DOCUMENT_ROOT") . '/AdamAssign6/';
+
+$projectRoot = filter_input(INPUT_SERVER, "DOCUMENT_ROOT") . '/QuizMasterBackend';
 require_once 'ConnectionManager.php';
 require_once ($projectRoot . '/entity/user.php');
+
 
 class UserAccessor{
     
     //CRUD strings
     private $getByIdStatementString = "SELECT * FROM users WHERE id = :id";
-    private $getByUsernameStatementString = "SELECT * FROM users WHERE username = :username";
+    private $getByUsernameStatementString = "SELECT * FROM users WHERE username LIKE :username";
     private $verifyUserLoginStatementString = "SELECT * FROM users WHERE username = :username AND password = :password";
     private $deleteStatementString = "DELETE FROM users WHERE id = :id";
-    private $insertStatementString = "INSERT INTO users values (:id, :permissionId, :username, :password)";
+    private $insertStatementString = "INSERT INTO users (permissionId, username, password) values (:permissionId, :username, :password)";
     private $updatePasswordStatementString = "UPDATE users SET password = :password WHERE id = :id";
     private $updateDeactivatedStatementString = "UPDATE users SET deactivated = :deactivated WHERE id = :id";
     
@@ -85,11 +87,11 @@ class UserAccessor{
             $stmt->execute();
             $dbResults = $stmt->fetchAll(PDO::FETCH_ASSOC);
             foreach ($dbResults as $r){
-                $id = $r['id'];
-                $permissionId = $r['permissionId'];
-                $username = $r['username'];
-                $password = $r['password'];
-                $deactivated = $r['deactivated'];
+                $id = $r['Id'];
+                $permissionId = $r['PermissionId'];
+                $username = $r['Username'];
+                $password = $r['Password'];
+                $deactivated = $r['Deactivated'];
                 $obj = new User($id, $permissionId, $username, $password, $deactivated);
                 array_push($result, $obj);
             }
@@ -111,7 +113,7 @@ class UserAccessor{
      * @return array User objects, possibly empty
      */
     public function getAllUsers(){
-        return getUsersByQuery("SELECT * FROM users");
+        return $this->getUsersByQuery("SELECT * FROM users");
     }
     
     /**
@@ -129,12 +131,13 @@ class UserAccessor{
             $dbResult = $this->getByIdStatement->fetch(PDO::FETCH_ASSOC);
             
             if ($dbResult){
-                $userid = $dbResult['id'];
-                $permissionId = $dbResult['permissionId'];
-                $username = $dbResult['username'];
-                $password = $dbResult['password'];
-                $deactivated = $dbResult['deactived'];
+                $userid = $dbResult['Id'];
+                $permissionId = $dbResult['PermissionId'];
+                $username = $dbResult['Username'];
+                $password = $dbResult['Password'];
+                $deactivated = $dbResult['Deactivated'];
                 $result = new User($userid, $permissionId, $username, $password, $deactivated);
+                
             }
         } catch (Exception $ex) {
             $result = NULL;
@@ -155,23 +158,28 @@ class UserAccessor{
      * @return User entity, possibly null
      */
     public function getUserByUsername($name){
-        $result = NULL;
-        
+        $result = [];
+        //today I learned that the wildcards have to be added here, before binding the parameter
+        $name = '%'.$name.'%';
         try {
             $this->getByUsernameStatement->bindParam(":username", $name);
             $this->getByUsernameStatement->execute();
-            $dbResult = $this->getByUsernameStatement->fetch(PDO::FETCH_ASSOC);
+            $dbResult = $this->getByUsernameStatement->fetchAll(PDO::FETCH_ASSOC);
             
+            foreach ($dbResult as $r){
+                $id = $r['Id'];
+                $permissionId = $r['PermissionId'];
+                $username = $r['Username'];
+                $password = $r['Password'];
+                $deactivated = $r['Deactivated'];
+                $obj = new User($id, $permissionId, $username, $password, $deactivated); 
+                array_push($result, $obj);
+            }
             if ($dbResult){
-                $id = $dbResult['id'];
-                $permissionId = $dbResult['permissionId'];
-                $username = $dbResult['username'];
-                $password = $dbResult['password'];
-                $deactivated = $dbResult['deactivated'];
-                $result = new User($id, $permissionId, $username, $password, $deactivated);
+                
             }
         } catch (Exception $ex) {
-            $result = NULL;
+            $result = [];
         } finally {
             if (!is_null($this->getByUsernameStatement)){
                 $this->getByUsernameStatement->closeCursor();
@@ -185,13 +193,13 @@ class UserAccessor{
      * Verify if username / password combination exists
      * on database
      * 
-     * @param User $user sample user with credentials to check 
+     * @param string $username username to log in with
+     * @param string $password password to log in with
      * @return User entity matching credentials
      */
-    public function verifyUserLogin($user){
+    public function verifyUserLogin($username, $password){
         $result = NULL;
-        $username = $user->getUsername();
-        $password = $user->getPassword();
+        
         
         try {
             $this->verifyUserLoginStatement->bindParam(":username", $username);
@@ -200,15 +208,15 @@ class UserAccessor{
             $dbResult = $this->verifyUserLoginStatement->fetch(PDO::FETCH_ASSOC);
             
             if ($dbResult){
-                $id = $dbResult['id'];
-                $permissionId = $dbResult['permissionId'];
-                $name = $dbResult['username'];
-                $pass = $dbResult['password'];
-                $deactivated = $dbResult['deactivated'];
+                $id = $dbResult['Id'];
+                $permissionId = $dbResult['PermissionId'];
+                $name = $dbResult['Username'];
+                $pass = $dbResult['Password'];
+                $deactivated = $dbResult['Deactivated'];
                 $result = new User($id, $permissionId, $name, $pass, $deactivated);
             }
         } catch (Exception $ex) {
-            $result = false;
+            $result = NULL;
         } finally {
             if (!is_null($this->verifyUserLoginStatement)){
                 $this->verifyUserLoginStatement->closeCursor();
@@ -251,20 +259,16 @@ class UserAccessor{
      */
     public function insertUser($user){
         
-        $id = $user->getId();
         $permissionId = $user->getPermissionId();
-        $username = $user->getPermissionId();
+        $username = $user->getUsername();
         $password = $user->getPassword();
-        $deactivated = $user->getDeactivated();
         
         try {
-            $this->insertStatement->bindParam(":id", $id);
             $this->insertStatement->bindParam(":permissionId", $permissionId);
             $this->insertStatement->bindParam(":username", $username);
-            $this->insertStatement->bindParam(":password", $password);
-            $this->insertStatement->bindParam(":deactivated", $deactivated);
+            $this->insertStatement->bindParam(":password", $password); 
             $success = $this->insertStatement->execute();
-        } catch (Exception $ex) {
+        } catch (Exception $ex) { 
             $success = false;
         } finally {
             if (!is_null($this->insertStatement)){

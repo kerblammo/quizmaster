@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>API Tester</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>
+
+            window.onload = function () {
+                document.querySelector('#submit').addEventListener('click', submitHandler);
+                console.log('Handlers set');
+            };
+
+            function submitHandler() {
+                console.log('click');
+                //get id
+                var id = 2;
+                var authorId = 1;
+                var title = document.querySelector('#param1').value;
+                var description = document.querySelector('#param2').value;
+                var tags = "pop culture";
+                //basic user object, may not be required with each call
+                var item = {
+                    "id": id,
+                    "authorId": authorId,
+                    "title" : title,
+                    "description" : description,
+                    "tags" : tags
+                };
+                console.log('parameters set'); 
+                //ajax call
+                var url = "quizmaster/quiz";
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function () {
+                    if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+                        console.log('call made');
+                        var resp = xmlhttp.responseText;
+                        console.log(resp);
+                        console.log(JSON.parse(resp));
+                        
+                    }
+                };
+                xmlhttp.open("GET", url, true); 
+                xmlhttp.send(JSON.stringify(item));
+            }
+
+
+        </script>
+    </head>
+    <body>
+        <p>Response will be logged in console</p>
+
+        <input id="param1"><br>
+        <input id="param2">
+        <button id="submit">Submit</button>
+    </body>
+</html>

@@ -8,6 +8,7 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="css/index.css">
+        <script src="scripts/search.js"></script>
         <title>Quiz Webpage</title>
     </head>
     <body>
@@ -18,10 +19,10 @@ and open the template in the editor.
             </div>
             <div id="topMenuNav">
                 <div class="navLeft">
-                    <a href="index.php"><button>Home</button></a><a href="search.php"><button>Quizzes</button></a><a href="search.php"><button>Results</button></a><a href="index.php"><button>Search</button></a><a href="editor.php"><button>Editor</button></a>
+                    <a href="index.php"><button>Home</button></a><a href="search.php"><button>Search</button></a><a href="editor.php"><button>Editor</button></a>
                 </div>
                 <div class="navRight">
-                    <a href="login.php"><button>Log</button></a><a href="index.php"><button>Profile</button></a>
+                    <a href="login.php"><button id="loginOpt">Login</button></a><a href="index.php"><button>Profile</button></a>
                 </div>
             </div>
             
@@ -30,56 +31,107 @@ and open the template in the editor.
             <div id="searchBySelector">
                 <div id="leftRadio"><input type="radio" name="searchBy" value="quizzes" checked>Search Quizzes</div><div id="rightRadio"><input type="radio" name="searchBy" value="results">Search Results</div>
             </div>
-            <div id="displayQuiz">
+            <div id="display">
                 <div id="holderSmall">
                     <div id="searchByQuiz">
+                        <h1>Quizzes</h1>
                         Search By:
                         <select>
                             <option>ID</option>
                             <option>Tag</option>
                             <option>Word</option>
                         </select>
-                        <p>Search Term:<input type="text" name="searchTermInput"></p>
+                        <p>Search Term:<input type="text" name="searchTermInput"><button>Seach</button></p>
                     </div>
                 </div>
                 <div id="holderSmall">
-                    <div id="emptySpacer">
-
+                    <div id="searchByResults">
+                        <h1>Results</h1>
+                        Search By:
+                        <select>
+                            <option>Quiz Tag</option>
+                            <option>Question Tag</option>
+                            <option>Date Range</option>
+                            <option>Score Range</option>
+                            <option>User</option>
+                        </select>
+                        <p>Search Term:<input type="text" name="searchTermInput"><button id="searchQuiz">Seach</button></p>
                     </div>
                 </div>
                 <div id="holderLarge">
                     <div id="output">
-                        Output here
+                        <!-- 
+                        * These are example boxes and should be built in javascript and loaded into the "output" div
+                        -->
+                        <div id="outputData" class="column25">
+                            <div id="searchBox">
+                                <div id="quizName">
+                                    This is where the quiz name goes.
+                                </div>
+                                <div id="quizDescription">
+                                    <p>This is where the quiz description goes.</p>
+                                </div>
+                                <div id="btnTakeQuiz">
+                                    <button>Take Quiz</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 
+                        * End of a single example box
+                        -->
+                        <div id="outputData" class="column25">
+                            <div id="searchBox">
+                                <div id="quizName">
+                                    This is where the quiz name goes.
+                                </div>
+                                <div id="quizDescription">
+                                    <p>This is where the quiz description goes.</p>
+                                </div>
+                                <div id="btnTakeQuiz">
+                                    <button>Take Quiz</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="outputData" class="column25">
+                            <div id="searchBox">
+                                <div id="quizName">
+                                    This is where the quiz name goes.
+                                </div>
+                                <div id="quizDescription">
+                                    <p>This is where the quiz description goes.</p>
+                                </div>
+                                <div id="btnTakeQuiz">
+                                    <button>Take Quiz</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="outputData" class="column25">
+                            <div id="searchBox">
+                                <div id="quizName">
+                                    This is where the quiz name goes.
+                                </div>
+                                <div id="quizDescription">
+                                    <p>This is where the quiz description goes.</p>
+                                </div>
+                                <div id="btnTakeQuiz">
+                                    <button>Take Quiz</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div id="displayResult">
-                <div id="emptySpacer">
-                    
-                </div>
-                <div id="searchByResults">
-                    Search By:
-                    <select>
-                        <option>Quiz Tag</option>
-                        <option>Question Tag</option>
-                        <option>Date Range</option>
-                        <option>Score Range</option>
-                        <option>User</option>
-                    </select>
-                    <p>Search Term:<input type="text" name="searchTermInput"></p>
-                </div>
-                <div id="outputResults output">
-                    Output here
-                </div>
-            </div>
-            
         </div>
         <div id="botMenu">
-            
+            <div class="navLeft">
+                <a href="about.php"><button>About Us</button></a>
+            </div>
+            <div class="navRight">
+                <a href="about.php#contact"><button>Contact Us</button></a><a href="profile.php"><button>Settings</button></a>
+            </div>
         </div>
         
-        <?php
-        // put your code here
-        ?>
+        
+        
     </body>
 </html>

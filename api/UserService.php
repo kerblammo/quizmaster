@@ -1,8 +1,8 @@
 <?php
 
-$projectRoot = filter_input(INPUT_SERVER, "DOCUMENT_ROOT") . '/QuizMasterBackend';
-require_once ($projectRoot . '/db/UserAccessor.php');
-require_once ($projectRoot . '/entity/User.php');
+
+require_once '../db/userAccessor.php';
+require_once '../entity/User.php';
 
 //check which verb sent and act accordingly
 $method = filter_input(INPUT_SERVER, "REQUEST_METHOD");
@@ -19,18 +19,25 @@ if ($method === "GET") {
 /**
  * Handle get requests
  */
+
+
 function doGet() {
     //three ways to get: credentials, by id, and by username
 
     if (filter_has_var(INPUT_GET, "id")) {
 
         getById();
-    } else if (filter_has_var(INPUT_GET, "username")) {
+
+    } else if (filter_has_var(INPUT_GET, "password")) {
+
+        attemptLogin();
+    } else if (filter_has_var(INPUT_GET, "username")){
 
         getByUsername();
     } else {
 
-        attemptLogin();
+	
+        getAllUsers();
     }
 }
 
@@ -40,7 +47,7 @@ function doGet() {
 function getById() {
     try {
         $id = filter_input(INPUT_GET, "id");
-        $acc = new UserAccessor();
+        $acc = new userAccessor();
         $results = json_encode($acc->getUserById($id), JSON_NUMERIC_CHECK);
         echo $results;
     } catch (Exception $ex) {
@@ -54,7 +61,7 @@ function getById() {
 function getByUsername() {
     try {
         $username = filter_input(INPUT_GET, 'username');
-        $acc = new UserAccessor();
+        $acc = new userAccessor();
         $results = json_encode($acc->getUserByUsername($username), JSON_NUMERIC_CHECK);
         echo $results;
     } catch (Exception $ex) {
@@ -66,16 +73,32 @@ function getByUsername() {
  * Get the user that matches the credentials supplied
  */
 function attemptLogin() { 
-    $body = file_get_contents("php://input");
-    $contents = json_decode($body);
 
-    //make new user
-    $user = new User($contents['id'], $contents['permissionId'], $contents['username'], $contents['password'], $contents['deactivated']);
+    
+    $username = filter_input(INPUT_GET, 'username');
+    $password = filter_input(INPUT_GET, 'password');
 
-    try {
-        //accessor
+
+   try {
+//        //accessor
         $acc = new UserAccessor();
-        $results = json_encode($acc->verifyUserLogin($user), JSON_NUMERIC_CHECK);
+
+        $results = json_encode($acc->verifyUserLogin($username, $password), JSON_NUMERIC_CHECK);
+        echo $results;
+
+    } catch (Exception $ex) {
+        echo "ERROR: " . $ex->getMessage();
+    }
+}
+
+/**
+ * Get all users from database
+ */
+function getAllUsers(){
+    
+    try {
+        $acc = new userAccessor();
+        $results = json_encode($acc->getAllUsers());
         echo $results;
     } catch (Exception $ex) {
         echo "ERROR: " . $ex->getMessage();
@@ -92,7 +115,7 @@ function doDelete() {
     if (filter_has_var(INPUT_GET, 'id')){
         $id = filter_input(INPUT_GET, 'id');
         try {
-            $acc = new UserAccessor();
+            $acc = new userAccessor();
             $user = new User($id, 0, "", "", true);
             $results = $acc->deleteUser($user);
             if (!$results){
@@ -103,6 +126,44 @@ function doDelete() {
             echo "ERROR: " . $ex->getMessage();
         }
     } else {
-        echo "ERROR: ID if user to delete / deactivate not supplied";
+        echo "ERROR: ID of user to delete / deactivate not supplied";
+    }
+}
+
+/**
+ * Attempt to change a user's password
+ */
+function doPut(){
+    if (filter_has_var(INPUT_GET, 'id')){
+        $body = file_get_contents('php://input');
+        $contents = json_decode($body, true);
+        $user = new User($contents['id'], $contents['permissionId'], $contents['username'], $contents['password'], $contents['deactivated']);
+        $id = filter_input(INPUT_GET, 'id');
+        try {
+            $acc = new UserAccessor();
+            $results = json_encode($acc->updatePassword($user));
+            echo $results;
+            
+        } catch (Exception $ex) {
+            echo "ERROR: " . $ex->getMessage();
+        }
+    } else {
+        echo "ERROR: ID of user to modify not supplied";
+    }
+}
+
+/**
+ * Attempt to add a new user to the database
+ */
+function doPost(){
+    $body = file_get_contents('php://input');
+    $contents = json_decode($body, true);
+    $user = new User($contents['id'], $contents['permissionId'], $contents['username'], $contents['password'], $contents['deactivated']);
+    try {
+        $acc = new UserAccessor();
+        $results = json_encode($acc->insertUser($user));
+        echo $results;
+    } catch (Exception $ex) {
+        echo "ERROR: " . $ex->getMessage();
     }
 }

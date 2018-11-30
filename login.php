@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!--
+<!--anna
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
@@ -8,6 +8,7 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="css/index.css">
+        <script src="scripts/login.js"></script>
         <title>Quiz Webpage</title>
     </head>
     <body>
@@ -18,10 +19,10 @@ and open the template in the editor.
             </div>
             <div id="topMenuNav">
                 <div class="navLeft">
-                    <a href="index.php"><button>Home</button></a><a href="search.php"><button>Quizzes</button></a><a href="search.php"><button>Results</button></a><a href="index.php"><button>Search</button></a><a href="editor.php"><button>Editor</button></a>
+                    <a href="index.php"><button>Home</button></a><a href="search.php"><button>Search</button></a><a href="editor.php"><button>Editor</button></a>
                 </div>
                 <div class="navRight">
-                    <a href="login.php"><button>Log</button></a><a href="index.php"><button>Profile</button></a>
+                    <a href="login.php"><button id="loginOpt">Login</button></a><a href="index.php"><button id="profile">Profile</button></a>
                 </div>
             </div>
             
@@ -32,10 +33,10 @@ and open the template in the editor.
                     <h2>Log in</h2>
                 </div>
                 <div id="loginInner">
-                    <p>Username <input type="text" name="loginUser"></p>
-                    <p>Password <input type="text" name="loginPass"></p>
+                    <p>Username <input id="loginUser" type="text" name="loginUser"></p>
+                    <p>Password <input id="loginPass" type="text" name="loginPass"></p>
                     <div id="loginInnerBot">
-                        <p><button>Log in!</button></p>
+                        <p><button id="loginBtn">Log in!</button></p>
                         <hr>
                         <p>Don't have an account?</p>
                         <p><button>Sign up!</button></p>
@@ -60,7 +61,12 @@ and open the template in the editor.
             </div>
         </div>
         <div id="botMenu">
-            
+            <div class="navLeft">
+                <a href="about.php"><button>About Us</button></a>
+            </div>
+            <div class="navRight">
+                <a href="about.php#contact"><button>Contact Us</button></a><a href="profile.php"><button>Settings</button></a>
+            </div>
         </div>
         
         <?php
