@@ -12,6 +12,7 @@ and open the template in the editor.
         <title>Quiz Webpage</title>
     </head>
     <body>
+      
         
         <div id="topMenu">
             <div id="topMenuLogo">
@@ -29,7 +30,7 @@ and open the template in the editor.
         </div>
         <div id="center" class="white">
             <div id="greeting">
-                Hey %USER%, check out these quizzes!
+                Hey Guest, check out these quizzes!
             </div>
             <div id="featured">
                 <div id="featuredDataHolder">

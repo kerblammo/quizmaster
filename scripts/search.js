@@ -1,14 +1,16 @@
-  window.onload = function () {
+window.onload = function () {
     document.querySelector('#searchQuiz').addEventListener('click', submitHandler);
-                console.log('Handlers set');
-                document.querySelector("#searchByResults").classList.add("hidden");
-             
-    
-                    if (localStorage.getItem("userLoggedIn") !== null) {
+    //    console.log('Handlers set');
+    document.querySelector("#searchByResults").classList.add("hidden");
+        document.querySelector("#leftRadio").addEventListener("click",searchByQuiz);//searchByQuiz
+    document.querySelector("#rightRadio").addEventListener("click",searchByResults);//searchByResults
+
+
+    if (localStorage.getItem("userLoggedIn") !== null) {
         console.log(localStorage.getItem('userLoggedIn'));
         document.querySelector("#loginOpt").innerHTML = "Log Out";
         document.querySelector("#profile").classList.remove("hidden");
-    
+
         var user = localStorage.getItem('userLoggedIn');
         var userObj = JSON.parse(user);
         var userPermission = userObj.permissionId;
@@ -18,7 +20,7 @@
         }
 
     }
-    document.querySelector("#loginOpt").addEventListener("click", handleDisplayLogin)
+    document.querySelector("#loginOpt").addEventListener("click", handleDisplayLogin);
 }
 
 function handleDisplayLogin() {
@@ -27,18 +29,25 @@ function handleDisplayLogin() {
         alert("Goodbye");
         window.location.href = 'index.php';
     }
-                
-  }
 
-
-function submitHandler(){
-    
 }
-function changeSearch(){
-    if(document.querySelector('#searchBy').value==="results") {
-        document.querySelector("#searchByResults").classList.remove("hidden");
-    }
-    else{
-         document.querySelector("#searchByResults").classList.add("hidden");
-    }
+
+
+function submitHandler() {
+
+}
+function searchByQuiz(){
+    var radChecker = document.querySelector("#radQuiz");
+    radChecker.checked = true;
+  document.querySelector("#searchByQuiz").classList.remove("hidden");
+    document.querySelector("#searchByResults").classList.add("hidden");
+}
+
+function searchByResults(){
+    var radChecker = document.querySelector("#radResult");
+    radChecker.checked = true;
+    document.querySelector("#searchByQuiz").classList.add("hidden");
+    document.querySelector("#searchByResults").classList.remove("hidden");
+    
+    
 }

@@ -554,3 +554,7 @@ th {
     margin: 5% 0 0 0;
     background-color: pink;
 }
+.error{
+    color: red;
+    font-weight: bold;
+}

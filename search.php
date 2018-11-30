@@ -29,7 +29,7 @@ and open the template in the editor.
         </div>
         <div id="center" class="yellow">
             <div id="searchBySelector">
-                <div id="leftRadio"><input type="radio" name="searchBy" value="quizzes" checked>Search Quizzes</div><div id="rightRadio"><input type="radio" name="searchBy" value="results">Search Results</div>
+                <div id="leftRadio"><input type="radio" name="searchBy" value="quizzes" id="radQuiz" checked>Search Quizzes</div><div id="rightRadio"><input type="radio" name="searchBy" value="results" id="radResult">Search Results</div>
             </div>
             <div id="display">
                 <div id="holderSmall">
@@ -41,7 +41,7 @@ and open the template in the editor.
                             <option>Tag</option>
                             <option>Word</option>
                         </select>
-                        <p>Search Term:<input type="text" name="searchTermInput"><button>Seach</button></p>
+                        <p>Search Term:<input type="text" name="searchTermInput"><button>Search</button></p>
                     </div>
                 </div>
                 <div id="holderSmall">
