@@ -8,6 +8,7 @@ class Question implements JsonSerializable {
     private $choices;
     private $answer;
     private $tags;
+    private $value;
     
     
     function getId() {
@@ -32,6 +33,14 @@ class Question implements JsonSerializable {
 
     function getTags() {
         return $this->tags;
+    }
+    
+    function getValue() {
+        return $this->value;
+    }
+    
+    function setValue($value) {
+        $this->value = $value;
     }
 
     /**
