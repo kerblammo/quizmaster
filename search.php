@@ -36,26 +36,26 @@ and open the template in the editor.
                     <div id="searchByQuiz">
                         <h1>Quizzes</h1>
                         Search By:
-                        <select>
-                            <option>ID</option>
-                            <option>Tag</option>
-                            <option>Word</option>
+                        <select id="searchByQuizFilter">
+                            <option value="id">ID</option>
+                            <option value="tag">Tag</option>
+                            <option value="word">Word</option>
                         </select>
-                        <p>Search Term:<input type="text" name="searchTermInput"><button>Search</button></p>
+                        <p>Search Term:<input id="searchTermInput"type="text" name="searchTermInput"><button id="searchbyQuizBtn">Search</button></p>
                     </div>
                 </div>
                 <div id="holderSmall">
                     <div id="searchByResults">
                         <h1>Results</h1>
                         Search By:
-                        <select>
+                        <select id="searchByResultsFilter">
                             <option>Quiz Tag</option>
                             <option>Question Tag</option>
                             <option>Date Range</option>
                             <option>Score Range</option>
                             <option>User</option>
                         </select>
-                        <p>Search Term:<input type="text" name="searchTermInput"><button id="searchQuiz">Seach</button></p>
+                        <p>Search Term:<input type="text" name="searchTermInput"><button id="searchQuiz">Search</button></p>
                     </div>
                 </div>
                 <div id="holderLarge">
