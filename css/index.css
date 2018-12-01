@@ -190,7 +190,6 @@ th {
 .navRight button{    
     float: right;
     width: 20%;
-    
 }
 
 #center {
@@ -433,7 +432,8 @@ th {
     text-align: left;
     width: 100%;
     height: auto;
-    position: relative; 
+    position: relative;
+    text-decoration: underline;
 }
 
 #btnTakeQuiz{
@@ -602,4 +602,9 @@ th {
 #buttonHolder button{
     margin: 2.5%;
     padding: 1%;
+}
+    
+.error{
+    color: red;
+    font-weight: bold;
 }

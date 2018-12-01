@@ -40,7 +40,6 @@
                     <button>Back</button><button>Next</button><button>Submit</button>
                 </div>
             </div>
-            
         </div>
         <div id="botMenu">
             <div class="navLeft">

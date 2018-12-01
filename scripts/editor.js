@@ -1,8 +1,13 @@
 /* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Quiz Master Website
+ * Created by: Anna Fields, Peter Adam, Zach MacKay
+ * Date: 2018-12-01
  */
+
+//globals used to determine which divs to hide / show
+var editMode = "quiz";
+var startedQuizEdit = 0;
+var startedQuestionEdit = 0;
 
 window.onload = function () {
     document.querySelector("#leftRadio").addEventListener("click",hideQuestion);
@@ -21,11 +26,35 @@ window.onload = function () {
     //first load, this will clear the proper divs, show buttons, and set default to quiz
     loadAreas();
     
+    if (localStorage.getItem("userLoggedIn") !== null) {
+
+        document.querySelector("#loginOpt").innerHTML = "Log Out";
+        document.querySelector("#profile").classList.remove("hidden");
+        var user = localStorage.getItem('userLoggedIn');
+        console.log(user);
+        var userObj = JSON.parse(user);
+        username = userObj.username;
+        var html = "Hey " + username + ", check our these quizzes!";
+        document.querySelector("#greeting").innerHTML = html;
+        var userPermission = userObj.permissionId;
+        console.log(userPermission);
+        
+        if (userPermission === 1 || userPermission === 2) {
+            document.querySelector("#editor").classList.remove("hidden");
+        }
+
+    }
+    document.querySelector("#loginOpt").addEventListener("click", handleDisplayLogin);
+    
 }
 
-var editMode = "quiz";
-var startedQuizEdit = 0;
-var startedQuestionEdit = 0;
+function handleDisplayLogin() {
+    if (document.querySelector("#loginOpt").innerHTML == "Log Out") {
+        localStorage.clear();
+        alert("Goodbye");
+        window.location.href = 'index.php';
+    }
+}
 
 function hideQuestion(){
     var radChecker = document.querySelector("#radQuiz");

@@ -33,13 +33,13 @@ and open the template in the editor.
                     <h2>Log in</h2>
                 </div>
                 <div id="loginInner">
-                    <p>Username <input id="loginUser" type="text" name="loginUser"></p>
-                    <p>Password <input id="loginPass" type="text" name="loginPass"></p>
+                    <p>Username <input id="loginUser" type="text" name="loginUser"></p><span class="error" id="UseNameError"></span>
+                    <p>Password <input id="loginPass" type="text" name="loginPass"></p><span class="error" id="passwordError"></span>
                     <div id="loginInnerBot">
                         <p><button id="loginBtn">Log in!</button></p>
                         <hr>
                         <p>Don't have an account?</p>
-                        <p><button>Sign up!</button></p>
+                        <p><button id="signUp">Sign up!</button></p>
                     </div>
                 </div>
             </div>
@@ -48,14 +48,14 @@ and open the template in the editor.
                     <h2>Sign up</h2>
                 </div>
                 <div id="loginInner">
-                    <p>Username <input type="text" name="loginUser"></p>
-                    <p>Password <input type="text" name="loginPass"></p>
-                    <p>Confirm Password <input type="text" name="loginConfirm"></p>
+                    <p>Username <input id="signUpUser" type="text" name="signUpUser"></p><span class="error" id="SignUpUseNameError"></span>
+                    <p>Password <input id="signUpPass" type="text" name="signUpPass"></p><span class="error" id="signUppasswordError"></span>
+                    <p>Confirm Password <input id="signUpConfirm" type="text" name="signUpConfirm"></p><span class="error" id="signUpconfirmPwdError"></span>
                     <div id="loginInnerBot">
-                        <p><button>Sign up!</button></p>
+                        <p><button id="createUser">Sign up!</button></p>
                         <hr>
                         <p>Already have an account?</p>
-                        <p><button>Log in!</button></p>
+                        <p><button id="backtoLogin">Log in!</button></p>
                     </div>
                 </div>
             </div>
