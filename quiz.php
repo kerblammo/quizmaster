@@ -23,9 +23,24 @@
             
         </div>
         <div id="center" class="white">
-            <div id="greeting">
-                <h2>This is the quiz page!</h2>
+            <div id="quizHolder">
+                <div id="quizName">
+                    <h1>Quiz Name</h1>
+                </div>
+                <div id="quizQuestionHolder">
+                    <h2>Question goes here!</h2>
+                </div>
+                <div id="quizChoiceHolder">
+                    <input type="radio" name="choice" value="">Choice 1<br>
+                    <input type="radio" name="choice" value="">Choice 2<br>
+                    <input type="radio" name="choice" value="">Choice 3<br>
+                    <input type="radio" name="choice" value="">Choice 4<br>
+                </div>
+                <div id="buttonHolder">
+                    <button>Back</button><button>Next</button><button>Submit</button>
+                </div>
             </div>
+            
         </div>
         <div id="botMenu">
             <div class="navLeft">
