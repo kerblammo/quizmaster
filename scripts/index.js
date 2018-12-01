@@ -3,6 +3,9 @@ window.onload = function () {
 //{"id":1,"permissionId":1,"username":"PeterAdam","password":"quizzmaster","deactivated":0}
 
 
+document.querySelector("#loginOpt").addEventListener("click", handleDisplayLogin);
+
+
     if (localStorage.getItem("userLoggedIn") !== null) {
 
         document.querySelector("#loginOpt").innerHTML = "Log Out";
@@ -26,6 +29,15 @@ window.onload = function () {
     document.querySelector("#loginOpt").addEventListener("click", handleDisplayLogin);
 }
 
+
+function handleDisplayLogin() {
+    if (document.querySelector("#loginOpt").innerHTML == "Log Out") {
+        localStorage.clear();
+        alert("Goodbye");
+        window.location.href="index.php";
+    }
+
+}
 
 
 
