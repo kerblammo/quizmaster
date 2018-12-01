@@ -6,6 +6,7 @@ require_once 'ConnectionManager.php';
 
 
 
+
 class UserAccessor{
     
     //CRUD strings

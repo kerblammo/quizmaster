@@ -1,8 +1,6 @@
 window.onload = function () {
 //user is saved in local storage as a user object
 //{"id":1,"permissionId":1,"username":"PeterAdam","password":"quizzmaster","deactivated":0}
-
-
     if (localStorage.getItem("userLoggedIn") !== null) {
 
         document.querySelector("#loginOpt").innerHTML = "Log Out";
@@ -23,9 +21,16 @@ window.onload = function () {
 
 
     }
-    document.querySelector("#loginOpt").addEventListener("click", handleDisplayLogin);
+    document.querySelector("#loginOpt").addEventListener("click", handleDisplayLogin)
 }
 
+function handleDisplayLogin() {
+    if (document.querySelector("#loginOpt").innerHTML == "Log Out") {
+        localStorage.clear();
+        alert("Goodbye");
+        window.location.href = 'index.php';
+    }
 
+}
 
 

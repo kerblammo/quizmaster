@@ -35,7 +35,6 @@ function handleDisplayLogin() {
         alert("Goodbye");
         window.location.href = 'index.php';
     }
-
 }
 
 
@@ -139,6 +138,4 @@ function searchByResults() {
     radChecker.checked = true;
     document.querySelector("#searchByQuiz").classList.add("hidden");
     document.querySelector("#searchByResults").classList.remove("hidden");
-
-
 }

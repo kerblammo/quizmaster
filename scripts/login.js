@@ -3,12 +3,23 @@ window.onload = function () {
     //alert("worked");
     document.querySelector("#loginBtn").addEventListener("click", handleLogin);
     document.querySelector("#loginOpt").addEventListener("click", handleDisplayLogin);
+}
+
+//if they are logged in the, the loginOpt will say Log Out, and if they click on this
+//it will clear the local storage and display a goodbye Message
+
+function handleDisplayLogin(){
+    if(document.querySelector("#loginOpt").innerHTML=="Log Out"){
+        localStorage.clear();
+        alert("Goodbye");
+        window.location.href = 'index.php';
+    }
+          
+    document.querySelector("#loginOpt").addEventListener("click", handleDisplayLogin);
     document.querySelector("#signUp").addEventListener("click", displaySignUp);
     document.querySelector("#backtoLogin").addEventListener("click", backtoLogin);
     //signUp
     //backtoLogin
-
-
 }
 function backtoLogin() {
     document.querySelector("#signup").classList.add("hidden");
@@ -82,7 +93,6 @@ function handleLogin() {
         var userName = document.querySelector("#loginUser").value;
         var password = document.querySelector("#loginPass").value;
 
-
         var url = "quizmaster/account/login/" + userName + "/" + password;
 
         var method = "GET";
@@ -91,18 +101,15 @@ function handleLogin() {
         xmlhttp.onreadystatechange = function () {
             if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
                 var resp = xmlhttp.responseText;
+
                 if (resp !== "null") {
                     console.log(resp);
-
                     //save to local storage, saves as string like this
                     //{"id":1,"permissionId":1,"username":"PeterAdam","password":"quizzmaster","deactivated":0}
                     localStorage.setItem("userLoggedIn", resp);
                     console.log(localStorage.getItem("userLoggedIn"));
                     //once logged in redirect to index page
                     window.location.href = 'index.php';
-
-
-
                 } else {
                     alert("Sorry, please check user name and password")
                 }
@@ -115,8 +122,7 @@ function handleLogin() {
 }
 
 function enable(resp) {
-
-
+    
     document.querySelector("#loginOpt").innerHTML = "Log Out";
     //need to change everywhere       
     document.querySelector("#profile").innerHTML = "Settings";
@@ -132,29 +138,31 @@ function enable(resp) {
     if (data.id == 2) {
         alert("This is an admin");
     }
-
 }
 
 
 
 //if its a user
 
+
 //need to add if page="signup"
 function isFormValid(page) {
+    
     if (page == "login") {
-
-
         document.querySelector("#UseNameError").innerHTML = "";
         document.querySelector("#passwordError").innerHTML = "";
+        
         if (document.querySelector("#loginUser").value == "" && document.querySelector("#loginPass").value == "") {
             document.querySelector("#UseNameError").innerHTML = "Please enter a user name";
             document.querySelector("#passwordError").innerHTML = "Please enter a password";
             return false;
         }
+        
         if (document.querySelector("#loginUser").value == "") {
             document.querySelector("#UseNameError").innerHTML = "Please enter a user name";
             return false;
         }
+        
         if (document.querySelector("#loginPass").value == "") {
             //passwordError
             document.querySelector("#passwordError").innerHTML = "Please enter a password";
@@ -163,6 +171,7 @@ function isFormValid(page) {
         } else {
             return true;
         }
+        
     } else {
         document.querySelector("#SignUpUseNameError").innerHTML = "";
         document.querySelector("#signUppasswordError").innerHTML = "";
@@ -174,21 +183,24 @@ function isFormValid(page) {
             document.querySelector("#SignUpUseNameError").innerHTML = "Please enter a user name";
             counter++;
         }
+        
         if (document.querySelector("#signUpPass").value == "") {
             //passwordError
             document.querySelector("#signUppasswordError").innerHTML = "Please enter a password";
             counter++;
 
         }
+        
         if (document.querySelector("#signUpConfirm").value == "") {
             //passwordError
             document.querySelector("#signUpconfirmPwdError").innerHTML = "Please re-enter a password";
             counter++;
-
         }
+        
         if (document.querySelector("#signUpConfirm").value != document.querySelector("#signUpPass").value && document.querySelector("#signUpConfirm").value != "") {
             document.querySelector("#signUpconfirmPwdError").innerHTML = "Passwords dont match";
         }
+        
         if (counter == 0) {
             return true;
         } else {
@@ -197,12 +209,3 @@ function isFormValid(page) {
         }
     }
 }
-
-
-
-
-
-
-
-
-

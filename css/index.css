@@ -190,13 +190,20 @@ th {
 .navRight button{    
     float: right;
     width: 20%;
-    
 }
 
 #center {
     width: 100%;
     height: 87.5%;
     margin: auto;
+}
+
+#center button{
+    background-color: #333;
+    color: white;
+    font-size: 16px;
+    margin: 2.5%;
+    padding: 1%;
 }
 
 #botMenu {
@@ -235,7 +242,7 @@ th {
     color: white;
     text-shadow: 2px 2px black;
     float: left;
-    width: 30%;
+    width: 70%;
     height: 5%;
     margin: 0;
     font-size: 24px;
@@ -291,6 +298,17 @@ th {
     clear: both;
     width: 100%;
     height: 100%;
+}
+
+#title{
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px black;
+    float: left; 
+    height: 5%;
+    width: 50%;
+    margin: 0 0 0 10%;
+    font-size: 18px;
 }
 
 #viewAll{
@@ -414,7 +432,8 @@ th {
     text-align: left;
     width: 100%;
     height: auto;
-    position: relative; 
+    position: relative;
+    text-decoration: underline;
 }
 
 #btnTakeQuiz{
@@ -554,6 +573,37 @@ th {
     margin: 5% 0 0 0;
     background-color: pink;
 }
+
+#selectButtonEdit button{
+    background-color: darkmagenta;
+}
+
+/* 
+ * Quiz Page css 
+ */
+
+#quizHolder{
+    position: relative;
+    border: solid thin black;
+    width: 65%;
+    margin: auto;
+    height: 50%;
+    background-color: whitesmoke;
+}
+
+#buttonHolder{
+    position: absolute;
+    bottom: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+#buttonHolder button{
+    margin: 2.5%;
+    padding: 1%;
+}
+    
 .error{
     color: red;
     font-weight: bold;

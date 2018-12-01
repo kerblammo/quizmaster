@@ -13,7 +13,6 @@ and open the template in the editor.
     </head>
     <body>
       
-        
         <div id="topMenu">
             <div id="topMenuLogo">
                 <img src="images/Logo.png"><div id="name"><h1>Quiz Master</h1></div>
@@ -34,6 +33,7 @@ and open the template in the editor.
             </div>
             <div id="featured">
                 <div id="featuredDataHolder">
+                    <div id=title>Featured Quizzes</div>
                     <!-- 
                     * These are example boxes but can be (optionally)hard coded
                     -->
@@ -74,7 +74,7 @@ and open the template in the editor.
             <div id="latest">
                 
                 <div id="latestDataHolder">
-                    Latest Quizzes
+                    <div id=title>Latest Quizzes</div>
                     <!-- 
                     * These are example boxes and should be built in javascript and loaded into the "latestDataHolder" div
                     -->
