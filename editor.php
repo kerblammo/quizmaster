@@ -119,49 +119,41 @@ and open the template in the editor.
                     <div id="sideLeft">
                         <div id="searchPanel">
                             <div id="seachBox">
-                                <p>
-                                    Question: 
-                                </p>
-                                <p>
-                                    <input type="text" value=""> 
-                                </p>
+                              
+                            <p>Question</p>
+                            <p><input id="questionText" type="text" value=""><span class="error" id="questionError"></span>
+                            <p>Question Tags</p>
+                            <p><input id="questionTag"type="text" value=""></p><span class="error" id="tagError"></span>
+                            <p>Question Description</p>
+                            <p><input id="questionDescription" type="text" value=""></p><span class="error" id="descError"></span>
+                             
                                 <p>
                                     Add Choice:
-                                    <input type="text" value=""><button>Add</button><button>Remove</button>
+                                    <input id="choiceToAdd" type="text" value=""><button id="addChoice">Add</button><button>Remove</button><span class="error" id="choiceError"></span>
                                 </p>
                             </div>
                             <div id="searchData">
                                 <ul id="highlightListChoice">
-                                    <li>Choice1</li>
-                                    <li>Choice2</li>
-                                    <li>Choice3</li>
-                                    <li>Choice4</li>
+                                  
                                 </ul>
                             </div>
                             <div id="questionAnswer">
                                 Answer:
-                                    <select name="qA">
-                                        <option name="qA">Choice1</option>
-                                        <option name="qA">Choice2</option>
-                                        <option name="qA">Choice3</option>
+                                    <select id="qA">
+                                      
                                     </select>
                             </div>
+                             <button id="saveQuestion">Save Question</button>
                         </div>
                     </div>
                 </div>
-                <div id="holderSmall">
-                    <div id="sideRight">
-                        <div id="infoPanel">
-                            <p>Question Name -- Question ID</p>
-                            <p><input type="text" value=""><input type="text" value=""></p>
-                            <p>Question Tags</p>
-                            <p><input type="text" value=""></p>
-                            <p>Question Description</p>
-                            <p><input type="text" value=""></p>
-                            <button>Save Question</button>
-                        </div>
-                    </div>
-                </div>
+               
+                   
+                        
+                           
+                        
+                  
+                
             </div>
             </div>
             
