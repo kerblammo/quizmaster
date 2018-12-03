@@ -50,7 +50,7 @@ window.onload = function () {
     document.querySelector("#loginOpt").addEventListener("click", handleDisplayLogin);
 
 }
-var choiceArray=[];
+var choiceArray = [];
 function addChoice() {
     //this adds what the user enters for choices into the unordered list, and in
     //the dropdown
@@ -64,8 +64,8 @@ function addChoice() {
     var option = document.createElement('option');
     option.innerHTML = addChoice
     document.getElementById('qA').appendChild(option);
-  choiceArray.push(el.innerHTML);
-  
+    choiceArray.push(el.innerHTML);
+
 }
 
 
@@ -79,30 +79,30 @@ function saveQuestion() {
     //Is called when used clicks on Question Editor, and then create new, and then clicks save
     //get the data from the editor page and checks to see if it is valid, and then build a question
     if (formIsValid()) {//check if everything is valid, then creates a question object and then make ajax call
-      
-    var questionObj = {
-            "id":999,
+
+        var questionObj = {
+            "id": 999,
             "questionText": document.querySelector("#questionText").value,
             "description": document.querySelector("#questionDescription").value,
             "choices": choiceArray.toString(),
             "answer": document.querySelector("#qA").value,
             "tags": document.querySelector("#questionTag").value
-            
-          
+
+
         };
 //make an ajax call to add the question
-      var url = "quizmaster/question";
-  
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function () {
-        if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-            var resp = xmlhttp.responseText;
-        alert("added");
-        clearQuestionFields();
-        }
-    };
-    xmlhttp.open("POST", url, true);
-    xmlhttp.send(JSON.stringify(questionObj));
+        var url = "quizmaster/question";
+
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+                var resp = xmlhttp.responseText;
+                alert("added");
+                clearQuestionFields();
+            }
+        };
+        xmlhttp.open("POST", url, true);
+        xmlhttp.send(JSON.stringify(questionObj));
     }
 }
 function formIsValid() {
@@ -146,15 +146,15 @@ function formIsValid() {
     }
 }
 
-function clearQuestionFields(){
-     document.querySelector("#questionText").value = "";
+function clearQuestionFields() {
+    document.querySelector("#questionText").value = "";
     document.querySelector("#questionTag").value = "";
     document.querySelector("#questionDescription").value = "";
     document.querySelector("#choiceToAdd").value = "";
     document.querySelector("#highlightListChoice").innerHTML = "";
-     document.querySelector("#qA").innerHTML = "";
-    
- 
+    document.querySelector("#qA").innerHTML = "";
+
+
 
 }
 function handleDisplayLogin() {
