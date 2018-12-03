@@ -511,7 +511,7 @@ th {
 
 #searchPanel{
     border: solid thin black;
-    
+    background-color: white;
     border-radius: .5em;
 }
 
