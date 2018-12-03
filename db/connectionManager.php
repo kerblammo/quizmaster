@@ -2,7 +2,7 @@
 class ConnectionManager {
     public function connect_db() {
 
-        $db = new PDO("mysql:host=localhost;dbname=quizmaster", "quizuser", "R1ddl3M37h15?");
+        $db = new PDO("mysql:host=localhost;dbname=quizmaster", "anna", "");
 
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return $db;

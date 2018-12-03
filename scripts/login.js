@@ -2,44 +2,98 @@ window.onload = function () {
     document.querySelector("#signup").classList.add("hidden");
     //alert("worked");
     document.querySelector("#loginBtn").addEventListener("click", handleLogin);
-
-//test();
+    document.querySelector("#loginOpt").addEventListener("click", handleDisplayLogin);
 }
 
-//this was just a test to make sure ajax call to get all the users was working
-function test() {
+//if they are logged in the, the loginOpt will say Log Out, and if they click on this
+//it will clear the local storage and display a goodbye Message
 
-    var url = "quizmaster/account"; // file name or server-side process name
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function () {
-        if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-            var resp = xmlhttp.responseText;
-            if (resp.search("ERROR") >= 0) {
-                alert("oh no... see console for error");
-                console.log(resp);
-            } else {
-                console.log(resp);
+function handleDisplayLogin(){
+    if(document.querySelector("#loginOpt").innerHTML=="Log Out"){
+        localStorage.clear();
+        alert("Goodbye");
+        window.location.href = 'index.php';
+    }
+          
+    document.querySelector("#loginOpt").addEventListener("click", handleDisplayLogin);
+    document.querySelector("#signUp").addEventListener("click", displaySignUp);
+    document.querySelector("#backtoLogin").addEventListener("click", backtoLogin);
+    //signUp
+    //backtoLogin
+}
+function backtoLogin() {
+    document.querySelector("#signup").classList.add("hidden");
+    document.querySelector("#login").classList.remove("hidden");
+}
+function displaySignUp() {
+    document.querySelector("#signup").classList.remove("hidden");
+    document.querySelector("#login").classList.add("hidden");
+    document.querySelector("#createUser").addEventListener("click", createUser);
+
+}
+
+function createUser() {
+    if (isFormValid("signup")) {
+        var userName = document.querySelector("#signUpUser").value;
+        var password = document.querySelector("#signUpPass").value;
+    
+//need to create a new user
+        var newUser = new Object();
+        newUser.id = 999;
+        newUser.username = userName;
+        newUser.password = password;
+        newUser.permissionId = 3;
+        newUser.deactivated = 0;
+        var url = "quizmaster/account";
+
+        var method = "POST";
+
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+                var resp = xmlhttp.responseText;
+                if (resp !== "null") {
+                    console.log(resp);
+
+                    //save to local storage, saves as string like this
+                    //{"id":1,"permissionId":1,"username":"PeterAdam","password":"quizzmaster","deactivated":0}
+                    localStorage.setItem("userLoggedIn", JSON.stringify(newUser));
+                    console.log(localStorage.getItem("userLoggedIn"));
+                    //once logged in redirect to index page
+                    window.location.href = 'index.php';
+
+
+
+                } else {
+                    alert("Sorry, please check user name and password")
+                }
             }
-        }
-    };
-    xmlhttp.open("GET", url, true);
-    xmlhttp.send();
+        };
+        xmlhttp.open(method, url, true);
+        xmlhttp.send(JSON.stringify(newUser));
+    }
+}
+//if they are logged in the, the loginOpt will say Log Out, and if they click on this
+//it will clear the local storage and display a goodbye Message
+
+function handleDisplayLogin() {
+    if (document.querySelector("#loginOpt").innerHTML == "Log Out") {
+        localStorage.clear();
+        alert("Goodbye");
+
+         window.location.href="index.php";
+
+    }
 }
 
 function handleLogin() {
-    //  alert("worked");
-if(document.querySelector("#loginOpt").innerHTML=="Login"){
-    if (isFormValid()) {
+    //if use clicks the login button
+
+    if (isFormValid("login")) {
         var userName = document.querySelector("#loginUser").value;
         var password = document.querySelector("#loginPass").value;
-        var myObj = new Object();
-        myObj.id = 999;
-        myObj.username = userName;
-        myObj.password = password;
-        myObj.permissionId = 1;
-        myObj.deactivated = 0;
 
-        var url = "quizmaster/account/login/"+userName+"/"+password;
+        var url = "quizmaster/account/login/" + userName + "/" + password;
 
         var method = "GET";
 
@@ -47,44 +101,42 @@ if(document.querySelector("#loginOpt").innerHTML=="Login"){
         xmlhttp.onreadystatechange = function () {
             if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
                 var resp = xmlhttp.responseText;
-                if (resp.search("ERROR") >= 0) {
-                    alert(resp);
-                } else {
-                    console.log(resp);
-                    enable(xmlhttp.responseText);
-                    
-                 window.localStorage.setItem("userLoggedIn", userName);
-              
 
+                if (resp !== "null") {
+                    console.log(resp);
+                    //save to local storage, saves as string like this
+                    //{"id":1,"permissionId":1,"username":"PeterAdam","password":"quizzmaster","deactivated":0}
+                    localStorage.setItem("userLoggedIn", resp);
+                    console.log(localStorage.getItem("userLoggedIn"));
+                    //once logged in redirect to index page
+                    window.location.href = 'index.php';
+                } else {
+                    alert("Sorry, please check user name and password")
                 }
             }
         };
         xmlhttp.open(method, url, true);
-        xmlhttp.send(JSON.stringify(myObj));
+        xmlhttp.send();
     }
-}
+
 }
 
-function enable(text) {
-    if (text == "null") {
-      alert("Please check user name and password");
-    } else {
-       
-        document.querySelector("#loginOpt").innerHTML="Log Out";
-        //need to change everywhere       
-        document.querySelector("#profile").innerHTML="Settings";
-        
-        document.querySelector("#centerLogin").classList.add("hidden");
-        var data = JSON.parse(text);
-        //now check what kind of user it ist
-        //if its a super unhide the editor
-        if (data.id == 1) {
-            document.querySelector("#editor").classList.remove("hidden");
-        }
-        //if an admin
-        if (data.id == 2) {
-            alert("This is an admin");
-        }
+function enable(resp) {
+    
+    document.querySelector("#loginOpt").innerHTML = "Log Out";
+    //need to change everywhere       
+    document.querySelector("#profile").innerHTML = "Settings";
+
+    document.querySelector("#centerLogin").classList.add("hidden");
+    var data = JSON.parse(resp);
+    //now check what kind of user it ist
+    //if its a super unhide the editor
+    if (data.id === 1) {
+        document.querySelector("#editor").classList.remove("hidden");
+    }
+    //if an admin
+    if (data.id == 2) {
+        alert("This is an admin");
     }
 }
 
@@ -93,20 +145,67 @@ function enable(text) {
 //if its a user
 
 
-function isFormValid() {
-    if (document.querySelector("#loginUser").value == "") {
-        alert('Please enter User Name');
-        return false;
-    } else if (document.querySelector("#loginPass").value == "") {
-        alert('Please enter Password');
-        return false;
+//need to add if page="signup"
+function isFormValid(page) {
+    
+    if (page == "login") {
+        document.querySelector("#UseNameError").innerHTML = "";
+        document.querySelector("#passwordError").innerHTML = "";
+        
+        if (document.querySelector("#loginUser").value == "" && document.querySelector("#loginPass").value == "") {
+            document.querySelector("#UseNameError").innerHTML = "Please enter a user name";
+            document.querySelector("#passwordError").innerHTML = "Please enter a password";
+            return false;
+        }
+        
+        if (document.querySelector("#loginUser").value == "") {
+            document.querySelector("#UseNameError").innerHTML = "Please enter a user name";
+            return false;
+        }
+        
+        if (document.querySelector("#loginPass").value == "") {
+            //passwordError
+            document.querySelector("#passwordError").innerHTML = "Please enter a password";
+            return false;
+
+        } else {
+            return true;
+        }
+        
+    } else {
+        document.querySelector("#SignUpUseNameError").innerHTML = "";
+        document.querySelector("#signUppasswordError").innerHTML = "";
+        document.querySelector("#signUpconfirmPwdError").innerHTML = "";
+
+        var counter = 0;
+//  
+        if (document.querySelector("#signUpUser").value == "") {
+            document.querySelector("#SignUpUseNameError").innerHTML = "Please enter a user name";
+            counter++;
+        }
+        
+        if (document.querySelector("#signUpPass").value == "") {
+            //passwordError
+            document.querySelector("#signUppasswordError").innerHTML = "Please enter a password";
+            counter++;
+
+        }
+        
+        if (document.querySelector("#signUpConfirm").value == "") {
+            //passwordError
+            document.querySelector("#signUpconfirmPwdError").innerHTML = "Please re-enter a password";
+            counter++;
+        }
+        
+        if (document.querySelector("#signUpConfirm").value != document.querySelector("#signUpPass").value && document.querySelector("#signUpConfirm").value != "") {
+            document.querySelector("#signUpconfirmPwdError").innerHTML = "Passwords dont match";
+        }
+        
+        if (counter == 0) {
+            return true;
+        } else {
+            return false;
+
+        }
     }
-    return true;
 }
-
-
-
-
-
-
-

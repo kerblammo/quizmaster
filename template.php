@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
+Quiz Master: 
+Log into website to take quizzes. Higher permission levels can create quizzes and questions.
+Created by: 
+Anna Fields, Peter Adam, and Zach MacKay
+Date:
+2018-12-01
 -->
 <html>
     <head>
@@ -18,10 +21,10 @@ and open the template in the editor.
             </div>
             <div id="topMenuNav">
                 <div class="navLeft">
-                    <a href="index.php"><button>Home</button></a><a href="search.php"><button>Search</button></a><a href="editor.php"><button>Editor</button></a>
+                    <a href="index.php"><button>Home</button></a><a href="search.php"><button>Search</button></a><a href="editor.php"><button id="editor" class="hidden">Editor</button></a>
                 </div>
                 <div class="navRight">
-                    <a href="login.php"><button id="loginOpt">Login</button></a><a href="index.php"><button>Profile</button></a>
+                    <a href="login.php"><button id="loginOpt">Login</button></a><a href="index.php"><button id="profile" class="hidden">Profile</button></a>
                 </div>
             </div>
             
@@ -31,16 +34,13 @@ and open the template in the editor.
                 <h2>Hey %USER%, check out these quizzes!</h2>
             </div>
         </div>
-        <div id="footer">
+        <div id="botMenu">
             <div class="navLeft">
                 <a href="about.php"><button>About Us</button></a>
             </div>
             <div class="navRight">
-                <a href="about.php#contact"><button>Contact Us</button></a><a href="profile.php#settings"><button>Settings</button></a>
+                <a href="about.php#contact"><button>Contact Us</button></a><a href="profile.php"><button>Settings</button></a>
             </div>
         </div>
-        
-        
-        
     </body>
 </html>
