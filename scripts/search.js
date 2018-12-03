@@ -5,6 +5,8 @@ window.onload = function () {
     document.querySelector("#leftRadio").addEventListener("click", searchByQuiz);
     document.querySelector("#rightRadio").addEventListener("click", searchByResults);
      document.querySelector("#searchByQuizFilter").addEventListener("change", clearFields);
+    
+     //saveQuestion
 
 
 
@@ -25,6 +27,8 @@ window.onload = function () {
     }
     document.querySelector("#loginOpt").addEventListener("click", handleDisplayLogin);
 }
+
+
 function clearFields(){
     document.querySelector("#searchTermInput").value="";
 }
@@ -91,7 +95,7 @@ function showMatchinQuizzes(resp) {
     }
 
     document.querySelector("#output").innerHTML = html;
-    console.log(data[0].id);
+    console.log(JSON.stringify(data[0]));
 }
 function getOneQuiz(url) {
     var method = "GET";
