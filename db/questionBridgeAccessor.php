@@ -82,9 +82,9 @@ class QuestionBridgeAccessor {
         $result = NULL;
 
         try {
-            $this->getByIdStatement->bindParam(":quizid", $quizId);
-            $this->getByIdStatement->execute();
-            $dbResult = $this->getByIdStatement->fetch(PDO::FETCH_ASSOC);
+            $this->getByQuizStatement->bindParam(":quizid", $quizId);
+            $this->getByQuizStatement->execute();
+            $dbResult = $this->getByQuizStatement->fetch(PDO::FETCH_ASSOC);
             if ($dbResult) {
                 $quizId = $dbResult['QuizId'];
                 $questionId = $dbResult['QuestionId'];
@@ -94,8 +94,8 @@ class QuestionBridgeAccessor {
         } catch (Exception $ex) {
             $result = NULL;
         } finally {
-            if (!is_null($this->getByIdStatement)) {
-                $this->getByIdStatement->closeCursor();
+            if (!is_null($this->getByQuizStatement)) {
+                $this->getQuizIdStatement->closeCursor();
             }
         }
 
