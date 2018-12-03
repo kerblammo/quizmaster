@@ -71,7 +71,7 @@ function getMatchingQuizzes(url) {
         if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
             var resp = xmlhttp.responseText;
             console.log(resp);
-            if (resp !== "null") {
+            if (resp !== null) {
                 console.log(resp);
                 showMatchinQuizzes(resp);
             } else {
@@ -99,6 +99,7 @@ function showMatchinQuizzes(resp) {
 }
 function getOneQuiz(url) {
     var method = "GET";
+    console.log("entered method");
 
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function () {
