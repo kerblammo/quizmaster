@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
+Quiz Master: 
+Log into website to take quizzes. Higher permission levels can create quizzes and questions.
+Created by: 
+Anna Fields, Peter Adam, and Zach MacKay
+Date:
+2018-12-01
 -->
 <html>
     <head>
@@ -26,9 +29,24 @@ and open the template in the editor.
             </div>
             
         </div>
-        <div id="center">
-            <div id="greeting">
-                <h2>This is the profile page!</h2>
+        <div id="center" class="yellow">
+            <div id="searchBySelector">
+                <div id="leftRadio"><input type="radio" name="settingsLevel" value="settingsUser" id="radSettingsUser" checked>Profile</div><div id="rightRadio"><input type="radio" name="settingsLevel" value="settingsAdmin" id="radSettingsAdmin">Admin Panel</div>
+            </div>
+            <div id="display">
+                <div id="holderSmall">
+                    Username:<br>
+                    <input><br>
+                    Change Password:<br>
+                    Old Password: <input><br>
+                    New Password: <input><br>
+                    Confirm Password: <input><br>
+                    <button>Delete Account</button>
+                </div>
+                <div id="holderSmall">
+                    
+                </div>
+                
             </div>
         </div>
         <div id="botMenu">
@@ -39,5 +57,8 @@ and open the template in the editor.
                 <a href="about.php#contact"><button>Contact Us</button></a><a href="profile.php"><button>Settings</button></a>
             </div>
         </div>
+        
+        
+        
     </body>
 </html>

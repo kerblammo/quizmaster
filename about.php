@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
+Quiz Master: 
+Log into website to take quizzes. Higher permission levels can create quizzes and questions.
+Created by: 
+Anna Fields, Peter Adam, and Zach MacKay
+Date:
+2018-12-01
 -->
 <html>
     <head>
@@ -26,8 +29,16 @@ and open the template in the editor.
             </div>
             
         </div>
-        <div id="center">
-                <h2>This is the about page!</h2>
+        <div id="center" class="purple">
+            <div id="quizHolder">
+                    
+                <div id="quizChoiceHolder">
+                    <h1>Quiz Master Created by:</h1><br>
+                    <h1>Anna Fields</h1>
+                    <h1>Peter Adam</h1>
+                    <h1>Zach MacKay</h1>
+                </div>
+            </div>
         </div>
         <div id="botMenu">
             <div class="navLeft">

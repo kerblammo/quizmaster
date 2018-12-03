@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
+Quiz Master: 
+Log into website to take quizzes. Higher permission levels can create quizzes and questions.
+Created by: 
+Anna Fields, Peter Adam, and Zach MacKay
+Date:
+2018-12-01
 -->
 <html>
     <head>
@@ -27,7 +30,7 @@ and open the template in the editor.
             </div>
             
         </div>
-        <div id="center">
+        <div id="center" class="purple">
             <div id="searchBySelector">
                 <div id="leftRadio"><input type="radio" id="radQuiz" name="editBy" value="quizzes" checked>Quiz Editor</div><div id="rightRadio"><input type="radio" id="radQuestion" name="editBy" value="questions">Question Editor</div>
             </div>

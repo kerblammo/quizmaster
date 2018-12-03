@@ -1,5 +1,12 @@
 <!DOCTYPE html>
-
+<!--
+Quiz Master: 
+Log into website to take quizzes. Higher permission levels can create quizzes and questions.
+Created by: 
+Anna Fields, Peter Adam, and Zach MacKay
+Date:
+2018-12-01
+-->
 <html>
     <head>
         <meta charset="UTF-8">
@@ -22,7 +29,7 @@
             </div>
             
         </div>
-        <div id="center" class="white">
+        <div id="center" class="blue">
             <div id="quizHolder">
                 <div id="quizName">
                     <h1>Quiz Name</h1>
