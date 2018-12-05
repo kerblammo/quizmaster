@@ -11,8 +11,7 @@ Date:
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="css/index.css">
-        <script src="scripts/checkIfLoggedIn.js" defer></script>
-        <script src="scripts/editor.js" defer></script>
+        <script src="scripts/editor.js"></script>
         <title>Quiz Webpage</title>
     </head>
     <body>
@@ -41,7 +40,7 @@ Date:
             <!--
             * Buttons here are shown initially
             -->
-            <div id="selectButtonEdit">
+            <div id="selectButtonEdit" class="row">
                 <div id="holderSmall">
                     <div id="sideLeft">
                         <button id="btnCreateNew">Create New</button>
@@ -118,7 +117,7 @@ Date:
             * Shown if user hits create new, or chooses one to edit
             -->
             
-            <div id="questionCreate">
+            <div id="questionCreate" class="row">
                 <div id="holderSmall">
                     <div id="sideLeft">
                         <div id="searchPanel">
@@ -150,7 +149,7 @@ Date:
                                         <option name="qA">Choice3</option>
                                     </select>
                             </div>
-                             <button id="btnSaveQuestion">Save Question</button>
+                             
                         </div>
                     </div>
                 </div>
@@ -161,7 +160,7 @@ Date:
                             <p><input id="questionTag"type="text" value=""></p><span class="error" id="tagError"></span>
                             <p>Question Description</p>
                             <p><input id="questionDescription" type="text" value=""></p><span class="error" id="descError"></span>
-                            <button>Save Question</button>
+                            <button id="btnSaveQuestion">Save Question</button>
                         </div>
                     </div>
                 </div>
@@ -175,7 +174,7 @@ Date:
             -->
             
             <div id="quizEditorAll">
-            <div id="quizSearch">
+            <div id="quizSearch" class="row">
                 <div id="holderSmall">
                     <div id="sideLeft">
                         <div id="searchPanel">
@@ -202,7 +201,7 @@ Date:
                                 </ul>
                             </div>
                             <div id="searchDataButtons">
-                                <button>Remove</button><button>Edit</button>
+                                <button>Remove</button>
                             </div>
                         </div>
                     </div>
@@ -222,6 +221,7 @@ Date:
                                 <p>Quiz Description</p>
                                 <p><input type="text" value=""></p>
                             </div>
+                            <button>Edit</button>
                         </div>
                     </div>
                 </div>
@@ -233,40 +233,42 @@ Date:
             -->
             
             <div id="quizCreate">
-                <div id="holderSmall">
-                    <div id="sideLeft">
-                        <div id="themeSelector">
-                            <div id="colorChoice">
-                                <button id="red">a</button><button id="red">b</button><button id="red">c</button><button id="red">d</button><button id="red">e</button><button id="red">f</button>
+                <div class="row">
+                    <div id="holderSmall">
+                        <div id="sideLeft">
+                            <div id="themeSelector">
+                                <div id="colorChoice">
+                                    <button id="red">a</button><button id="red">b</button><button id="red">c</button><button id="red">d</button><button id="red">e</button><button id="red">f</button>
+                                </div>
                             </div>
-                        </div>
-                        <div id="searchPanel">
-                            <div id="seachBox">
-                                <p>
-                                    Search By:
-                                    <select name="seachBy">
-                                        <option name="seachBy">ID</option>
-                                        <option name="seachBy">Tags</option>
-                                        <option name="seachBy">Words</option>
-                                    </select>
-                                </p>
-                                <p>
-                                    Search Term:
-                                    <input type="text" value="SearchTerm"><button>Search</button>
-                                </p>
+                            <div id="searchPanel">
+                                <div id="seachBox">
+                                    <p>
+                                        Search By:
+                                        <select name="seachBy">
+                                            <option name="seachBy">ID</option>
+                                            <option name="seachBy">Tags</option>
+                                            <option name="seachBy">Words</option>
+                                        </select>
+                                    </p>
+                                    <p>
+                                        Search Term:
+                                        <input type="text" value="SearchTerm"><button>Search</button>
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div id="holderSmall">
-                    <div id="sideRight">
-                        <div id="infoPanel">
-                            <p>Quiz Name</p>
-                            <p><input type="text" value=""></p>
-                            <p>Quiz / Question Tags</p>
-                            <p><input type="text" value=""></p>
-                            <p>Quiz / Question Description</p>
-                            <p><input type="text" value=""></p>
+                    <div id="holderSmall">
+                        <div id="sideRight">
+                            <div id="infoPanel">
+                                <p>Quiz Name</p>
+                                <p><input type="text" value=""></p>
+                                <p>Quiz / Question Tags</p>
+                                <p><input type="text" value=""></p>
+                                <p>Quiz / Question Description</p>
+                                <p><input type="text" value=""></p>
+                            </div>
                         </div>
                     </div>
                 </div>

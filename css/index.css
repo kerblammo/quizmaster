@@ -61,6 +61,10 @@ th {
     */
 }
 
+.invisible{
+    visibility: hidden;
+}
+
 .highlighted {
     background-color: yellow;
 }
@@ -342,8 +346,9 @@ th {
     height: auto;
 }
 
-#holderMid{
-    width: 45%;
+#holderMedium{
+    float: left;
+    width: 50%;
     height: 85%;
 }
 
