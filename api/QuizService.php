@@ -1,8 +1,7 @@
 <?php
 
-$projectRoot = filter_input(INPUT_SERVER, "DOCUMENT_ROOT") . '/QuizMasterBackend';
-require_once ($projectRoot . '/db/QuizAccessor.php');
-require_once ($projectRoot . '/entity/Quiz.php');
+require_once ('../db/QuizAccessor.php');
+require_once ('../entity/Quiz.php');
 
 //check which verb sent and act accordingly
 $method = filter_input(INPUT_SERVER, "REQUEST_METHOD");
@@ -39,7 +38,7 @@ function doGet(){
  * Get the quiz whose ID matches the one supplied
  */
 function getId(){
-    
+   
     try {
         $id = filter_input(INPUT_GET, 'id');
         $acc = new QuizAccessor();

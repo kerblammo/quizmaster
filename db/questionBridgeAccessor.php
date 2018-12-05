@@ -1,8 +1,7 @@
 <?php
 
-$projectRoot = filter_input(INPUT_SERVER, "DOCUMENT_ROOT") . '/QuizMasterBackend';
 require_once 'ConnectionManager.php';
-require_once ($projectRoot . '/entity/questionQuizBridge.php');
+require_once ('../entity/questionQuizBridge.php');
 
 class QuestionBridgeAccessor {
 
@@ -79,26 +78,27 @@ class QuestionBridgeAccessor {
     }
 
     public function getRecordByQuizId($quizId) {
-        $result = NULL;
+        $result = [];
 
         try {
             $this->getByQuizStatement->bindParam(":quizid", $quizId);
             $this->getByQuizStatement->execute();
-            $dbResult = $this->getByQuizStatement->fetch(PDO::FETCH_ASSOC);
-            if ($dbResult) {
-                $quizId = $dbResult['QuizId'];
-                $questionId = $dbResult['QuestionId'];
-                $value = $dbResult['Value'];
-                $result = new Question($quizId, $questionId, $value);
+            $dbResult = $this->getByQuizStatement->fetchAll(PDO::FETCH_ASSOC);
+            foreach($dbResult as $r) {
+                $quizId = $r['QuizId'];
+                $questionId = $r['QuestionId'];
+                $value = $r['value'];
+                $obj = new QuestionQuizBridge($quizId, $questionId, $value);
+                array_push($result, $obj); 
             }
+            
         } catch (Exception $ex) {
-            $result = NULL;
+            $result = [];
         } finally {
             if (!is_null($this->getByQuizStatement)) {
-                $this->getQuizIdStatement->closeCursor();
+                $this->getByQuizStatement->closeCursor();
             }
         }
-
         return $result;
     }
 

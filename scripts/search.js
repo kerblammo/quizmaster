@@ -98,8 +98,7 @@ function showMatchinQuizzes(resp) {
     console.log(JSON.stringify(data[0]));
 }
 function getOneQuiz(url) {
-    var method = "GET";
-    console.log("entered method");
+    var method = "GET"; 
 
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function () {
@@ -108,6 +107,7 @@ function getOneQuiz(url) {
             console.log(resp);
             if (resp !== "null") {
                 console.log(resp);
+                console.log(JSON.parse(resp));
                 showOneQuiz(resp);
             } else {
                 alert("Sorry, please check user name and password")

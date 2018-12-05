@@ -1,8 +1,7 @@
 <?php
 
-$projectRoot = filter_input(INPUT_SERVER, "DOCUMENT_ROOT") . '/QuizMasterBackend';
-require_once ($projectRoot . '/db/QuestionAccessor.php');
-require_once ($projectRoot . '/entity/Question.php');
+require_once ('../db/QuestionAccessor.php');
+require_once ('../entity/Question.php');
 
 $method = filter_input(INPUT_SERVER, "REQUEST_METHOD");
 if ($method === "GET"){

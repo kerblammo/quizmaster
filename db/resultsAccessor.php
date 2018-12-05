@@ -1,8 +1,7 @@
 <?php
 
-$projectRoot = filter_input(INPUT_SERVER, "DOCUMENT_ROOT") . '/QuizMasterBackend';
 require_once 'ConnectionManager.php';
-require_once ($projectRoot . '/entity/quizResults.php');
+require_once ('../entity/quizResults.php');
 
 class ResultsAccessor {
     

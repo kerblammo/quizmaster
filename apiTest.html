@@ -18,9 +18,9 @@ and open the template in the editor.
 
             function submitHandler() {
                 console.log('click');
-                var method = "PUT";
+                var method = "GET";
                 //get id
-                var id = 33;
+                var id = 2;
                 var questionText = 'What is my favorite colour?';
                 var choices = "yellow,blue,red,green";
                 var description = "This is an example of a subjective question";
@@ -37,7 +37,7 @@ and open the template in the editor.
                 };
                 console.log('parameters set'); 
                 //ajax call
-                var url = "quizmaster/question";
+                var url = "quizmaster/quiz/" + id;
                 var xmlhttp = new XMLHttpRequest();
                 xmlhttp.onreadystatechange = function () {
                     if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
@@ -49,7 +49,8 @@ and open the template in the editor.
                     }
                 };
                 xmlhttp.open(method, url, true); 
-                xmlhttp.send(JSON.stringify(item));
+                //xmlhttp.send(JSON.stringify(item));
+                xmlhttp.send();
             }
 
 

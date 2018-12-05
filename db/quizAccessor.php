@@ -1,9 +1,9 @@
 <?php
 
-$projectRoot = filter_input(INPUT_SERVER, "DOCUMENT_ROOT") . '/QuizMasterBackend';
 require_once 'ConnectionManager.php';
-require_once ($projectRoot . '/entity/quiz.php');
-require_once ($projectRoot . '/db/questionBridgeAccessor.php');
+//require_once ($projectRoot . '/entity/quiz.php');
+require_once ('../db/questionBridgeAccessor.php');
+require_once ('../db/questionAccessor.php');
 
 class QuizAccessor {
     
@@ -75,7 +75,6 @@ class QuizAccessor {
      */
     public function getQuizzesByQuery($statement){
         $result = [];
-        
         try {
             $stmt = $this->conn->prepare($statement);
             $stmt->execute();
@@ -119,8 +118,7 @@ class QuizAccessor {
      * @return Quiz
      */
     public function getQuizById($id){
-        $result = NULL;
-        
+        $result = NULL; 
         try {
             $this->getByIdStatement->bindParam(":id", $id);
             $this->getByIdStatement->execute();
@@ -133,10 +131,25 @@ class QuizAccessor {
                 $tags = $dbResult['Tags'];
                 
                 //get questions
-                $bridge = new QuestionBridgeAccessor();
-                $questions = $bridge->getRecordByQuizId($id);
+                $bridge = new QuestionBridgeAccessor(); 
+                $questionIds = $bridge->getRecordByQuizId($id);
+                $qacc = new QuestionAccessor();
+                $questions = [];
+                foreach ($questionIds as $q){ 
+                    $question = $qacc->getQuestionById($q->getQuestionId());
+//                    $quesId = $qaccres['Id'];
+//                    $questionText = $qaccres['QuestionText'];
+//                    $quesDescription = $qaccres['Description'];
+//                    $choices = $qaccres['Choices'];
+//                    $answer = $qaccres['Answer'];
+//                    $questags = $qaccres['Tags'];
+//                    $question = new Question($quesId, $questionText, $quesDescription, $choices, $answer, $questags);
+                    array_push($questions, $question);
+                }
                 
-                $result = new Quiz($id, $authorId, $title, $description, $tags, $questions);
+                //build quiz
+                $quiz = new Quiz($id, $authorId, $title, $description, $tags, $questions);
+                $result = $quiz;
             }
             
         } catch (Exception $ex) {
