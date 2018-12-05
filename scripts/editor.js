@@ -324,15 +324,38 @@ function removeChoice() {
 }
 
 function deleteQuestion() {
-    var toRemove = document.querySelector(".highlighted");
-    if (toRemove.parentNode.id == "highlightListQuestion") {
-        //alert("you took out the thing");
-        var removing = document.querySelector("#highlightListQuestion .highlighted");
-        removing.parentNode.removeChild(removing);
+       var id = document.querySelector("#questionID").value;
+  
+    var url = "quizmaster/question/" + id; // entity, not action
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+            var resp = xmlhttp.responseText;
+      if (resp == "true") {
+          clearQuestionEditInputs();
+             
+            }
+            else{
+           
+            }
+              
+        
+        }
+    };
+    xmlhttp.open("DELETE", url, true); // "DELETE" is the action, "url" is the entity
+    xmlhttp.send();
+  
     }
 
-}
 
+function clearQuestionEditInputs(){
+    alert("lllll");
+       document.querySelector("#searchTermQuestionInput").value="";
+        document.querySelector("#questionID").value="";
+                document.querySelector("#questionName").value="";
+                document.querySelector("#questionTags").value="";
+                 document.querySelector("#questionDescription").value="";
+}
 function clearSelections() {
     var rows = document.querySelectorAll("ul");
     for (var i = 0; i < rows.length; i++) {

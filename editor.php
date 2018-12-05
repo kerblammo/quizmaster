@@ -95,7 +95,7 @@ Date:
                             <div id="seachBox">
                                 <p>Question ID -- Question Name</p>
                                 <p><input id="questionID" type="text" value=""><input id="questionName" type="text" value=""></p>
-               questionID             </div>
+                        </div>
                             <div id="searchData">
                                 <p>Question Tags</p>
                                 <p><input id="questionTags"type="text" value=""></p>
