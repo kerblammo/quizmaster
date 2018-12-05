@@ -28,7 +28,7 @@ window.onload = function () {
 
     document.querySelector("#btnRemoveChoice").addEventListener("click", removeChoice);
     document.querySelector("#btnDeleteQuestion").addEventListener("click", deleteQuestion);
-    
+
     document.querySelector("#btnSaveQuestion").addEventListener("click", saveQuestion);
     document.querySelector("#btnAddChoice").addEventListener("click", addChoice);
 
@@ -37,6 +37,8 @@ window.onload = function () {
     document.querySelector("#btnLoadQuizInfo").addEventListener("click", loadQuizInfo);
     document.querySelector("#btnEditSelectedQuiz").addEventListener("click", editSelectedQuiz);
     
+    document.querySelector("#editExistingSearch").addEventListener("click", searchExistingQuestion);
+    //editExistingSearch
     //first load, this will clear the proper divs, show buttons, and set default to quiz
     loadAreas();
 
@@ -62,6 +64,66 @@ window.onload = function () {
 
 var choiceArray = [];
 
+function searchExistingQuestion() {
+    alert("worked");
+    var selectedSearch = document.querySelector("#searchbyQuestionFilter").value;
+    var searchValue = document.getElementById("searchTermQuestionInput").value;
+    console.log(searchValue);
+    if (selectedSearch == "id") {
+        var url = "quizmaster/question/" + searchValue;
+        getOneQuestion(url);
+
+    }
+    if (selectedSearch == "tags") {
+        var url = "quizmaster/question/byTag/" + searchValue;
+        getOneQuestion(url);
+    }
+    if (selectedSearch == "words") {
+        var url = "quizmaster/question/byName/" + searchValue;
+        getOneQuestion(url);
+    }
+}
+
+function getOneQuestion(url) {
+
+    var method = "GET";
+    console.log("entered method");
+
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+            var resp = xmlhttp.responseText;
+            console.log(resp);
+            if (resp !== "null") {
+                console.log(resp);
+                showOneQuestion(resp);
+            } else {
+                alert("Something went wrong")
+            }
+        }
+    };
+    xmlhttp.open(method, url, true);
+    xmlhttp.send();
+}
+
+function showOneQuestion(resp) {
+   
+       var data = JSON.parse(resp);
+       var questionName=data.questionText;
+       var questionID=data.id;
+       var tags=data.tags;
+       var description=data.description;
+    document.querySelector("#questionName").value=questionName;
+    document.querySelector("#questionID").value=questionID;
+    document.querySelector("#questionTags").value=tags;
+    
+    document.querySelector("#questionDescription").value=description;
+    
+
+    
+
+}
+
 function addChoice() {
     //this adds what the user enters for choices into the unordered list, and in
     //the dropdown
@@ -73,9 +135,11 @@ function addChoice() {
     var ul = document.getElementById("highlightListChoice");
 
     var option = document.createElement('option');
-    option.innerHTML = addChoice
+    option.innerHTML = addChoice;
     document.getElementById('qA').appendChild(option);
     choiceArray.push(el.innerHTML);
+    document.querySelector("#choiceToAdd").value = "";
+
 
 }
 
@@ -236,16 +300,30 @@ function removeQuestion() {
     }
 }
 
-function removeChoice(){
+function removeChoice() {
     var toRemove = document.querySelector(".highlighted");
     if (toRemove.parentNode.id == "highlightListChoice") {
         //alert("you took out the thing");
         var removing = document.querySelector("#highlightListChoice .highlighted");
         removing.parentNode.removeChild(removing);
     }
+    for (var i = 0; i < choiceArray.length; i++) {
+        if (choiceArray[i] === toRemove.innerHTML) {
+            choiceArray.splice(i, 1);
+        }
+    }
+    //repopulate the answers
+    document.getElementById('qA').innerHTML = "";
+    for (var i = 0; i < choiceArray.length; i++) {
+
+        var option = document.createElement('option');
+        option.innerHTML = choiceArray[i];
+        document.getElementById('qA').appendChild(option);
+
+    }
 }
 
-function deleteQuestion(){
+function deleteQuestion() {
     var toRemove = document.querySelector(".highlighted");
     if (toRemove.parentNode.id == "highlightListQuestion") {
         //alert("you took out the thing");
