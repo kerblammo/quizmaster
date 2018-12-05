@@ -63,67 +63,7 @@ Date:
                 </div>
                 <div id="holderLarge">
                     <div id="output">
-                        <!-- 
-                        * These are example boxes and should be built in javascript and loaded into the "output" div
-                        -->
-                        <div id="outputData" class="column25">
-                            <div id="searchBox">
-                                <div id="quizName">
-                                    This is where the quiz name goes.
-                                </div>
-                                <div id="quizDescription">
-                                    <p>This is where the quiz description goes.</p>
-                                </div>
-                                <div id="btnTakeQuiz">
-                                    <button>Take Quiz</button>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- 
-                        * End of a single example box
-                        -->
-                        <div id="outputData" class="column25">
-                            <div id="searchBox">
-                                <div id="quizName">
-                                    This is where the quiz name goes.
-                                </div>
-                                <div id="quizDescription">
-                                    <p>This is where the quiz description goes.</p>
-                                </div>
-                                <div id="btnTakeQuiz">
-                                    <button>Take Quiz</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="outputData" class="column25">
-                            <div id="searchBox">
-                                <div id="quizName">
-                                    This is where the quiz name goes.
-                                </div>
-                                <div id="quizDescription">
-                                    <p>This is where the quiz description goes.</p>
-                                </div>
-                                <div id="btnTakeQuiz">
-                                    <button>Take Quiz</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="outputData" class="column25">
-                            <div id="searchBox">
-                                <div id="quizName">
-                                    This is where the quiz name goes.
-                                </div>
-                                <div id="quizDescription">
-                                    <p>This is where the quiz description goes.</p>
-                                </div>
-                                <div id="btnTakeQuiz">
-                                    <button>Take Quiz</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                        
         </div>
         <div id="botMenu">
             <div class="navLeft">

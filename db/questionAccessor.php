@@ -13,7 +13,7 @@ class QuestionAccessor {
     private $getByChoiceStatementString = "SELECT * FROM question WHERE choices LIKE :choices";
     private $deleteStatementString = "DELETE FROM question WHERE id = :id";
     private $insertStatementString = "INSERT INTO question (questionText, description, choices, answer, tags) VALUES (:questionText, :description, :choices, :answer, :tags)";
-    private $updateStatementString = "UPDATE quiz SET questionText = :questionText, description = :description, choices = :choices, answer = :answer, tags = :tags WHERE id = :id";
+    private $updateStatementString = "UPDATE question SET questionText = :questionText, description = :description, choices = :choices, answer = :answer, tags = :tags WHERE id = :id";
     //connection
     private $conn = NULL;
     //statements
@@ -132,7 +132,7 @@ class QuestionAccessor {
 
         try {
             $tag = '%' . $tag . '%';
-            $this->getByTagStatement->bindParam(":tag", $tag);
+            $this->getByTagStatement->bindParam(":tags", $tag);
             $this->getByTagStatement->execute();
             $dbResults = $this->getByTagStatement->fetchAll(PDO::FETCH_ASSOC);
 
@@ -161,7 +161,7 @@ class QuestionAccessor {
 
         try {
             $name = '%' . $name . '%';
-            $this->getByTitleStatement->bindParam(":title", $name);
+            $this->getByTitleStatement->bindParam(":questionText", $name);
             $this->getByTitleStatement->execute();
             $dbResults = $this->getByTitleStatement->fetchAll(PDO::FETCH_ASSOC);
 
@@ -280,14 +280,14 @@ class QuestionAccessor {
                 $this->updateStatement->bindParam(":tags", $tags);
                 $success = $this->updateStatement->execute();
             } catch (Exception $ex) {
-                $success = false;
+                $success = $ex->getMessage();
             } finally {
                 if (!is_null($this->updateStatement)) {
                     $this->updateStatement->closeCursor();
                 }
             }
         } else {
-            $success = false;
+            $success = "false";
         }
         return $success;
     }

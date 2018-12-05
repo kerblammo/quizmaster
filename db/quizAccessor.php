@@ -3,6 +3,7 @@
 $projectRoot = filter_input(INPUT_SERVER, "DOCUMENT_ROOT") . '/QuizMasterBackend';
 require_once 'ConnectionManager.php';
 require_once ($projectRoot . '/entity/quiz.php');
+require_once ($projectRoot . '/db/questionBridgeAccessor.php');
 
 class QuizAccessor {
     
@@ -85,7 +86,12 @@ class QuizAccessor {
                 $title = $r['Title'];
                 $description = $r['Description'];
                 $tags = $r['Tags'];
-                $quiz = new Quiz($id, $authorId, $title, $description, $tags);
+                
+                //get questions as well
+                $bridge = new QuestionBridgeAccessor();
+                $questions = $bridge->getRecordByQuizId($id);
+                
+                $quiz = new Quiz($id, $authorId, $title, $description, $tags, $questions);
                 array_push($result, $quiz);
             }
              
@@ -125,7 +131,12 @@ class QuizAccessor {
                 $title = $dbResult['Title'];
                 $description = $dbResult['Description'];
                 $tags = $dbResult['Tags'];
-                $result = new Quiz($id, $authorId, $title, $description, $tags);
+                
+                //get questions
+                $bridge = new QuestionBridgeAccessor();
+                $questions = $bridge->getRecordByQuizId($id);
+                
+                $result = new Quiz($id, $authorId, $title, $description, $tags, $questions);
             }
             
         } catch (Exception $ex) {
@@ -158,7 +169,11 @@ class QuizAccessor {
                 $title = $r['Title'];
                 $description = $r['Description'];
                 $tags = $r['Tags'];
-                $quiz = new Quiz($id, $authorId, $title, $description, $tags);
+                
+                //get questions
+                $bridge = new QuestionBridgeAccessor();
+                $questions = $bridge->getRecordByQuizId($id);
+                $quiz = new Quiz($id, $authorId, $title, $description, $tags, $questions);
                 array_push($results, $quiz);
             }
         } catch (Exception $ex) {
@@ -191,7 +206,11 @@ class QuizAccessor {
                 $title = $r['Title'];
                 $description = $r['Description'];
                 $tags = $r['Tags'];
-                $quiz = new Quiz($id, $authorId, $title, $description, $tags);
+                
+                //get questions
+                $bridge = new QuestionBridgeAccessor();
+                $questions = $bridge->getRecordByQuizId($id);
+                $quiz = new Quiz($id, $authorId, $title, $description, $tags, $questions);
                 array_push($results, $quiz);
             }
         } catch (Exception $ex) {
@@ -218,6 +237,16 @@ class QuizAccessor {
             $this->deleteStatement->execute();
             $rc = $this->deleteStatement->rowCount();
             $success = $rc > 0;
+            
+            //delete questions as well
+            if ($success){
+                //get questions
+                $bridge = new QuestionBridgeAccessor();
+                $questions = $bridge->getRecordByQuizId($id);
+                foreach($questions as $q){
+                    $bridge->deleteQuestion($q->getQuizId());
+                }
+            }
         } catch (Exception $ex) {
             $success = false;
         } finally {
@@ -240,12 +269,21 @@ class QuizAccessor {
         $title = $quiz->getTitle();
         $description = $quiz->getDescription();
         $tags = $quiz->getTags();
+        $questions = $quiz->getQuestions();
         try {
             $this->insertStatement->bindParam(":authorId", $authorId);
             $this->insertStatement->bindParam(":title", $title);
             $this->insertStatement->bindParam(":description", $description);
             $this->insertStatement->bindParam(":tags", $tags);
             $success = $this->insertStatement->execute();
+            
+            //insert questions too
+            if ($success){
+                $bridge = new QuestionBridgeAccessor();
+                foreach($questions as $q){
+                    $bridge->insertQuestion($q);
+                }
+            }
         } catch (Exception $ex) {
             echo $ex->getMessage();
             $success = false;
@@ -270,12 +308,21 @@ class QuizAccessor {
         $title = $quiz->getTitle();
         $description = $quiz->getDescription();
         $tags = $quiz->getTags();
+        $questions = $quiz->getQuestions();
         try {
             $this->updateStatement->bindParam(":id", $id);
             $this->updateStatement->bindParam(":title", $title);
             $this->updateStatement->bindParam(":description", $description);
             $this->updateStatement->bindParam(":tags", $tags);
             $success = $this->updateStatement->execute();
+            
+            //questions too
+            if ($success){
+                $bridge = new QuestionBridgeAccessor();
+                foreach($questions as $q){
+                    $bridge->updateQuestion($q);
+                }
+            }
         } catch (Exception $ex) {
             $success = false;
         } finally {

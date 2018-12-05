@@ -8,7 +8,8 @@ class QuizResults implements JsonSerializable{
     private $startTime;
     private $endTime;
     private $answers;
-    private $score;
+    private $scores;
+    private $total;
     
     function getId() {
         return $this->id;
@@ -34,8 +35,12 @@ class QuizResults implements JsonSerializable{
         return $this->answers;
     }
 
-    function getScore() {
-        return $this->score;
+    function getScores() {
+        return $this->scores;
+    }
+    
+    function getTotal() {
+        return $this->total;
     }
 
     /**
@@ -48,14 +53,15 @@ class QuizResults implements JsonSerializable{
      * @param string[] $answers
      * @param decimal $score
      */
-    function __construct($id, $userId, $quizId, $startTime, $endTime, $answers, $score) {
+    function __construct($id, $userId, $quizId, $startTime, $endTime, $answers, $scores, $total) {
         $this->id = $id;
         $this->userId = $userId;
         $this->quizId = $quizId;
         $this->startTime = $startTime;
         $this->endTime = $endTime;
         $this->answers = $answers;
-        $this->score = $score;
+        $this->score = $scores;
+        $this->total = $total;
     }
     
     public function jsonSerialize() {

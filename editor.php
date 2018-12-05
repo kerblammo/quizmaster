@@ -11,7 +11,8 @@ Date:
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="css/index.css">
-        <script src="scripts/editor.js"></script>
+        <script src="scripts/checkIfLoggedIn.js" defer></script>
+        <script src="scripts/editor.js" defer></script>
         <title>Quiz Webpage</title>
     </head>
     <body>
@@ -60,7 +61,7 @@ Date:
             * THIS IS FOR QUESTIONS
             -->
             <div id="questionEditorAll">
-            <div id="questionSearch">
+            <div id="questionSearch" class="row">
                 <div id="holderSmall">
                     <div id="sideLeft">
                         <div id="searchPanel">
@@ -122,15 +123,15 @@ Date:
                     <div id="sideLeft">
                         <div id="searchPanel">
                             <div id="seachBox">
-                                <p>
-                                    Question: 
-                                </p>
-                                <p>
-                                    <input type="text" value=""> 
-                                </p>
+                              
+                            <p>Question</p>
+                            <p><input id="questionText" type="text" value=""><span class="error" id="questionError"></span>
+                            
+                             
                                 <p>
                                     Add Choice:
-                                    <input type="text" value=""><button>Add</button><button id="btnRemoveChoice">Remove</button>
+                                    <input id="choiceToAdd" type="text" value=""><button id="btnAddChoice">Add</button>
+                                    <button id="btnRemoveChoice">Remove</button><span class="error" id="choiceError"></span>
                                 </p>
                             </div>
                             <div id="searchData">
@@ -143,12 +144,13 @@ Date:
                             </div>
                             <div id="questionAnswer">
                                 Answer:
-                                    <select name="qA">
+                                    <select id="qA">
                                         <option name="qA">Choice1</option>
                                         <option name="qA">Choice2</option>
                                         <option name="qA">Choice3</option>
                                     </select>
                             </div>
+                             <button id="btnSaveQuestion">Save Question</button>
                         </div>
                     </div>
                 </div>
@@ -156,9 +158,9 @@ Date:
                     <div id="sideRight">
                         <div id="infoPanel">
                             <p>Question Tags</p>
-                            <p><input type="text" value=""></p>
+                            <p><input id="questionTag"type="text" value=""></p><span class="error" id="tagError"></span>
                             <p>Question Description</p>
-                            <p><input type="text" value=""></p>
+                            <p><input id="questionDescription" type="text" value=""></p><span class="error" id="descError"></span>
                             <button>Save Question</button>
                         </div>
                     </div>
