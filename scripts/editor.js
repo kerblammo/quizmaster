@@ -16,13 +16,13 @@ window.onload = function () {
     document.querySelector("#btnCreateNew").addEventListener("click", createNew);
     document.querySelector("#btnEditExisting").addEventListener("click", editExisting);
     document.querySelector("#startOver").addEventListener("click", startOver);
-    
+
     document.querySelector("#highlightListQuestion").addEventListener("click", handleRowClick);
     document.querySelector("#highlightListQuiz").addEventListener("click", handleRowClick);
     document.querySelector("#highlightListChoice").addEventListener("click", handleRowClick);
     document.querySelector("#highlightListAddToQuiz").addEventListener("click", handleRowClick);
     document.querySelector("#highlightListInQuiz").addEventListener("click", handleRowClick);
-    
+
     document.querySelector("#btnSend").addEventListener("click", sendQuestion);
     document.querySelector("#btnRemove").addEventListener("click", removeQuestion);
 
@@ -33,10 +33,10 @@ window.onload = function () {
     document.querySelector("#btnAddChoice").addEventListener("click", addChoice);
 
     document.querySelector("#searchExistingQuiz").addEventListener("click", searchExistingQuiz);
-    
+
     document.querySelector("#btnLoadQuizInfo").addEventListener("click", loadQuizInfo);
     document.querySelector("#btnEditSelectedQuiz").addEventListener("click", editSelectedQuiz);
-    
+
     document.querySelector("#editExistingSearch").addEventListener("click", searchExistingQuestion);
     //editExistingSearch
     //first load, this will clear the proper divs, show buttons, and set default to quiz
@@ -107,20 +107,20 @@ function getOneQuestion(url) {
 }
 
 function showOneQuestion(resp) {
-   
-       var data = JSON.parse(resp);
-       var questionName=data.questionText;
-       var questionID=data.id;
-       var tags=data.tags;
-       var description=data.description;
-    document.querySelector("#questionName").value=questionName;
-    document.querySelector("#questionID").value=questionID;
-    document.querySelector("#questionTags").value=tags;
-    
-    document.querySelector("#questionDescription").value=description;
-    
 
-    
+    var data = JSON.parse(resp);
+    var questionName = data.questionText;
+    var questionID = data.id;
+    var tags = data.tags;
+    var description = data.description;
+    document.querySelector("#questionName").value = questionName;
+    document.querySelector("#questionID").value = questionID;
+    document.querySelector("#questionTags").value = tags;
+
+    document.querySelector("#questionDescription").value = description;
+
+
+
 
 }
 
@@ -208,12 +208,12 @@ function formIsValid() {
             liNodes.push(ul.childNodes[i]);
         }
     }
-    
+
     if (liNodes.length < 2) {
         document.querySelector("#choiceError").innerHTML = "You must enter atleast two choices";
         counter++;
     }
-    
+
     if (counter > 0) {
         return false;
     } else {
@@ -324,37 +324,36 @@ function removeChoice() {
 }
 
 function deleteQuestion() {
-       var id = document.querySelector("#questionID").value;
-  
+    var id = document.querySelector("#questionID").value;
+
     var url = "quizmaster/question/" + id; // entity, not action
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
             var resp = xmlhttp.responseText;
-      if (resp == "true") {
-          clearQuestionEditInputs();
-             
+            if (resp == "true") {
+                clearQuestionEditInputs();
+
+            } else {
+
             }
-            else{
-           
-            }
-              
-        
+
+
         }
     };
     xmlhttp.open("DELETE", url, true); // "DELETE" is the action, "url" is the entity
     xmlhttp.send();
-  
-    }
+
+}
 
 
-function clearQuestionEditInputs(){
-    alert("lllll");
-       document.querySelector("#searchTermQuestionInput").value="";
-        document.querySelector("#questionID").value="";
-                document.querySelector("#questionName").value="";
-                document.querySelector("#questionTags").value="";
-                 document.querySelector("#questionDescription").value="";
+function clearQuestionEditInputs() {
+
+    document.querySelector("#searchTermQuestionInput").value = "";
+    document.querySelector("#questionID").value = "";
+    document.querySelector("#questionName").value = "";
+    document.querySelector("#questionTags").value = "";
+    document.querySelector("#questionDescription").value = "";
 }
 function clearSelections() {
     var rows = document.querySelectorAll("ul");
@@ -418,7 +417,7 @@ function getMatchingQuizzes(url) {
 }
 
 function showMatchingQuizzes(resp) {
-    
+
     searchQuizResultsArr = [];
     var data = JSON.parse(resp);
     var html = "";
@@ -428,18 +427,18 @@ function showMatchingQuizzes(resp) {
         var quizId = data[i].id;
         var quizTags = data[i].tags;
         var description = data[i].description;
-        
+
         html += "<li id=\"selectQuizSearchResult\">" + quizName + "</li>";
-        
+
         searchQuizResultsArr.push(data[i]);
-        
+
     }
     document.querySelector("#highlightListQuiz").innerHTML = html;
-    console.log(data[0]);    
+    console.log(data[0]);
 }
 
 function getOneQuiz(url) {
-    var method = "GET"; 
+    var method = "GET";
 
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function () {
@@ -472,10 +471,10 @@ function showOneQuiz(resp) {
 }
 
 
-function loadQuizInfo(){
+function loadQuizInfo() {
     var arrIndex = document.querySelector(".highlighted").innerHTML;
     //alert("loadQuizInfo");
-    
+
     arrIndex = document.querySelector(".highlighted").innerHTML;
     for (var i = 0; i < searchQuizResultsArr.length; i++) {
         if (searchQuizResultsArr[i].title == arrIndex) {
@@ -483,18 +482,18 @@ function loadQuizInfo(){
             document.querySelector("#quizResultId").value = searchQuizResultsArr[i].id;
             document.querySelector("#quizResultTags").value = searchQuizResultsArr[i].tags;
             document.querySelector("#quizResultDesc").value = searchQuizResultsArr[i].description;
-            
+
             document.querySelector("#quizNewName").value = searchQuizResultsArr[i].title;
             document.querySelector("#quizNewTags").value = searchQuizResultsArr[i].tags;
             document.querySelector("#quizNewDesc").value = searchQuizResultsArr[i].description;
         }
         //console.log(searchQuizResultsArr[i].title);
-    }    
+    }
     console.log(searchQuizResultsArr[0].title);
     console.log(arrIndex);
 }
 
-function editSelectedQuiz(){
+function editSelectedQuiz() {
     startedQuizEdit = 1;
     loadAreas();
 }
