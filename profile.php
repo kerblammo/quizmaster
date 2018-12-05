@@ -11,6 +11,7 @@ Date:
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="css/index.css">
+        <script src="scripts/settings.js"></script>
         <title>Quiz Webpage</title>
     </head>
     <body>
@@ -24,29 +25,88 @@ Date:
                     <a href="index.php"><button>Home</button></a><a href="search.php"><button>Search</button></a><a href="editor.php"><button id="editor" class="hidden">Editor</button></a>
                 </div>
                 <div class="navRight">
-                    <a href="login.php"><button id="loginOpt">Login</button></a><a href="index.php"><button id="profile" class="hidden">Profile</button></a>
+                    <a href="login.php"><button id="loginOpt">Login</button></a><a href="profile.php"><button id="profile" class="hidden">Profile</button></a>
                 </div>
             </div>
             
         </div>
         <div id="center" class="yellow">
-            <div id="searchBySelector">
-                <div id="leftRadio"><input type="radio" name="settingsLevel" value="settingsUser" id="radSettingsUser" checked>Profile</div><div id="rightRadio"><input type="radio" name="settingsLevel" value="settingsAdmin" id="radSettingsAdmin">Admin Panel</div>
+            <div id="searchBySelector" class="hidden">
+                <div id="leftRadio"><input type="radio" name="settingsLevel" value="settingsUser" id="radSettingsUser" checked>Account Settings</div><div id="rightRadio"><input type="radio" name="settingsLevel" value="settingsAdmin" id="radSettingsAdmin">Admin Panel</div>
             </div>
             <div id="display">
-                <div id="holderSmall">
-                    Username:<br>
-                    <input><br>
-                    Change Password:<br>
-                    Old Password: <input><br>
-                    New Password: <input><br>
-                    Confirm Password: <input><br>
-                    <button>Delete Account</button>
-                </div>
-                <div id="holderSmall">
-                    
+                <div id="userSettings">
+                    <div id="holderMedium">
+                        <div id="sideLeft">
+                        <select id="userSettingsSelect">
+                            <option name="userOption" value="userSettingsUsername">View Your Username</option>
+                            <option name="userOption" value="userSettingsPassword">Change Your Password</option>
+                            <option name="userOption" value="userSettingsDelete">Delete Your Account</option>
+                        </select>
+                        <button id="btnUserGo">Go!</button>
+                        <div id="userSettingsUsername" class="hidden">
+                        <br>Username:<br>
+                        <input><br>
+                        </div>
+                        <div id="userSettingsPassword" class="hidden">
+                            <h2>Change Password:</h2>
+                            Old Password: <input><br>
+                            New Password: <input><br>
+                            Confirm Password: <input><br>
+                        </div>
+                        <div id="userSettingsDelete" class="hidden">
+                            <button>Delete Account</button>
+                        </div>
+                        </div>
+                    </div>
                 </div>
                 
+                <div id="superSettings" class="invisible">
+                    <div id="holderMedium">
+                        <div id="sideRight">
+                        <select id="superSettingsSelect">
+                            <option name="superOption" value="superSettingsCreate">Create an Account</option>
+                            <option name="superOption" value="superSettingsPassword">Change Account Password</option>
+                            <option name="superOption" value="superSettingsDelete">Delete an Account</option>
+                        </select>
+                        <button id="btnSuperGo">Go!</button>
+
+                        <div id="superSettingsCreate" class="hidden">
+                            <select name="permLevel">
+                                <option>User</option>
+                                <option>Admin</option>
+                                <option>Super</option>
+                            </select>
+                            <p>Username <input id="signUpUser" type="text" name="signUpUser"></p><span class="error" id="SignUpUseNameError"></span>
+                            <p>Password <input id="signUpPass" type="text" name="signUpPass"></p><span class="error" id="signUppasswordError"></span>
+                            <p>Confirm Password <input id="signUpConfirm" type="text" name="signUpConfirm"></p><span class="error" id="signUpconfirmPwdError"></span>
+                            <p><button id="createUser">Sign up!</button></p>
+                        </div>
+                        <div id="superSettingsPassword" class="hidden">
+                            <div id="loadAllAccounts">
+                                <select name="allAccounts">
+                                    <option>Username 1</option>
+                                    <option>Username 2</option>
+                                    <option>Username 3</option>
+                                    <option>Username 4</option>
+                                </select>
+                            </div>
+                            <button id="changePassword">Change Password</button>
+                        </div>
+                        <div id="superSettingsDelete" class="hidden">
+                            <div id="loadAllAccounts">
+                                <select name="allAccounts">
+                                    <option>Username 1</option>
+                                    <option>Username 2</option>
+                                    <option>Username 3</option>
+                                    <option>Username 4</option>
+                                </select>
+                            </div>
+                            <button id="deleteAccount">Delete</button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div id="botMenu">

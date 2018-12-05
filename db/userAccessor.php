@@ -2,6 +2,7 @@
 
 
 require_once 'ConnectionManager.php';
+require_once ($projectRoot . '/entity/user.php');
 
 
 

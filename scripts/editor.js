@@ -22,9 +22,12 @@ window.onload = function () {
     document.querySelector("#highlightListInQuiz").addEventListener("click", handleRowClick);
     document.querySelector("#btnSend").addEventListener("click", sendQuestion);
     document.querySelector("#btnRemove").addEventListener("click", removeQuestion);
-    document.querySelector("#saveQuestion").addEventListener("click", saveQuestion);
-    document.querySelector("#addChoice").addEventListener("click", addChoice);
 
+    document.querySelector("#btnRemoveChoice").addEventListener("click", removeChoice);
+    document.querySelector("#btnDeleteQuestion").addEventListener("click", deleteQuestion);
+    
+    document.querySelector("#btnSaveQuestion").addEventListener("click", saveQuestion);
+    document.querySelector("#btnAddChoice").addEventListener("click", addChoice);
 
     //first load, this will clear the proper divs, show buttons, and set default to quiz
     loadAreas();
@@ -37,7 +40,7 @@ window.onload = function () {
         console.log(user);
         var userObj = JSON.parse(user);
         username = userObj.username;
-//        var html = "Hey " + username + ", check our these quizzes!";
+        var html = "Hey " + username + ", check our these quizzes!";
 //        document.querySelector("#greeting").innerHTML = html;
         var userPermission = userObj.permissionId;
         console.log(userPermission);
@@ -225,6 +228,25 @@ function removeQuestion() {
         var removing = document.querySelector("#highlightListInQuiz .highlighted");
         removing.parentNode.removeChild(removing);
     }
+}
+
+function removeChoice(){
+    var toRemove = document.querySelector(".highlighted");
+    if (toRemove.parentNode.id == "highlightListChoice") {
+        //alert("you took out the thing");
+        var removing = document.querySelector("#highlightListChoice .highlighted");
+        removing.parentNode.removeChild(removing);
+    }
+}
+
+function deleteQuestion(){
+    var toRemove = document.querySelector(".highlighted");
+    if (toRemove.parentNode.id == "highlightListQuestion") {
+        //alert("you took out the thing");
+        var removing = document.querySelector("#highlightListQuestion .highlighted");
+        removing.parentNode.removeChild(removing);
+    }
+
 }
 
 function clearSelections() {

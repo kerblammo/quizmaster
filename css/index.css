@@ -61,6 +61,10 @@ th {
     */
 }
 
+.invisible{
+    visibility: hidden;
+}
+
 .highlighted {
     background-color: yellow;
 }
@@ -219,6 +223,7 @@ th {
 
 .row{
     width: 100%;
+    clear: both;
 }
 
 .column50{
@@ -341,8 +346,9 @@ th {
     height: auto;
 }
 
-#holderMid{
-    width: 45%;
+#holderMedium{
+    float: left;
+    width: 50%;
     height: 85%;
 }
 
@@ -511,7 +517,7 @@ th {
 
 #searchPanel{
     border: solid thin black;
-    
+    background-color: white;
     border-radius: .5em;
 }
 
@@ -524,6 +530,7 @@ th {
 
 #infoPanel{
     border: solid thin black;
+    background-color: white;
     border-radius: .5em;
 }
 
@@ -541,6 +548,7 @@ th {
 
 #quizQuestionSearch{
     border: solid thin black;
+    background-color: whitesmoke;
     padding: 5% 2.5%;
 }
 
@@ -548,8 +556,9 @@ th {
     padding: 5% 2.5%;
 }
 
-#questionAdded{
+#quizQuestionAdded{
     border: solid thin black;
+    background-color: whitesmoke;
     padding: 5% 2.5%;
 }
 

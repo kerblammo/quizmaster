@@ -1,10 +1,10 @@
 window.onload = function () {
     document.querySelector('#searchbyQuizBtn').addEventListener('click', submitHandler);
     //    console.log('Handlers set');
-    document.querySelector("#searchByResults").classList.add("hidden");
+    document.querySelector("#searchByResults").classList.add("invisible");
     document.querySelector("#leftRadio").addEventListener("click", searchByQuiz);
     document.querySelector("#rightRadio").addEventListener("click", searchByResults);
-     document.querySelector("#searchByQuizFilter").addEventListener("change", clearFields);
+    document.querySelector("#searchByQuizFilter").addEventListener("change", clearFields);
     
      //saveQuestion
 
@@ -134,13 +134,13 @@ function showOneQuiz(resp) {
 function searchByQuiz() {
     var radChecker = document.querySelector("#radQuiz");
     radChecker.checked = true;
-    document.querySelector("#searchByQuiz").classList.remove("hidden");
-    document.querySelector("#searchByResults").classList.add("hidden");
+    document.querySelector("#searchByQuiz").classList.remove("invisible");
+    document.querySelector("#searchByResults").classList.add("invisible");
 }
 
 function searchByResults() {
     var radChecker = document.querySelector("#radResult");
     radChecker.checked = true;
-    document.querySelector("#searchByQuiz").classList.add("hidden");
-    document.querySelector("#searchByResults").classList.remove("hidden");
+    document.querySelector("#searchByQuiz").classList.add("invisible");
+    document.querySelector("#searchByResults").classList.remove("invisible");
 }
