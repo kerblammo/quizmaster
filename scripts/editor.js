@@ -8,6 +8,7 @@
 var editMode = "quiz";
 var startedQuizEdit = 0;
 var startedQuestionEdit = 0;
+var searchQuizResultsArr = [];
 
 window.onload = function () {
     document.querySelector("#leftRadio").addEventListener("click", hideQuestion);
@@ -15,11 +16,13 @@ window.onload = function () {
     document.querySelector("#btnCreateNew").addEventListener("click", createNew);
     document.querySelector("#btnEditExisting").addEventListener("click", editExisting);
     document.querySelector("#startOver").addEventListener("click", startOver);
+    
     document.querySelector("#highlightListQuestion").addEventListener("click", handleRowClick);
     document.querySelector("#highlightListQuiz").addEventListener("click", handleRowClick);
     document.querySelector("#highlightListChoice").addEventListener("click", handleRowClick);
     document.querySelector("#highlightListAddToQuiz").addEventListener("click", handleRowClick);
     document.querySelector("#highlightListInQuiz").addEventListener("click", handleRowClick);
+    
     document.querySelector("#btnSend").addEventListener("click", sendQuestion);
     document.querySelector("#btnRemove").addEventListener("click", removeQuestion);
 
@@ -29,6 +32,11 @@ window.onload = function () {
     document.querySelector("#btnSaveQuestion").addEventListener("click", saveQuestion);
     document.querySelector("#btnAddChoice").addEventListener("click", addChoice);
 
+    document.querySelector("#searchExistingQuiz").addEventListener("click", searchExistingQuiz);
+    
+    document.querySelector("#btnLoadQuizInfo").addEventListener("click", loadQuizInfo);
+    document.querySelector("#btnEditSelectedQuiz").addEventListener("click", editSelectedQuiz);
+    
     //first load, this will clear the proper divs, show buttons, and set default to quiz
     loadAreas();
 
@@ -48,12 +56,12 @@ window.onload = function () {
         if (userPermission === 1 || userPermission === 2) {
             document.querySelector("#editor").classList.remove("hidden");
         }
-
     }
     document.querySelector("#loginOpt").addEventListener("click", handleDisplayLogin);
-
 }
+
 var choiceArray = [];
+
 function addChoice() {
     //this adds what the user enters for choices into the unordered list, and in
     //the dropdown
@@ -108,6 +116,7 @@ function saveQuestion() {
         xmlhttp.send(JSON.stringify(questionObj));
     }
 }
+
 function formIsValid() {
     document.querySelector("#questionError").innerHTML = "";
     document.querySelector("#tagError").innerHTML = "";
@@ -134,14 +143,13 @@ function formIsValid() {
         if (ul.childNodes[i].nodeName == "LI") {
             liNodes.push(ul.childNodes[i]);
         }
-
-
-
     }
+    
     if (liNodes.length < 2) {
         document.querySelector("#choiceError").innerHTML = "You must enter atleast two choices";
         counter++;
     }
+    
     if (counter > 0) {
         return false;
     } else {
@@ -156,10 +164,8 @@ function clearQuestionFields() {
     document.querySelector("#choiceToAdd").value = "";
     document.querySelector("#highlightListChoice").innerHTML = "";
     document.querySelector("#qA").innerHTML = "";
-
-
-
 }
+
 function handleDisplayLogin() {
     if (document.querySelector("#loginOpt").innerHTML == "Log Out") {
         localStorage.clear();
@@ -269,6 +275,132 @@ function handleRowClick(e) {
 //    document.querySelector("#btnUpd").removeAttribute("disabled");
 }
 
+function searchExistingQuiz() {
+
+    var selectedSearch = document.querySelector("#searchByQuizFilter").value;
+    var searchValue = document.getElementById("searchExistingQuizInput").value;
+    console.log(searchValue);
+    if (selectedSearch == "id") {
+        var url = "quizmaster/quiz/" + searchValue;
+        getOneQuiz(url);
+
+    }
+    if (selectedSearch == "tag") {
+        var url = "quizmaster/quiz/byTag/" + searchValue;
+        getMatchingQuizzes(url);
+    }
+    if (selectedSearch == "word") {
+        var url = "quizmaster/quiz/byName/" + searchValue;
+        getMatchingQuizzes(url);
+    }
+
+}
+
+function getMatchingQuizzes(url) {
+    var method = "GET";
+
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+            var resp = xmlhttp.responseText;
+            console.log(resp);
+            if (resp !== null) {
+                console.log(resp);
+                showMatchingQuizzes(resp);
+            } else {
+                alert("Sorry, please check user name and password")
+            }
+        }
+    };
+    xmlhttp.open(method, url, true);
+    xmlhttp.send();
+}
+
+function showMatchingQuizzes(resp) {
+    
+    searchQuizResultsArr = [];
+    var data = JSON.parse(resp);
+    var html = "";
+    for (var i = 0; i < data.length; i++) {
+
+        var quizName = data[i].title;
+        var quizId = data[i].id;
+        var quizTags = data[i].tags;
+        var description = data[i].description;
+        
+        html += "<li id=\"selectQuizSearchResult\">" + quizName + "</li>";
+        
+        searchQuizResultsArr.push(data[i]);
+        
+    }
+    document.querySelector("#highlightListQuiz").innerHTML = html;
+    console.log(data[0]);    
+}
+
+function getOneQuiz(url) {
+    var method = "GET"; 
+
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+            var resp = xmlhttp.responseText;
+            console.log(resp);
+            if (resp !== "null") {
+                console.log(resp);
+                console.log(JSON.parse(resp));
+                showOneQuiz(resp);
+            } else {
+                alert("Sorry, please check user name and password")
+            }
+        }
+    };
+    xmlhttp.open(method, url, true);
+    xmlhttp.send();
+}
+function showOneQuiz(resp) {
+    var data = JSON.parse(resp);
+    var quizName = data.title;
+    var description = data.description;
+
+    var html = "<li value=\"0\">" + quizName + "</li>";
+
+
+    document.querySelector("#highlightListQuiz").innerHTML = html;
+    console.log(data.id);
+    //document.querySelector("#searchByQuizFilter").addEventListener("change", clearFields);
+}
+
+
+function loadQuizInfo(){
+    var arrIndex = document.querySelector(".highlighted").innerHTML;
+    //alert("loadQuizInfo");
+    
+    arrIndex = document.querySelector(".highlighted").innerHTML;
+    for (var i = 0; i < searchQuizResultsArr.length; i++) {
+        if (searchQuizResultsArr[i].title == arrIndex) {
+            document.querySelector("#quizResultName").value = searchQuizResultsArr[i].title;
+            document.querySelector("#quizResultId").value = searchQuizResultsArr[i].id;
+            document.querySelector("#quizResultTags").value = searchQuizResultsArr[i].tags;
+            document.querySelector("#quizResultDesc").value = searchQuizResultsArr[i].description;
+            
+            document.querySelector("#quizNewName").value = searchQuizResultsArr[i].title;
+            document.querySelector("#quizNewTags").value = searchQuizResultsArr[i].tags;
+            document.querySelector("#quizNewDesc").value = searchQuizResultsArr[i].description;
+        }
+        //console.log(searchQuizResultsArr[i].title);
+    }    
+    console.log(searchQuizResultsArr[0].title);
+    console.log(arrIndex);
+}
+
+function editSelectedQuiz(){
+    startedQuizEdit = 1;
+    loadAreas();
+}
+
+/***********************************************************************
+ *  Keep everything below at bottom of file
+ ***********************************************************************/
 function hideAll() {
     //hides all divs, runs before unhiding the proper divs
     var selected = document.querySelector("#quizEditorAll");
@@ -285,7 +417,6 @@ function hideAll() {
     selected.classList.add("hidden");
     selected = document.querySelector("#selectButtonEdit");
     selected.classList.add("hidden");
-
 }
 
 function loadAreas() {
@@ -324,6 +455,8 @@ function loadAreas() {
         selected.classList.remove("hidden");
         selected = document.querySelector("#questionEditorAll");
         selected.classList.remove("hidden");
-
     }
 }
+/***********************************************************************
+ *  Keep everything above at bottom of file
+ ***********************************************************************/

@@ -181,15 +181,15 @@ Date:
                             <div id="seachBox">
                                 <p>
                                     Search By:
-                                    <select name="seachBy">
-                                        <option name="seachBy">ID</option>
-                                        <option name="seachBy">Tags</option>
-                                        <option name="seachBy">Words</option>
+                                    <select id="searchByQuizFilter" name="seachBy">
+                                        <option value="id">ID</option>
+                                        <option value="tag">Tag</option>
+                                        <option value="word">Word</option>
                                     </select>
                                 </p>
                                 <p>
                                     Search Term:
-                                    <input type="text" value=""><button>Search</button>
+                                    <input id="searchExistingQuizInput" type="text" value=""><button id="searchExistingQuiz">Search</button>
                                 </p>
                             </div>
                             <div id="searchData">
@@ -201,7 +201,8 @@ Date:
                                 </ul>
                             </div>
                             <div id="searchDataButtons">
-                                <button>Remove</button>
+                                <button>Delete Quiz</button>
+                                <button id="btnLoadQuizInfo">Load Quiz</button>
                             </div>
                         </div>
                     </div>
@@ -211,17 +212,17 @@ Date:
                         <div id="infoPanel">
                             <div id="seachBox">
                                 <p>Quiz Name -- Quiz ID</p>
-                                <p><input type="text" value=""><input type="text" value=""></p>
+                                <p><input id="quizResultName" type="text" value=""><input id="quizResultId" type="text" value=""></p>
                             </div>
                             <div id="searchData">
                                 <p>Quiz Tags</p>
-                                <p><input type="text" value=""></p>
+                                <p><input id="quizResultTags" type="text" value=""></p>
                             </div>
                             <div id="searchDataButtons">
                                 <p>Quiz Description</p>
-                                <p><input type="text" value=""></p>
+                                <p><input id="quizResultDesc" type="text" value=""></p>
                             </div>
-                            <button>Edit</button>
+                            <button id="btnEditSelectedQuiz">Edit</button>
                         </div>
                     </div>
                 </div>
@@ -246,9 +247,9 @@ Date:
                                     <p>
                                         Search By:
                                         <select name="seachBy">
-                                            <option name="seachBy">ID</option>
-                                            <option name="seachBy">Tags</option>
-                                            <option name="seachBy">Words</option>
+                                            <option value="id">ID</option>
+                                            <option value="tag">Tag</option>
+                                            <option value="word">Word</option>
                                         </select>
                                     </p>
                                     <p>
@@ -263,11 +264,11 @@ Date:
                         <div id="sideRight">
                             <div id="infoPanel">
                                 <p>Quiz Name</p>
-                                <p><input type="text" value=""></p>
+                                <p><input id="quizNewName" type="text" value=""></p>
                                 <p>Quiz / Question Tags</p>
-                                <p><input type="text" value=""></p>
+                                <p><input id="quizNewTags" type="text" value=""></p>
                                 <p>Quiz / Question Description</p>
-                                <p><input type="text" value=""></p>
+                                <p><input id="quizNewDesc" type="text" value=""></p>
                             </div>
                         </div>
                     </div>

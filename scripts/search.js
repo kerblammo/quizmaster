@@ -73,7 +73,7 @@ function getMatchingQuizzes(url) {
             console.log(resp);
             if (resp !== null) {
                 console.log(resp);
-                showMatchinQuizzes(resp);
+                showMatchingQuizzes(resp);
             } else {
                 alert("Sorry, please check user name and password")
             }
@@ -82,7 +82,7 @@ function getMatchingQuizzes(url) {
     xmlhttp.open(method, url, true);
     xmlhttp.send();
 }
-function showMatchinQuizzes(resp) {
+function showMatchingQuizzes(resp) {
     var data = JSON.parse(resp);
     var html = "";
     for (var i = 0; i < data.length; i++) {
@@ -129,8 +129,9 @@ function showOneQuiz(resp) {
 
     document.querySelector("#output").innerHTML = html;
     console.log(data.id);
-      document.querySelector("#searchByQuizFilter").addEventListener("change", clearFields);
+    document.querySelector("#searchByQuizFilter").addEventListener("change", clearFields);
 }
+
 function searchByQuiz() {
     var radChecker = document.querySelector("#radQuiz");
     radChecker.checked = true;
