@@ -67,23 +67,20 @@ Date:
                             <div id="seachBox">
                                 <p>
                                     Search By:
-                                    <select name="seachBy">
-                                        <option name="seachBy">ID</option>
-                                        <option name="seachBy">Tags</option>
-                                        <option name="seachBy">Words</option>
+                                    <select id="searchbyQuestionFilter" name="seachBy">
+                                        <option value="id">ID</option>
+                                        <option value="tags">Tags</option>
+                                        <option value="words">Words</option>
                                     </select>
                                 </p>
                                 <p>
                                     Search Term:
-                                    <input type="text" value=""><button>Search</button>
+                                    <input id="searchTermQuestionInput"type="text" value=""><button id="editExistingSearch">Search</button>
                                 </p>
                             </div>
                             <div id="searchData">
                                 <ul id="highlightListQuestion">
-                                    <li>Result1</li>
-                                    <li>Result2</li>
-                                    <li>Result3</li>
-                                    <li>Result4</li>
+                                
                                 </ul>
                             </div>
                             <div id="searchDataButtons">
@@ -96,16 +93,16 @@ Date:
                     <div id="sideRight">
                         <div id="infoPanel">
                             <div id="seachBox">
-                                <p>Question Name -- Question ID</p>
-                                <p><input type="text" value=""><input type="text" value=""></p>
-                            </div>
+                                <p>Question ID -- Question Name</p>
+                                <p><input id="questionID" type="text" value=""><input id="questionName" type="text" value=""></p>
+               questionID             </div>
                             <div id="searchData">
                                 <p>Question Tags</p>
-                                <p><input type="text" value=""></p>
+                                <p><input id="questionTags"type="text" value=""></p>
                             </div>
                             <div id="searchDataButtons">
                                 <p>Question Description</p>
-                                <p><input type="text" value=""></p>
+                                <p><input id="questionDescription" type="text" value=""></p>
                             </div>
                         </div>
                     </div>
@@ -135,18 +132,13 @@ Date:
                             </div>
                             <div id="searchData">
                                 <ul id="highlightListChoice">
-                                    <li>Choice1</li>
-                                    <li>Choice2</li>
-                                    <li>Choice3</li>
-                                    <li>Choice4</li>
+                                   
                                 </ul>
                             </div>
                             <div id="questionAnswer">
                                 Answer:
                                     <select id="qA">
-                                        <option name="qA">Choice1</option>
-                                        <option name="qA">Choice2</option>
-                                        <option name="qA">Choice3</option>
+                                     
                                     </select>
                             </div>
                              
