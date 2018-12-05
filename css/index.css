@@ -219,6 +219,7 @@ th {
 
 .row{
     width: 100%;
+    clear: both;
 }
 
 .column50{
@@ -524,6 +525,7 @@ th {
 
 #infoPanel{
     border: solid thin black;
+    background-color: white;
     border-radius: .5em;
 }
 
@@ -541,6 +543,7 @@ th {
 
 #quizQuestionSearch{
     border: solid thin black;
+    background-color: whitesmoke;
     padding: 5% 2.5%;
 }
 
@@ -548,8 +551,9 @@ th {
     padding: 5% 2.5%;
 }
 
-#questionAdded{
+#quizQuestionAdded{
     border: solid thin black;
+    background-color: whitesmoke;
     padding: 5% 2.5%;
 }
 

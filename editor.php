@@ -25,7 +25,7 @@ Date:
                     <a href="index.php"><button>Home</button></a><a href="search.php"><button>Search</button></a><a href="editor.php"><button id="editor" class="hidden">Editor</button></a>
                 </div>
                 <div class="navRight">
-                    <a href="login.php"><button id="loginOpt">Login</button></a><a href="index.php"><button id="profile" class="hidden">Profile</button></a>
+                    <a href="login.php"><button id="loginOpt">Login</button></a><a href="profile.php"><button id="profile" class="hidden">Profile</button></a>
                 </div>
             </div>
             
@@ -87,7 +87,7 @@ Date:
                                 </ul>
                             </div>
                             <div id="searchDataButtons">
-                                <button>Remove</button><button>Edit</button>
+                                <button id="btnDeleteQuestion">Delete</button><button>Edit</button>
                             </div>
                         </div>
                     </div>
@@ -130,7 +130,7 @@ Date:
                                 </p>
                                 <p>
                                     Add Choice:
-                                    <input type="text" value=""><button>Add</button><button>Remove</button>
+                                    <input type="text" value=""><button>Add</button><button id="btnRemoveChoice">Remove</button>
                                 </p>
                             </div>
                             <div id="searchData">
@@ -155,8 +155,6 @@ Date:
                 <div id="holderSmall">
                     <div id="sideRight">
                         <div id="infoPanel">
-                            <p>Question Name -- Question ID</p>
-                            <p><input type="text" value=""><input type="text" value=""></p>
                             <p>Question Tags</p>
                             <p><input type="text" value=""></p>
                             <p>Question Description</p>
@@ -263,8 +261,6 @@ Date:
                         <div id="infoPanel">
                             <p>Quiz Name</p>
                             <p><input type="text" value=""></p>
-                            <p>Quiz ID</p>
-                            <p><input type="text" value=""></p>
                             <p>Quiz / Question Tags</p>
                             <p><input type="text" value=""></p>
                             <p>Quiz / Question Description</p>
@@ -307,7 +303,7 @@ Date:
 
                     <div id="holderSmall">
                         <div id="sideRight">
-                            <div id="questionAdded">
+                            <div id="quizQuestionAdded">
                                 <div id="seachBox">
                                     <p>Questions on Quiz</p>
                                 </div>
