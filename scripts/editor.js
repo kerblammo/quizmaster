@@ -196,7 +196,7 @@ function formIsValid() {
         document.querySelector("#tagError").innerHTML = "Please enter a tag";
         counter++;
     }
-    if (document.querySelector("#questionDescription").value == "") {
+    if (document.querySelector("#addquestionDescription").value == "") {
         document.querySelector("#descError").innerHTML = "Please enter a description";
         counter++;
     }
@@ -224,7 +224,7 @@ function formIsValid() {
 function clearQuestionFields() {
     document.querySelector("#questionText").value = "";
     document.querySelector("#questionTag").value = "";
-    document.querySelector("#questionDescription").value = "";
+    document.querySelector("#addquestionDescription").value = "";
     document.querySelector("#choiceToAdd").value = "";
     document.querySelector("#highlightListChoice").innerHTML = "";
     document.querySelector("#qA").innerHTML = "";

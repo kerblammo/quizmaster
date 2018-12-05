@@ -59,7 +59,7 @@ Date:
             * This uses the same for BOTH quiz and question editor
             * THIS IS FOR QUESTIONS
             -->
-            <div id="questionEditorAll">
+<div id="questionEditorAll">
             <div id="questionSearch" class="row">
                 <div id="holderSmall">
                     <div id="sideLeft">
@@ -151,7 +151,7 @@ Date:
                             <p>Question Tags</p>
                             <p><input id="questionTag"type="text" value=""></p><span class="error" id="tagError"></span>
                             <p>Question Description</p>
-                            <p><input id="questionDescription" type="text" value=""></p><span class="error" id="descError"></span>
+                            <p><input id="addquestionDescription" type="text"></p><span class="error" id="descError"></span>
                             <button id="btnSaveQuestion">Save Question</button>
                         </div>
                     </div>
