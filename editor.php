@@ -80,11 +80,17 @@ Date:
                             </div>
                             <div id="searchData">
                                 <ul id="highlightListQuestion">
+                                     
+                                    <li>Result1</li>
+                                    <li>Result2</li>
+                                    <li>Result3</li>
+                                    <li>Result4</li>
+                              
                                 
                                 </ul>
                             </div>
                             <div id="searchDataButtons">
-                                <button id="btnDeleteQuestion">Delete</button><button>Edit</button>
+                                <button id="btnDeleteQuestion">Delete</button><button ID="edit">Load Question</button>
                             </div>
                         </div>
                     </div>
@@ -103,7 +109,8 @@ Date:
                             <div id="searchDataButtons">
                                 <p>Question Description</p>
                                 <p><input id="questionDescription" type="text" value=""></p>
-                            </div>
+                            </div><button id="btnEditSelectedQuiz">Edit</button>
+                            
                         </div>
                     </div>
                 </div>

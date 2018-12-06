@@ -9,6 +9,7 @@ var editMode = "quiz";
 var startedQuizEdit = 0;
 var startedQuestionEdit = 0;
 var searchQuizResultsArr = [];
+var searchQuestionResultsArr=[];
 
 window.onload = function () {
     document.querySelector("#leftRadio").addEventListener("click", hideQuestion);
@@ -38,8 +39,8 @@ window.onload = function () {
     document.querySelector("#btnEditSelectedQuiz").addEventListener("click", editSelectedQuiz);
 
     document.querySelector("#editExistingSearch").addEventListener("click", searchExistingQuestion);
-    //editExistingSearch
-    //first load, this will clear the proper divs, show buttons, and set default to quiz
+     document.querySelector("#edit").addEventListener("click", loadQuestionToEdit);
+    //edit
     loadAreas();
 
     if (localStorage.getItem("userLoggedIn") !== null) {
@@ -64,8 +65,25 @@ window.onload = function () {
 
 var choiceArray = [];
 
+function loadQuestionToEdit(){
+    
+        var arrIndex = document.querySelector(".highlighted").innerHTML;
+  
+
+    for (var i = 0; i < searchQuestionResultsArr.length; i++) {
+        if (searchQuestionResultsArr[i].questionText == arrIndex) {
+            document.querySelector("#questionName").value = searchQuestionResultsArr[i].questionText;
+            document.querySelector("#questionID").value = searchQuestionResultsArr[i].id;
+            document.querySelector("#questionTags").value = searchQuestionResultsArr[i].tags;
+            document.querySelector("#questionDescription").value = searchQuestionResultsArr[i].description;
+
+           
+        }
+    
+}
+}
 function searchExistingQuestion() {
-    alert("worked");
+   
     var selectedSearch = document.querySelector("#searchbyQuestionFilter").value;
     var searchValue = document.getElementById("searchTermQuestionInput").value;
     console.log(searchValue);
@@ -76,11 +94,11 @@ function searchExistingQuestion() {
     }
     if (selectedSearch == "tags") {
         var url = "quizmaster/question/byTag/" + searchValue;
-        getOneQuestion(url);
+        //getOneQuestion(url);
     }
     if (selectedSearch == "words") {
         var url = "quizmaster/question/byName/" + searchValue;
-        getOneQuestion(url);
+        //getOneQuestion(url);
     }
 }
 
@@ -107,17 +125,17 @@ function getOneQuestion(url) {
 }
 
 function showOneQuestion(resp) {
+     
+
+  
 
     var data = JSON.parse(resp);
     var questionName = data.questionText;
-    var questionID = data.id;
-    var tags = data.tags;
-    var description = data.description;
-    document.querySelector("#questionName").value = questionName;
-    document.querySelector("#questionID").value = questionID;
-    document.querySelector("#questionTags").value = tags;
-
-    document.querySelector("#questionDescription").value = description;
+      var html = "<li value=\"0\">" + questionName + "</li>";
+      document.querySelector("#highlightListQuestion").innerHTML = html;
+          searchQuestionResultsArr.push(data)
+     
+   
 
 
 
@@ -466,6 +484,7 @@ function showOneQuiz(resp) {
 
 
     document.querySelector("#highlightListQuiz").innerHTML = html;
+    searchQuizResultsArr.push(data);
     console.log(data.id);
     //document.querySelector("#searchByQuizFilter").addEventListener("change", clearFields);
 }
