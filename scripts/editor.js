@@ -9,7 +9,7 @@ var editMode = "quiz";
 var startedQuizEdit = 0;
 var startedQuestionEdit = 0;
 var searchQuizResultsArr = [];
-var searchQuestionResultsArr=[];
+var searchQuestionResultsArr = [];
 
 window.onload = function () {
     document.querySelector("#leftRadio").addEventListener("click", hideQuestion);
@@ -39,7 +39,8 @@ window.onload = function () {
     document.querySelector("#btnEditSelectedQuiz").addEventListener("click", editSelectedQuiz);
 
     document.querySelector("#editExistingSearch").addEventListener("click", searchExistingQuestion);
-     document.querySelector("#edit").addEventListener("click", loadQuestionToEdit);
+    document.querySelector("#edit").addEventListener("click", loadQuestionToEdit);
+    document.querySelector("#btnEditSelectedQuestion").addEventListener("click", editSelectedQuestion);
     //edit
     loadAreas();
 
@@ -64,11 +65,52 @@ window.onload = function () {
 }
 
 var choiceArray = [];
+var cameFromEdit=false;
 
-function loadQuestionToEdit(){
+function editSelectedQuestion() {
+cameFromEdit=true;
+    //hide stuff and unhide stuff
+    var selected = document.querySelector("#questionEditorAll");
+    selected.classList.remove("hidden");
+    selected = document.querySelector("#questionCreate");
+    selected.classList.remove("hidden");
+    document.querySelector("#searchPanel").classList.add("hidden");
+    document.querySelector("#infoPanel").classList.add("hidden");
+    //fill in the input fields
+    document.querySelector("#questionText").value = questionBeingEdited.questionText;
+
+    document.querySelector("#questionTag").value = questionBeingEdited.tags;
+    document.querySelector("#addquestionDescription").value = questionBeingEdited.description;
+    var choicesToSplit=questionBeingEdited.choices;
+    var pieces=choicesToSplit.split(",");
     
-        var arrIndex = document.querySelector(".highlighted").innerHTML;
-  
+       for (var i = 0; i < pieces.length; i++) {
+
+        var option = document.createElement('option');
+        option.innerHTML = pieces[i];
+        document.getElementById('qA').appendChild(option);
+        
+         var el = document.createElement('li');
+    el.innerHTML = pieces[i];
+    choiceArray.push(el.innerHTML);
+    document.getElementById('highlightListChoice').appendChild(el);
+
+    }
+
+    console.log(questionBeingEdited.questionText);
+    console.log(questionBeingEdited.description);
+    console.log(questionBeingEdited.choices);
+    console.log(questionBeingEdited.answer);
+    console.log(questionBeingEdited.tags);
+
+
+}
+
+var questionBeingEdited = "";
+function loadQuestionToEdit() {
+
+    var arrIndex = document.querySelector(".highlighted").innerHTML;
+
 
     for (var i = 0; i < searchQuestionResultsArr.length; i++) {
         if (searchQuestionResultsArr[i].questionText == arrIndex) {
@@ -76,14 +118,14 @@ function loadQuestionToEdit(){
             document.querySelector("#questionID").value = searchQuestionResultsArr[i].id;
             document.querySelector("#questionTags").value = searchQuestionResultsArr[i].tags;
             document.querySelector("#questionDescription").value = searchQuestionResultsArr[i].description;
+            questionBeingEdited = searchQuestionResultsArr[i];
 
-           
         }
-    
-}
+
+    }
 }
 function searchExistingQuestion() {
-   
+
     var selectedSearch = document.querySelector("#searchbyQuestionFilter").value;
     var searchValue = document.getElementById("searchTermQuestionInput").value;
     console.log(searchValue);
@@ -102,8 +144,8 @@ function searchExistingQuestion() {
     }
 }
 
-function getMatchingQuestions (url){
-    
+function getMatchingQuestions(url) {
+
     var method = "GET";
 
     var xmlhttp = new XMLHttpRequest();
@@ -121,29 +163,32 @@ function getMatchingQuestions (url){
     };
     xmlhttp.open(method, url, true);
     xmlhttp.send();
-    
+
 }
-function showMatchingQuestions(resp){
-    
-      searchQuestionResultsArr = [];
-   var data = JSON.parse(resp);
-   console.log(data);
-   var html = "";
-   for (var i = 0; i < data.length; i++) {
+function showMatchingQuestions(resp) {
+
+    searchQuestionResultsArr = [];
+    var data = JSON.parse(resp);
+    console.log(data);
+    var html = "";
+    for (var i = 0; i < data.length; i++) {
 
         var questionText = data[i].questionText;
-       var questionId = data[i].id;
+        var questionId = data[i].id;
         var questionTags = data[i].tags;
         var description = data[i].description;
+        var choices = data[i].choices;
+        var answer = data[i].answer;
+        console.log(choices);
 
         html += "<li id=\"selectQuestionSearchResult\">" + questionText + "</li>";
 
         searchQuestionResultsArr.push(data[i]);
 
-  }
+    }
     document.querySelector("#highlightListQuestion").innerHTML = html;
     console.log(data[0]);
-    
+
 }
 
 
@@ -170,17 +215,17 @@ function getOneQuestion(url) {
 }
 
 function showOneQuestion(resp) {
-     
 
-  
+
+
 
     var data = JSON.parse(resp);
     var questionName = data.questionText;
-      var html = "<li value=\"0\">" + questionName + "</li>";
-      document.querySelector("#highlightListQuestion").innerHTML = html;
-          searchQuestionResultsArr.push(data)
-     
-   
+    var html = "<li value=\"0\">" + questionName + "</li>";
+    document.querySelector("#highlightListQuestion").innerHTML = html;
+    searchQuestionResultsArr.push(data);
+
+
 
 
 
@@ -214,12 +259,19 @@ function saveQuestion() {
     document.querySelector("#tagError").innerHTML = "";
     document.querySelector("#descError").innerHTML = "";
     document.querySelector("#choiceError").innerHTML = "";
+    var id;
+    if (cameFromEdit==true) {
+        id=questionBeingEdited.id;
+    }
+    else{
+        id="99999";
+    }
     //Is called when used clicks on Question Editor, and then create new, and then clicks save
     //get the data from the editor page and checks to see if it is valid, and then build a question
     if (formIsValid()) {//check if everything is valid, then creates a question object and then make ajax call
 
         var questionObj = {
-            "id": 999,
+            "id": id,
             "questionText": document.querySelector("#questionText").value,
             "description": document.querySelector("#questionDescription").value,
             "choices": choiceArray.toString(),
@@ -230,7 +282,13 @@ function saveQuestion() {
         };
 //make an ajax call to add the question
         var url = "quizmaster/question";
-
+        var method;
+  if (cameFromEdit==true) {
+        method="PUT";
+    }
+    else{
+         method="POST";
+    }
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function () {
             if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
@@ -239,7 +297,7 @@ function saveQuestion() {
                 clearQuestionFields();
             }
         };
-        xmlhttp.open("POST", url, true);
+        xmlhttp.open(method, url, true);
         xmlhttp.send(JSON.stringify(questionObj));
     }
 }
