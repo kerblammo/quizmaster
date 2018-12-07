@@ -65,10 +65,10 @@ window.onload = function () {
 }
 
 var choiceArray = [];
-var cameFromEdit=false;
+var cameFromEdit = false;
 
 function editSelectedQuestion() {
-cameFromEdit=true;
+    cameFromEdit = true;
     //hide stuff and unhide stuff
     var selected = document.querySelector("#questionEditorAll");
     selected.classList.remove("hidden");
@@ -81,19 +81,19 @@ cameFromEdit=true;
 
     document.querySelector("#questionTag").value = questionBeingEdited.tags;
     document.querySelector("#addquestionDescription").value = questionBeingEdited.description;
-    var choicesToSplit=questionBeingEdited.choices;
-    var pieces=choicesToSplit.split(",");
-    
-       for (var i = 0; i < pieces.length; i++) {
+    var choicesToSplit = questionBeingEdited.choices;
+    var pieces = choicesToSplit.split(",");
+
+    for (var i = 0; i < pieces.length; i++) {
 
         var option = document.createElement('option');
         option.innerHTML = pieces[i];
         document.getElementById('qA').appendChild(option);
-        
-         var el = document.createElement('li');
-    el.innerHTML = pieces[i];
-    choiceArray.push(el.innerHTML);
-    document.getElementById('highlightListChoice').appendChild(el);
+
+        var el = document.createElement('li');
+        el.innerHTML = pieces[i];
+        choiceArray.push(el.innerHTML);
+        document.getElementById('highlightListChoice').appendChild(el);
 
     }
 
@@ -260,11 +260,10 @@ function saveQuestion() {
     document.querySelector("#descError").innerHTML = "";
     document.querySelector("#choiceError").innerHTML = "";
     var id;
-    if (cameFromEdit==true) {
-        id=questionBeingEdited.id;
-    }
-    else{
-        id="99999";
+    if (cameFromEdit == true) {
+        id = questionBeingEdited.id;
+    } else {
+        id = "99999";
     }
     //Is called when used clicks on Question Editor, and then create new, and then clicks save
     //get the data from the editor page and checks to see if it is valid, and then build a question
@@ -283,12 +282,11 @@ function saveQuestion() {
 //make an ajax call to add the question
         var url = "quizmaster/question";
         var method;
-  if (cameFromEdit==true) {
-        method="PUT";
-    }
-    else{
-         method="POST";
-    }
+        if (cameFromEdit == true) {
+            method = "PUT";
+        } else {
+            method = "POST";
+        }
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function () {
             if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
