@@ -93,14 +93,59 @@ function searchExistingQuestion() {
 
     }
     if (selectedSearch == "tags") {
-        var url = "quizmaster/question/byTag/" + searchValue;
-        //getOneQuestion(url);
+        var url = "quizmaster/question/ByTag/" + searchValue;
+        getMatchingQuestions(url);
     }
     if (selectedSearch == "words") {
-        var url = "quizmaster/question/byName/" + searchValue;
-        //getOneQuestion(url);
+        var url = "quizmaster/question/ByName/" + searchValue;
+        getMatchingQuestions(url);
     }
 }
+
+function getMatchingQuestions (url){
+    
+    var method = "GET";
+
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+            var resp = xmlhttp.responseText;
+            console.log(resp);
+            if (resp !== null) {
+                console.log(resp);
+                showMatchingQuestions(resp);
+            } else {
+                alert("Sorry, please check user name and password")
+            }
+        }
+    };
+    xmlhttp.open(method, url, true);
+    xmlhttp.send();
+    
+}
+function showMatchingQuestions(resp){
+    
+      searchQuestionResultsArr = [];
+   var data = JSON.parse(resp);
+   console.log(data);
+   var html = "";
+   for (var i = 0; i < data.length; i++) {
+
+        var questionText = data[i].questionText;
+       var questionId = data[i].id;
+        var questionTags = data[i].tags;
+        var description = data[i].description;
+
+        html += "<li id=\"selectQuestionSearchResult\">" + questionText + "</li>";
+
+        searchQuestionResultsArr.push(data[i]);
+
+  }
+    document.querySelector("#highlightListQuestion").innerHTML = html;
+    console.log(data[0]);
+    
+}
+
 
 function getOneQuestion(url) {
 

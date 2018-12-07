@@ -17,8 +17,8 @@ RewriteRule ^quizmaster/quiz/byTag/([\w\s]+)$ api/QuizService.php?tag=$1 [NC]
 #question service 
 RewriteRule ^quizmaster/question$ api/QuestionService.php [NC]
 RewriteRule ^quizmaster/question/([0-9]+)$ api/QuestionService.php?id=$1 [NC]
-RewriteRule ^quizmaster/question/ByName/(\w\s+)$ api/QuestionService.php?title=$1 [NC]
-RewriteRule ^quizmaster/question/ByTag/(\w\s+)$ api/QuestionService.php?tags=$1 [NC]
+RewriteRule ^quizmaster/question/ByName/([\w\s]+)$ api/QuestionService.php?title=$1 [NC]
+RewriteRule ^quizmaster/question/ByTag/([\w\s]+)$ api/QuestionService.php?tags=$1 [NC]
 RewriteRule ^quizmaster/question/ByChoices/(\w\s+)$ api/QuestionService.php?choice=$1 [NC]
 
 #results service
