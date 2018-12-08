@@ -128,7 +128,7 @@ function showMatchingQuizzes(resp) {
         var description = data[i].description;
         html += "<div id='outputData' class='column25'><div id='searchBox'><div id='quizName'>" + quizName + "</div>";
         html += "<div id='quizDescription'><p>" + description + "</p></div>";
-        html += "<div id='btnTakeQuiz'><button>Take Quiz</button></div></div></div></div>";
+        html += "<div id='btnTakeQuiz'><a href='quiz.php?id=" + data[i].id + "'><button>Take Quiz</button></a></div></div></div></div>";
     }
 
     document.querySelector("#output").innerHTML = html;
@@ -161,7 +161,7 @@ function showOneQuiz(resp) {
 
     var html = "<div id='outputData' class='column25'><div id='searchBox'><div id='quizName'>" + quizName + "</div>";
     html += "<div id='quizDescription'><p>" + description + "</p></div>";
-    html += "<div id='btnTakeQuiz'><button>Take Quiz</button></div></div></div></div>";
+    html += "<div id='btnTakeQuiz'><a href='quiz.php?id=" + data.id + "'><button>Take Quiz</button></a></div></div></div></div>";
 
 
     document.querySelector("#output").innerHTML = html;

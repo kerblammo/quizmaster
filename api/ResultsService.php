@@ -159,9 +159,9 @@ function getAll(){
 function doPost() {
     $body = file_get_contents('php://input');
     $contents = json_decode($body, true);
-    $quiz = new QuizResults($contents['id'], $contents['userId'], $contents['quizId'], $contents['startTime'], $contents['endTime'], $contents['answers'], $contents['scores'], $contents['total']);
+    $quiz = new QuizResults($contents['id'], $contents['userid'], $contents['quizid'], $contents['starttime'], $contents['endtime'], $contents['answers'], $contents['scores'], $contents['total']);
     try {
-        $acc = new ResultsAccessor();
+        $acc = new ResultsAccessor(); 
         $results = json_encode($acc->insertResult($quiz));
         echo $results;
     } catch (Exception $ex) {

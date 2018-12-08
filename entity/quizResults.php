@@ -60,7 +60,7 @@ class QuizResults implements JsonSerializable{
         $this->startTime = $startTime;
         $this->endTime = $endTime;
         $this->answers = $answers;
-        $this->score = $scores;
+        $this->scores = $scores;
         $this->total = $total;
     }
     
