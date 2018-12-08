@@ -115,9 +115,13 @@ function loadQuestionToEdit() {
     for (var i = 0; i < searchQuestionResultsArr.length; i++) {
         if (searchQuestionResultsArr[i].questionText == arrIndex) {
             document.querySelector("#questionName").value = searchQuestionResultsArr[i].questionText;
+            document.querySelector("#questionName").disabled=true;
             document.querySelector("#questionID").value = searchQuestionResultsArr[i].id;
+            document.querySelector("#questionID").disabled=true;
             document.querySelector("#questionTags").value = searchQuestionResultsArr[i].tags;
+             document.querySelector("#questionTags").disabled=true;
             document.querySelector("#questionDescription").value = searchQuestionResultsArr[i].description;
+               document.querySelector("#questionDescription").disabled=true;
             questionBeingEdited = searchQuestionResultsArr[i];
 
         }
@@ -291,13 +295,20 @@ function saveQuestion() {
         xmlhttp.onreadystatechange = function () {
             if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
                 var resp = xmlhttp.responseText;
-                alert("added");
+                
                 clearQuestionFields();
+             
+         
+       
+               
+         
             }
         };
         xmlhttp.open(method, url, true);
         xmlhttp.send(JSON.stringify(questionObj));
     }
+     
+    
 }
 
 function formIsValid() {
@@ -341,6 +352,15 @@ function formIsValid() {
 }
 
 function clearQuestionFields() {
+    document.querySelector("#searchbyQuestionFilter").value = "";
+   document.querySelector("#searchTermQuestionInput").value = "";
+   document.querySelector("#highlightListQuestion").value = "";
+   document.querySelector("#questionID").value = "";
+   document.querySelector("#questionName").value = "";
+   document.querySelector("#questionDescription").value = "";
+   document.querySelector("#questionTags").value = "";
+ 
+
     document.querySelector("#questionText").value = "";
     document.querySelector("#questionTag").value = "";
     document.querySelector("#addquestionDescription").value = "";

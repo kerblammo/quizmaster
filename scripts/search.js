@@ -5,8 +5,10 @@ window.onload = function () {
     document.querySelector("#leftRadio").addEventListener("click", searchByQuiz);
     document.querySelector("#rightRadio").addEventListener("click", searchByResults);
     document.querySelector("#searchByQuizFilter").addEventListener("change", clearFields);
-    
-     //saveQuestion
+    document.querySelector('#searchbyResultsBtn').addEventListener('click', searchForResults)
+
+
+    //saveQuestion
 
 
 
@@ -22,15 +24,50 @@ window.onload = function () {
         console.log(userPermission);
         if (userPermission === 1 || userPermission === 2) {
             document.querySelector("#editor").classList.remove("hidden");
+
+      loadSearchChoices();
+
+           
+            var option4 = document.createElement('option');
+            option4.innerHTML = "User";
+
+            document.getElementById('searchByResultsFilter').appendChild(option4);
+
         }
+          else{
+        //hide the search results
+        document.querySelector("#rightRadio").classList.add("hidden");
+    }
 
     }
+    if(userPermission === 3){
+        loadSearchChoices();
+    }
+  
     document.querySelector("#loginOpt").addEventListener("click", handleDisplayLogin);
 }
+function loadSearchChoices(){
+          document.getElementById('searchByResultsFilter').innerHTML = "";
+            var option = document.createElement('option');
+            option.innerHTML = "Question Tag";
 
+            document.getElementById('searchByResultsFilter').appendChild(option);
+            var option2 = document.createElement('option');
+            option2.innerHTML = "Date Range";
 
-function clearFields(){
-    document.querySelector("#searchTermInput").value="";
+            document.getElementById('searchByResultsFilter').appendChild(option2);
+
+            var option3 = document.createElement('option');
+            option3.innerHTML = "Score Range";
+             document.getElementById('searchByResultsFilter').appendChild(option3);
+}
+
+function searchForResults() {
+    //if user is a user only show own results
+
+}
+function clearFields() {
+    document.querySelector("#searchTermInput").value = "";
 }
 
 function handleDisplayLogin() {
@@ -98,7 +135,7 @@ function showMatchingQuizzes(resp) {
     console.log(JSON.stringify(data[0]));
 }
 function getOneQuiz(url) {
-    var method = "GET"; 
+    var method = "GET";
 
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function () {
