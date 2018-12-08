@@ -19,7 +19,7 @@ class ResultsAccessor {
     private $getResultsByQuestionTagStatementString = "SELECT * FROM quizresult WHERE quizid IN (SELECT quizid FROM quizquestion WHERE questionid IN (SELECT id FROM question WHERE tags LIKE :tags))";
     private $getResultsByDateStatementString = "SELECT * FROM quizresult WHERE (endtime BETWEEN :start AND :end)";
     
-    private $insertStatementString = "INSERT INTO quizresult (userid, quizid, starttime, endtime, answers, scores, total) VALUES (:userid, :quizid, :startime, NOW(), :answers, :scores, :total";
+    private $insertStatementString = "INSERT INTO quizresult (userid, quizid, starttime, endtime, answers, scores, total) VALUES (:userid, :quizid, NOW(), NOW(), :answers, :scores, :total)";
     
     //connection
     private $conn = null;
@@ -440,7 +440,8 @@ class ResultsAccessor {
             $this->insertStatement->bindParam(":scores", $scores);
             $this->insertStatement->bindParam(":answers", $answers);
             $this->insertStatement->bindParam(":total", $total);
-            $this->insertStatement->bindParam(":starttime", $startTime);
+            //$this->insertStatement->bindParam(":starttime", $startTime);  
+            
             $success = $this->insertStatement->execute();
         } catch (Exception $ex) {
             echo $ex->getMessage();

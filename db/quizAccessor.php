@@ -144,6 +144,7 @@ class QuizAccessor {
 //                    $answer = $qaccres['Answer'];
 //                    $questags = $qaccres['Tags'];
 //                    $question = new Question($quesId, $questionText, $quesDescription, $choices, $answer, $questags);
+                    $question->setValue($q->getValue());
                     array_push($questions, $question);
                 }
                 
