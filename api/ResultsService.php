@@ -127,7 +127,7 @@ function getByQuestionTag(){
     try {
         $tag = filter_input(INPUT_GET, 'questiontag');
         $acc = new ResultsAccessor();
-        $results = jsone_encode($acc->getResultsByQuestionTag($tag));
+        $results = json_encode($acc->getResultsByQuestionTag($tag));
         echo $results;
     } catch (Exception $ex) {
         echo "ERROR: " . $ex->getMessage();
