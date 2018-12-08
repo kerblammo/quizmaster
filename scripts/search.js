@@ -25,46 +25,124 @@ window.onload = function () {
         if (userPermission === 1 || userPermission === 2) {
             document.querySelector("#editor").classList.remove("hidden");
 
-      loadSearchChoices();
+            loadSearchChoices();
 
-           
+
             var option4 = document.createElement('option');
             option4.innerHTML = "User";
 
             document.getElementById('searchByResultsFilter').appendChild(option4);
 
+        } else if (userPermission === 3) {
+            loadSearchChoices();
         }
-          else{
+
+
+    } else {
         //hide the search results
         document.querySelector("#rightRadio").classList.add("hidden");
     }
 
-    }
-    if(userPermission === 3){
-        loadSearchChoices();
-    }
-  
+
     document.querySelector("#loginOpt").addEventListener("click", handleDisplayLogin);
 }
-function loadSearchChoices(){
-          document.getElementById('searchByResultsFilter').innerHTML = "";
-            var option = document.createElement('option');
-            option.innerHTML = "Question Tag";
+function loadSearchChoices() {
+    
+    //Search for own quiz results by quiz title words or tags, by date range, or by score range.
+    document.getElementById('searchByResultsFilter').innerHTML = "";
+    var option = document.createElement('option');
+    option.innerHTML = "Question Tag";
 
-            document.getElementById('searchByResultsFilter').appendChild(option);
-            var option2 = document.createElement('option');
-            option2.innerHTML = "Date Range";
+    document.getElementById('searchByResultsFilter').appendChild(option);
 
-            document.getElementById('searchByResultsFilter').appendChild(option2);
+    var option2 = document.createElement('option');
+    option2.innerHTML = "Question Word";
+    document.getElementById('searchByResultsFilter').appendChild(option2);
 
-            var option3 = document.createElement('option');
-            option3.innerHTML = "Score Range";
-             document.getElementById('searchByResultsFilter').appendChild(option3);
+    var option3 = document.createElement('option');
+    option3.innerHTML = "Date Range";
+
+    document.getElementById('searchByResultsFilter').appendChild(option3);
+
+    var option4 = document.createElement('option');
+    option4.innerHTML = "Score Range";
+    document.getElementById('searchByResultsFilter').appendChild(option4);
+
+    var option5 = document.createElement('option');
+    option5.innerHTML = "Quiz Tag";
+    document.getElementById('searchByResultsFilter').appendChild(option5);
+
+    var option6 = document.createElement('option');
+    option6.innerHTML = "Quiz Word";
+    document.getElementById('searchByResultsFilter').appendChild(option6);
+
+
+
+
 }
 
 function searchForResults() {
-    //if user is a user only show own results
+    var selectedSearch = document.querySelector("#searchByResultsFilter").value;
+    var searchValue = document.querySelector("#searchTermResultsInput").value;
+    console.log(searchValue);
+    var user = localStorage.getItem('userLoggedIn');
+    console.log(user);
+    var userObj = JSON.parse(user);
+    var permission = userObj.permissionId;
+    console.log(permission);
+    //if its a user level logged in
+    if (selectedSearch == "Question Tag") {
+        var url = "";
+        if (permission == 3) {//this means if its a user
+            url = "quizmaster/account/" + id + "/results/question/bytag/" + searchValue;
 
+        } else {//this means its an admin or a super
+            url = "quizmaster/results/question/bytag/" + searchValue;
+        }
+        getResults(url);
+
+
+
+
+
+    }
+    if (selectedSearch == "Date Range") {
+        var url = "quizmaster/results/bydate/" + searchValue;
+        getResults();
+    }
+    if (selectedSearch == "Score Range") {
+        var url = "quizmaster/quiz/byName/" + searchValue;
+        getResults();
+    }
+
+    if (selectedSearch == "User") {
+        var url = "quizmaster/quiz/byName/" + searchValue;
+        getResults();
+    }
+
+}
+
+function getResults(url) {
+    var method = "GET";
+
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+            var resp = xmlhttp.responseText;
+            console.log(resp);
+            if (resp !== null) {
+                console.log(resp);
+                showResults(resp);
+            } else {
+                alert("Sorry, please check user name and password")
+            }
+        }
+    };
+    xmlhttp.open(method, url, true);
+    xmlhttp.send();
+}
+function showResults(resp) {
+    console.log(resp)
 }
 function clearFields() {
     document.querySelector("#searchTermInput").value = "";

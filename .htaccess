@@ -28,9 +28,9 @@ RewriteRule ^quizmaster/account/([0-9]+)/results/quiz/byname/(\w\s+)$ api/Result
 RewriteRule ^quizmaster/account/([0-9]+)/results/quiz/bytag/(\w\s+)$ api/ResultsService.php?userid=$1&tags=$2 [NC]
 RewriteRule ^quizmaster/account/([0-9]+)/results/bydate/(\w+)/(\w+)$ api/ResultsService.php?userid=$1&from=$2&to=$3 [NC]
 RewriteRule ^quizmaster/account/([0-9]+)/results/byscore/([0-9]+)/([0-9]+)$ api/ResultsService.php?userid=$1&min=$2&max=$3 [NC]
-RewriteRule ^quizmaster/results/quiz/byname/(\w\s+)$ api/ResultsService.php?title=$1 [NC]
-RewriteRule ^quizmaster/results/quiz/bytag/(\w\s+)$ api/ResultsService.php?quiztag=$1 [NC]
-RewriteRule ^quizmaster/results/question/byname/(\w\s+)$ api/ResultsService.php?text=$1 [NC]
-RewriteRule ^quizmaster/results/question/bytag/(\w\s+)$ api/ResultsService.php?questiontag=$1 [NC]
+RewriteRule ^quizmaster/results/quiz/byname/([\w\s]+)$ api/ResultsService.php?title=$1 [NC]
+RewriteRule ^quizmaster/results/quiz/bytag/([\w\s]+)$ api/ResultsService.php?quiztag=$1 [NC]
+RewriteRule ^quizmaster/results/question/byname/([\w\s]+)$ api/ResultsService.php?text=$1 [NC]
+RewriteRule ^quizmaster/results/question/bytag/([\w\s]+)$ api/ResultsService.php?questiontag=$1 [NC]
 RewriteRule ^quizmaster/results/bydate/(\w+)/(\w+)$ api/ResultsService.php?from=$1&to=$2 [NC]
 

@@ -54,7 +54,7 @@ Date:
                         <select id="searchByResultsFilter">
                            
                         </select>
-                        <p>Search Term:<input type="text" name="searchTermInput"><button id="searchbyResultsBtn">Search</button></p>
+                        <p>Search Term:<input type="text" id="searchTermResultsInput"><button id="searchbyResultsBtn">Search</button></p>
                     </div>
                 </div>
                 <div id="holderLarge">

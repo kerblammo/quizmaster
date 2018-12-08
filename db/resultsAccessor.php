@@ -389,8 +389,8 @@ class ResultsAccessor {
         } catch (Exception $ex) {
             $result = [];
         } finally {
-            if (!is_null($stmt)) {
-                $stmt->closeCursor();
+            if (is_null($this->getResultsByQuestionTagStatement)) {
+                $this->getResultsByQuestionTagStatement->closeCursor();
             }
         }
         return $result;
