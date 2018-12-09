@@ -24,12 +24,13 @@ window.onload = function () {
     document.querySelector("#highlightListAddToQuiz").addEventListener("click", handleRowClick);
     document.querySelector("#highlightListInQuiz").addEventListener("click", handleRowClick);
 
+    //for create quiz
     document.querySelector("#btnSend").addEventListener("click", sendQuestion);
     document.querySelector("#btnRemove").addEventListener("click", removeQuestion);
 
+    //for create question
     document.querySelector("#btnRemoveChoice").addEventListener("click", removeChoice);
     document.querySelector("#btnDeleteQuestion").addEventListener("click", deleteQuestion);
-
     document.querySelector("#btnSaveQuestion").addEventListener("click", saveQuestion);
     document.querySelector("#btnAddChoice").addEventListener("click", addChoice);
 
@@ -39,7 +40,7 @@ window.onload = function () {
     document.querySelector("#btnEditSelectedQuiz").addEventListener("click", editSelectedQuiz);
 
     document.querySelector("#editExistingSearch").addEventListener("click", searchExistingQuestion);
-    document.querySelector("#edit").addEventListener("click", loadQuestionToEdit);
+    document.querySelector("#btnLoadQuestionInfo").addEventListener("click", loadQuestionToEdit);
     document.querySelector("#btnEditSelectedQuestion").addEventListener("click", editSelectedQuestion);
     //editExistingSearch
     //first load, this will clear the proper divs, show buttons, and set default to quiz
@@ -72,11 +73,17 @@ function editSelectedQuestion() {
     cameFromEdit = true;
     //hide stuff and unhide stuff
     var selected = document.querySelector("#questionEditorAll");
-    selected.classList.remove("hidden");
-    selected = document.querySelector("#questionCreate");
-    selected.classList.remove("hidden");
-    document.querySelector("#searchPanel").classList.add("hidden");
-    document.querySelector("#infoPanel").classList.add("hidden");
+    
+    //this handles which divs to hide / display
+    editMode == "question";
+    createNew();
+    
+    //below is old di handler, left for now commented out in case something breaks
+//    selected.classList.remove("hidden");
+//    selected = document.querySelector("#questionCreate");
+//    selected.classList.remove("hidden");
+//    document.querySelector("#searchPanel").classList.add("hidden");
+//    document.querySelector("#infoPanel").classList.add("hidden");
     //fill in the input fields
     document.querySelector("#questionText").value = questionBeingEdited.questionText;
 
@@ -124,6 +131,7 @@ function loadQuestionToEdit() {
             document.querySelector("#questionDescription").value = searchQuestionResultsArr[i].description;
             document.querySelector("#questionDescription").disabled=true;
             questionBeingEdited = searchQuestionResultsArr[i];
+            document.querySelector("#btnEditSelectedQuestion").disabled=false;
 
         }
 
@@ -264,7 +272,7 @@ function saveQuestion() {
         var questionObj = {
             "id": id,
             "questionText": document.querySelector("#questionText").value,
-            "description": document.querySelector("#questionDescription").value,
+            "description": document.querySelector("#addquestionDescription").value,
             "choices": choiceArray.toString(),
             "answer": document.querySelector("#qA").value,
             "tags": document.querySelector("#questionTag").value
@@ -290,6 +298,7 @@ function saveQuestion() {
         xmlhttp.open(method, url, true);
         xmlhttp.send(JSON.stringify(questionObj));
     }
+    window.location = "editor.php";
 }
 
 function formIsValid() {
@@ -683,6 +692,8 @@ function hideAll() {
     selected.classList.add("hidden");
     selected = document.querySelector("#selectButtonEdit");
     selected.classList.add("hidden");
+    selected = document.querySelector("#startOver");
+    selected.classList.add("hidden");
 }
 
 function loadAreas() {
@@ -702,11 +713,15 @@ function loadAreas() {
         selected.classList.remove("hidden");
         selected = document.querySelector("#quizCreate");
         selected.classList.remove("hidden");
+        selected = document.querySelector("#startOver");
+        selected.classList.remove("hidden");
     } else if (editMode == "question" && startedQuestionEdit == 1) {
         //when create new is click while question is selected
         var selected = document.querySelector("#questionEditorAll");
         selected.classList.remove("hidden");
         selected = document.querySelector("#questionCreate");
+        selected.classList.remove("hidden");
+        selected = document.querySelector("#startOver");
         selected.classList.remove("hidden");
     } else if (editMode == "quiz" && startedQuizEdit == 2) {
         //when edit existing is clicked search quizzes to edit
@@ -714,12 +729,16 @@ function loadAreas() {
         selected.classList.remove("hidden");
         selected = document.querySelector("#quizEditorAll");
         selected.classList.remove("hidden");
+        selected = document.querySelector("#startOver");
+        selected.classList.remove("hidden");
 
     } else if (editMode == "question" && startedQuestionEdit == 2) {
         //when edit existing is clicked search questions to edit
         var selected = document.querySelector("#questionSearch");
         selected.classList.remove("hidden");
         selected = document.querySelector("#questionEditorAll");
+        selected.classList.remove("hidden");
+        selected = document.querySelector("#startOver");
         selected.classList.remove("hidden");
     }
 }

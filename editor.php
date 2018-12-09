@@ -34,7 +34,7 @@ Date:
             <div id="searchBySelector">
                 <div id="leftRadio"><input type="radio" id="radQuiz" name="editBy" value="quizzes" checked>Quiz Editor</div><div id="rightRadio"><input type="radio" id="radQuestion" name="editBy" value="questions">Question Editor</div>
             </div>
-            <div class="row">
+            <div id="startOver" class="row hidden">
                 <button id="startOver">Start Over</button>
             </div>
             <!--
@@ -84,7 +84,7 @@ Date:
                                 </ul>
                             </div>
                             <div id="searchDataButtons">
-                                <button id="btnDeleteQuestion">Delete</button><button ID="edit">Load Question</button>
+                                <button id="btnDeleteQuestion">Delete</button><button ID="btnLoadQuestionInfo">Load Question</button>
                             </div>
                         </div>
                     </div>
@@ -97,13 +97,13 @@ Date:
                                 <p><input id="questionID" type="text" value=""><input id="questionName" type="text" value=""></p>
                         </div>
                             <div id="searchData">
-                                <p>Question Tags</p>
+                                <p>Question Tags (Comma Seperated)</p>
                                 <p><input id="questionTags"type="text" value=""></p>
                             </div>
                             <div id="searchDataButtons">
                                 <p>Question Description</p>
                                 <p><input id="questionDescription" type="text" value=""></p>
-                            </div><button id="btnEditSelectedQuestion">Edit</button>
+                            </div><button id="btnEditSelectedQuestion" disabled>Edit</button>
                             
                         </div>
                     </div>
@@ -121,15 +121,14 @@ Date:
                         <div id="searchPanel">
                             <div id="searchBox">
                               
-                            <p>Question</p>
-                            <p><input id="questionText" type="text" value=""><span class="error" id="questionError"></span>
+                            <p>Question
+                                <input id="questionText" type="text" value=""><span class="error" id="questionError"></span></p>
                             
                              
-                                <p>
-                                    Add Choice:
-                                    <input id="choiceToAdd" type="text" value=""><button id="btnAddChoice">Add</button>
-                                    <button id="btnRemoveChoice">Remove</button><span class="error" id="choiceError"></span>
-                                </p>
+                                <p>Add Choice:
+                                   <input id="choiceToAdd" type="text" value=""></p>
+                                <p><button id="btnAddChoice">Add</button>
+                                   <button id="btnRemoveChoice">Remove</button><span class="error" id="choiceError"></span></p>
                             </div>
                             <div id="searchData">
                                 <ul id="highlightListChoice">
@@ -149,7 +148,7 @@ Date:
                 <div id="holderSmall">
                     <div id="sideRight">
                         <div id="infoPanel">
-                            <p>Question Tags</p>
+                            <p>Question Tags (Comma seperated)</p>
                             <p><input id="questionTag"type="text" value=""></p><span class="error" id="tagError"></span>
                             <p>Question Description</p>
                             <p><input id="addquestionDescription" type="text"></p><span class="error" id="descError"></span>
@@ -180,10 +179,9 @@ Date:
                                         <option value="word">Word</option>
                                     </select>
                                 </p>
-                                <p>
-                                    Search Term:
-                                    <input id="searchExistingQuizInput" type="text" value=""><button id="searchExistingQuiz">Search</button>
-                                </p>
+                                <p>Search Term:
+                                   <input id="searchExistingQuizInput" type="text" value=""></p>
+                                <p><button id="searchExistingQuiz">Search</button></p>
                             </div>
                             <div id="searchData">
                                 <ul id="highlightListQuiz">
@@ -205,7 +203,7 @@ Date:
                                 <p><input id="quizResultName" type="text" value=""><input id="quizResultId" type="text" value=""></p>
                             </div>
                             <div id="searchData">
-                                <p>Quiz Tags</p>
+                                <p>Quiz Tags (Comma Seperated)</p>
                                 <p><input id="quizResultTags" type="text" value=""></p>
                             </div>
                             <div id="searchDataButtons">
@@ -228,9 +226,9 @@ Date:
                     <div id="holderSmall">
                         <div id="sideLeft">
                             <div id="themeSelector">
-                                <div id="colorChoice">
+                                <!--<div id="colorChoice">
                                     <button id="red">a</button><button id="red">b</button><button id="red">c</button><button id="red">d</button><button id="red">e</button><button id="red">f</button>
-                                </div>
+                                </div>-->
                             </div>
                             <div id="searchPanel">
                                 <div id="searchBox">
@@ -255,9 +253,9 @@ Date:
                             <div id="infoPanel">
                                 <p>Quiz Name</p>
                                 <p><input id="quizNewName" type="text" value=""></p>
-                                <p>Quiz / Question Tags</p>
+                                <p>Quiz Tags (Comma Seperated)</p>
                                 <p><input id="quizNewTags" type="text" value=""></p>
-                                <p>Quiz / Question Description</p>
+                                <p>Quiz Description</p>
                                 <p><input id="quizNewDesc" type="text" value=""></p>
                             </div>
                         </div>

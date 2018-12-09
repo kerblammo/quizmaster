@@ -419,6 +419,7 @@ th {
 }
 
 #searchBox{
+    text-align: center;
     background-color: whitesmoke;
     border: solid thin black;
     width: 100%;
@@ -594,6 +595,18 @@ th {
 
 #selectButtonEdit button{
     background-color: darkmagenta;
+}
+
+#startOver{
+    text-align: center;
+}
+
+#startOver button{
+    background-color: darkmagenta;
+    text-align: center;
+    font-size: 32px;
+    padding: 1%;
+    border-radius: .5em;
 }
 
 /* 
