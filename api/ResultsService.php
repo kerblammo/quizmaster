@@ -45,7 +45,7 @@ function userGetByTitle(){
         $userId = filter_input(INPUT_GET, 'userid');
         $title = filter_input(INPUT_GET, 'title');
         $acc = new ResultsAccessor();
-        $results = jsone_encode($acc->getUserResultsByQuizTitle($userId, $title));
+        $results = json_encode($acc->getUserResultsByQuizTitle($userId, $title));
         echo $results;
     } catch (Exception $ex) {
         echo "ERROR: " . $ex->getMessage();
@@ -57,7 +57,7 @@ function userGetByTag(){
         $userId = filter_input(INPUT_GET, 'userid');
         $tag = filter_input(INPUT_GET, 'tags');
         $acc = new ResultsAccessor();
-        $results = jsone_encode($acc->getUserResultsByQuizTag($userId, $tag));
+        $results = json_encode($acc->getUserResultsByQuizTag($userId, $tag));
         echo $results;
     } catch (Exception $ex) {
         echo "ERROR: " . $ex->getMessage();
@@ -70,7 +70,7 @@ function userGetByDate(){
         $from = filter_input(INPUT_GET, 'from');
         $to = filter_input(INPUT_GET, 'to');
         $acc = new ResultsAccessor();
-        $results = jsone_encode($acc->getUserResultsByDate($userId, $from, $to));
+        $results = json_encode($acc->getUserResultsByDate($userId, $from, $to));
         echo $results;
     } catch (Exception $ex) {
         echo "ERROR: " . $ex->getMessage();
@@ -83,7 +83,7 @@ function userGetByScore(){
         $min = filter_input(INPUT_GET, 'min');
         $max = filter_input(INPUT_GET, 'max');
         $acc = new ResultsAccessor();
-        $results = jsone_encode($acc->getUserResultsByScore($userId, $min, $max));
+        $results = json_encode($acc->getUserResultsByScore($userId, $min, $max));
         echo $results;
     } catch (Exception $ex) {
         echo "ERROR: " . $ex->getMessage();
@@ -94,7 +94,7 @@ function getByTitle(){
     try {
         $title = filter_input(INPUT_GET, 'title');
         $acc = new ResultsAccessor();
-        $results = jsone_encode($acc->getResultsByQuizTitle($title));
+        $results = json_encode($acc->getResultsByQuizTitle($title));
         echo $results;
     } catch (Exception $ex) {
         echo "ERROR: " . $ex->getMessage();
@@ -105,7 +105,7 @@ function getByQuizTag(){
     try {
         $tag = filter_input(INPUT_GET, 'quiztag');
         $acc = new ResultsAccessor();
-        $results = jsone_encode($acc->getResultsByQuizTag($tag));
+        $results = json_encode($acc->getResultsByQuizTag($tag));
         echo $results;
     } catch (Exception $ex) {
         echo "ERROR: " . $ex->getMessage();
@@ -116,7 +116,7 @@ function getByQuestion(){
     try {
         $title = filter_input(INPUT_GET, 'text');
         $acc = new ResultsAccessor();
-        $results = jsone_encode($acc->getResultsByQuestionTitle($title));
+        $results = json_encode($acc->getResultsByQuestionTitle($title));
         echo $results;
     } catch (Exception $ex) {
         echo "ERROR: " . $ex->getMessage();
@@ -139,7 +139,7 @@ function getByDate(){
         $from = filter_input(INPUT_GET, 'from');
         $to = filter_input(INPUT_GET, 'to');
         $acc = new ResultsAccessor();
-        $results = jsone_encode($acc->getResultsByDate($from, $to));
+        $results = json_encode($acc->getResultsByDate($from, $to));
         echo $results;
     } catch (Exception $ex) {
         echo "ERROR: " . $ex->getMessage();

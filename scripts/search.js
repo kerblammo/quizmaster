@@ -25,13 +25,24 @@ window.onload = function () {
         if (userPermission === 1 || userPermission === 2) {
             document.querySelector("#editor").classList.remove("hidden");
 
-            loadSearchChoices();
+           
 
 
             var option4 = document.createElement('option');
             option4.innerHTML = "User";
 
             document.getElementById('searchByResultsFilter').appendChild(option4);
+
+            document.getElementById('searchByResultsFilter').innerHTML = "";
+            var option = document.createElement('option');
+            option.innerHTML = "Question Tag";
+            document.getElementById('searchByResultsFilter').appendChild(option);
+
+            var option2 = document.createElement('option');
+            option2.innerHTML = "Question Word";
+            document.getElementById('searchByResultsFilter').appendChild(option2);
+            
+             loadSearchChoices();
 
         } else if (userPermission === 3) {
             loadSearchChoices();
@@ -47,17 +58,11 @@ window.onload = function () {
     document.querySelector("#loginOpt").addEventListener("click", handleDisplayLogin);
 }
 function loadSearchChoices() {
-    
+
     //Search for own quiz results by quiz title words or tags, by date range, or by score range.
-    document.getElementById('searchByResultsFilter').innerHTML = "";
-    var option = document.createElement('option');
-    option.innerHTML = "Question Tag";
 
-    document.getElementById('searchByResultsFilter').appendChild(option);
 
-    var option2 = document.createElement('option');
-    option2.innerHTML = "Question Word";
-    document.getElementById('searchByResultsFilter').appendChild(option2);
+
 
     var option3 = document.createElement('option');
     option3.innerHTML = "Date Range";
@@ -89,15 +94,16 @@ function searchForResults() {
     console.log(user);
     var userObj = JSON.parse(user);
     var permission = userObj.permissionId;
+    var id = userObj.id;
     console.log(permission);
     //if its a user level logged in
-    if (selectedSearch == "Question Tag") {
+    if (selectedSearch == "Quiz Tag") {
         var url = "";
         if (permission == 3) {//this means if its a user
-            url = "quizmaster/account/" + id + "/results/question/bytag/" + searchValue;
+            url = "quizmaster/account/" + id + "/results/quiz/bytag/" + searchValue;
 
         } else {//this means its an admin or a super
-            url = "quizmaster/results/question/bytag/" + searchValue;
+            url = "quizmaster/results/quiz/bytag/" + searchValue;
         }
         getResults(url);
 

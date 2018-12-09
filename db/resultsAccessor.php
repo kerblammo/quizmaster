@@ -208,8 +208,8 @@ class ResultsAccessor {
         } catch (Exception $ex) {
             $result = [];
         } finally {
-            if (!is_null($stmt)) {
-                $stmt->closeCursor();
+            if (!is_null($this->getUserResultsByQuizTagStatement)) {
+                $this->getUserResultsByQuizTagStatement->closeCursor();
             }
         }
         return $result;
