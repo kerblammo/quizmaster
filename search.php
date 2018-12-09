@@ -42,7 +42,8 @@ Date:
                         <select id="searchByQuizFilter">
                             <option value="id">ID</option>
                             <option value="tag">Tag</option>
-                            <option value="word">Word</option>
+                            <option value="word">Title</option>
+                            <option value="allQuizzes">View All</option>
                         </select>
                         <p>Search Term:<input id="searchTermInput"type="text" name="searchTermInput"><button id="searchbyQuizBtn">Search</button></p>
                     </div>

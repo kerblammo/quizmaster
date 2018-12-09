@@ -29,6 +29,7 @@ RewriteRule ^quizmaster/question/ByChoices/(\w\s+)$ api/QuestionService.php?choi
 #results service
 RewriteRule ^quizmaster/results$ api/ResultsService.php [NC]
 #get all user's results moved to user service section
+RewriteRule ^quizmaster/account/([0-9]+)/results$ api/ResultsService.php?userid=$1 [NC]
 RewriteRule ^quizmaster/account/([0-9]+)/results/quiz/byname/([\w\s]+)$ api/ResultsService.php?userid=$1&title=$2 [NC]
 RewriteRule ^quizmaster/account/([0-9]+)/results/quiz/bytag/([\w\s]+)$ api/ResultsService.php?userid=$1&tags=$2 [NC]
 RewriteRule ^quizmaster/account/([0-9]+)/results/bydate/([0-9\-]+)/([0-9\-]+)$ api/ResultsService.php?userid=$1&from=$2&to=$3 [NC]

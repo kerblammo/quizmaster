@@ -644,13 +644,16 @@ th {
  * Profile Page css 
  */
 
-#userSettingsDesign{
+#userSettingsDesign, #superSettingsDesign{
+    text-align: right;
     border: solid thin black;
-    background-color: red;
+    background-color: whitesmoke;
     width: 100%;
+    height: 45%;
+    margin: 5% auto;
+    position: relative; 
 }
 
-#superSettings{
-    border: solid thin black;
-    background-color: blue;
+#userSettingsDesign input, #superSettingsDesign input{
+    width: 50%;
 }

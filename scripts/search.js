@@ -68,7 +68,6 @@ function loadSearchChoices() {
 
     var option3 = document.createElement('option');
     option3.innerHTML = "Date Range";
-
     document.getElementById('searchByResultsFilter').appendChild(option3);
 
     var option4 = document.createElement('option');
@@ -82,6 +81,10 @@ function loadSearchChoices() {
     var option6 = document.createElement('option');
     option6.innerHTML = "Quiz Word";
     document.getElementById('searchByResultsFilter').appendChild(option6);
+    
+    var option7 = document.createElement('option');
+    option7.innerHTML = "View All";
+    document.getElementById('searchByResultsFilter').appendChild(option7);
 
 }
 
@@ -185,6 +188,11 @@ function searchForResults() {
     //THIS SHOULD BE NOW WORKING
     if (selectedSearch == "Score Range") {
         url = "quizmaster/account/" + globalId + "/results/byscore/" + minValue + "/" + maxValue;
+        getResults(url);
+    }
+    
+    if (selectedSearch == "View All") {
+        url = "quizmaster/account/" + globalId + "/results";
         getResults(url);
     }
     
@@ -303,6 +311,10 @@ function submitHandler() {
     }
     if (selectedSearch == "word") {
         var url = "quizmaster/quiz/byName/" + searchValue;
+        getMatchingQuizzes(url);
+    }
+    if (selectedSearch == "allQuizzes") {
+        var url = "quizmaster/quiz";
         getMatchingQuizzes(url);
     }
 }
