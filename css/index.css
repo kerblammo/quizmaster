@@ -427,6 +427,15 @@ th {
     margin: 5% auto;
     position: relative; 
 }
+.Results{ 
+    text-align: center;
+    background-color: red;
+    border: solid thin black;
+    width: 100%;
+    height: 45%;
+    margin: 5% auto;
+    clear:both;
+}
 
 #searchBox input{
     width: 50%;
