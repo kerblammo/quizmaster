@@ -36,7 +36,7 @@ class ResultsAccessor {
     private $getResultsByQuestionTagStatement = null;
     private $getResultsByDateStatement = null;
     private $insertStatement = null;
-    
+    //getResultsByQuestionTitle
     public function __construct() {
         //connect
         $cm = new ConnectionManager();

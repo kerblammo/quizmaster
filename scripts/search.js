@@ -9,7 +9,7 @@ window.onload = function () {
     document.querySelector("#searchByResultsFilter").addEventListener("change", showHideRangeSelector);
     
     //saveQuestion <-- what's this comment referring to?
-    
+
     if (localStorage.getItem("userLoggedIn") !== null) {
         console.log(localStorage.getItem('userLoggedIn'));
         document.querySelector("#loginOpt").innerHTML = "Log Out";
@@ -36,8 +36,11 @@ window.onload = function () {
             var option2 = document.createElement('option');
             option2.innerHTML = "Question Word";
             document.getElementById('searchByResultsFilter').appendChild(option2);
-            
-             loadSearchChoices();
+
+            var optionlast = document.createElement('option');
+            optionlast.innerHTML = "User";
+            document.getElementById('searchByResultsFilter').appendChild(optionlast);
+            loadSearchChoices();
 
         } else if (userPermission === 3) {
             loadSearchChoices();
@@ -119,33 +122,114 @@ function searchForResults() {
     //if its a user level logged in
     var url = "";
     
+    /////THIS IS WORKING
     if (selectedSearch == "Quiz Tag") {
         
         if (permission == 3) {//this means if its a user
             url = "quizmaster/account/" + id + "/results/quiz/bytag/" + searchValue;
 
         } else {//this means its an admin or a super
+
             url = "quizmaster/results/quiz/bytag/" + searchValue;
         }
         getResults(url);
 
     }
+    ///THIS IS WORKING
+    if (selectedSearch == "Question Tag") {
+        var url = "";
+
+//quizmaster/results/question/bytag/
+        url = "quizmaster/results/question/bytag/" + searchValue;
+        getResults(url);
+
+    }
+///THIS IS WORKING
+    if (selectedSearch == "Quiz Word") {
+        var url = "";
+        if (permission == 3) {//this means if its a user
+            url = "quizmaster/account/" + id + "/results/quiz/byname/" + searchValue;
+
+        } else {//this means its an admin or a super
+
+            url = "quizmaster/results/quiz/byname/" + searchValue;
+        }
+        getResults(url);
+
+    }
+
+
+    ///THIS IS WORKING
+    if (selectedSearch == "Question Word") {
+        var url = "";
+//quizmaster/results/question/bytag/
+        url = "quizmaster/results/question/byname/" + searchValue;
+        getResults(url);
+    }
+
+
+
+
+    ///THIS SHOULD BE NOW WORKING
     if (selectedSearch == "Date Range") {
         url = "quizmaster/account/" + globalId + "/results/bydate/" + minValue + "/" + maxValue;
         getResults(url);
     }
+
+    //THIS SHOULD BE NOW WORKING
     if (selectedSearch == "Score Range") {
         url = "quizmaster/account/" + globalId + "/results/byscore/" + minValue + "/" + maxValue;
         getResults(url);
     }
-
+    
+//THIS IS NOT WORKING
     if (selectedSearch == "User") {
-        url = "quizmaster/quiz/byName/" + searchValue;
-        getResults(url);
+    
+//    OLD STUFF HERE, not sure if either is working yet
+//        url = "quizmaster/quiz/byName/" + searchValue;
+//        getResults(url);
+        
+        //quizmaster/account/([0-9]+)/results$
+        //need to get the id of the user
+        var username = searchValue;
+        console.log(username);
+        var urlName = "quizmaster/account/byName/" + username;
+        console.log(url);
+        //var url = "quizmaster/quiz/byName/" + searchValue;
+       var userToSearch=getUser(urlName);
+       
     }
 
 }
 
+var userId="";
+
+function getUser(url){
+       var method = "GET";
+
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+            var resp = xmlhttp.responseText;
+            
+            if (resp !== null) {
+                
+               var userObj=JSON.parse(resp);
+               userId=userObj[0].id;
+               console.log(userId);
+                var urlResults="quizmaster/account/"+userId+"/results";
+                console.log(urlResults);
+                getResults(urlResults);
+              
+            } else {
+                alert("Sorry, please check user name and password")
+            }
+        }
+    };
+    xmlhttp.open(method, url, true);
+    xmlhttp.send();
+    
+}
 function getResults(url) {
     var method = "GET";
 
@@ -166,7 +250,25 @@ function getResults(url) {
     xmlhttp.send();
 }
 function showResults(resp) {
-    console.log(resp)
+    var data = JSON.parse(resp);
+    var html = "";
+    for (var i = 0; i < data.length; i++) {
+
+        var quizID = data[i].quizId;
+        var userID = data[i].userId;
+        var start = data[i].startTime;
+        var end = data[i].endTime;
+        var total = data[i].total * 100;
+
+        html += "<div id='outputData' class='column25'><div id='searchBox'><div id='quizID'><p>Quiz ID:" + quizID + "</p></div>";
+        html += "<div id='userID'><p>UserID:" + userID + "</p></div>";
+        html += "<div id='start'><p>Start Time:" + start + "</p></div>";
+        html += "<div id='end'><p>End Time:" + end + "</p></div>";
+        html += "<div id='score'><p>Score:" + total + "</p></div>";
+        html += "</div></div></div>";
+    }
+
+    document.querySelector("#output").innerHTML = html;
 }
 function clearFields() {
     document.querySelector("#searchTermInput").value = "";

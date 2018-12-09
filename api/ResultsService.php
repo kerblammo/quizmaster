@@ -12,9 +12,10 @@ if ($method === "GET") {
 
 function doGet() {
     if (filter_has_var(INPUT_GET, "userid")) {
+        
         //user results
         if (filter_has_var(INPUT_GET, 'title')) {
-            userGetByTitle();
+            userGePetertByTitle();
         } else if (filter_has_var(INPUT_GET, 'tags')) {
             userGetByTag();
         } else if (filter_has_var(INPUT_GET, 'from')){
