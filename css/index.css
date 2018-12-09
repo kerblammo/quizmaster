@@ -421,15 +421,14 @@ th {
 #searchBox{
     background-color: whitesmoke;
     border: solid thin black;
-    width: 60%;
+    width: 100%;
     height: 45%;
     margin: 5% auto;
-    padding: 5%;
     position: relative; 
 }
 
 #searchBox input{
-    width: 75%;
+    width: 50%;
 }
 
 #quizName{

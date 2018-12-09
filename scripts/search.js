@@ -5,7 +5,8 @@ window.onload = function () {
     document.querySelector("#leftRadio").addEventListener("click", searchByQuiz);
     document.querySelector("#rightRadio").addEventListener("click", searchByResults);
     document.querySelector("#searchByQuizFilter").addEventListener("change", clearFields);
-    document.querySelector('#searchbyResultsBtn').addEventListener('click', searchForResults)
+    document.querySelector('#searchbyResultsBtn').addEventListener('click', searchForResults);
+    document.querySelector("#searchByResultsFilter").addEventListener("change", showHideRangeSelector);
     
     //saveQuestion <-- what's this comment referring to?
     
@@ -17,6 +18,7 @@ window.onload = function () {
         var user = localStorage.getItem('userLoggedIn');
         var userObj = JSON.parse(user);
         var userPermission = userObj.permissionId;
+        globalId = userObj.id;
         console.log(userPermission);
         if (userPermission === 1 || userPermission === 2) {
             document.querySelector("#editor").classList.remove("hidden");
@@ -50,6 +52,9 @@ window.onload = function () {
 
     document.querySelector("#loginOpt").addEventListener("click", handleDisplayLogin);
 }
+
+var globalId = 0;
+
 function loadSearchChoices() {
 
     //Search for own quiz results by quiz title words or tags, by date range, or by score range.
@@ -73,9 +78,37 @@ function loadSearchChoices() {
 
 }
 
+function showHideRangeSelector(){
+    var isDate = document.querySelector("#searchByResultsFilter").value;
+    console.log(isDate);
+    var html = "";
+    if (isDate == "Date Range" ) {
+        html = "<p>Min: <input type=\"date\" id=\"minDate\"> \n\
+                Max: <input type=\"date\" id=\"maxDate\">";
+    } else if (isDate == "Score Range" ) {
+        html = "<p>Min: <input type=\"number\" id=\"minScore\" min=0> \n\
+                Max: <input type=\"number\" id=\"maxScore\" max=100>";
+    } else {
+        html = "<p>Search Term:<input type=\"text\" id=\"searchTermResultsInput\">";
+    }
+    
+    document.querySelector("#searchRange").innerHTML = html;
+}
+
 function searchForResults() {
     var selectedSearch = document.querySelector("#searchByResultsFilter").value;
-    var searchValue = document.querySelector("#searchTermResultsInput").value;
+    var minValue = 0;
+    var maxValue = 0;
+    console.log(selectedSearch);
+    if (selectedSearch == "Date Range" ) {
+        minValue = document.querySelector("#minDate").value;
+        maxValue = document.querySelector("#maxDate").value;
+    } else if (selectedSearch == "Score Range" ) {
+        minValue = document.querySelector("#minScore").value;
+        maxValue = document.querySelector("#maxScore").value;
+    } else {
+        var searchValue = document.querySelector("#searchTermResultsInput").value;
+    }
     console.log(searchValue);
     var user = localStorage.getItem('userLoggedIn');
     console.log(user);
@@ -84,8 +117,10 @@ function searchForResults() {
     var id = userObj.id;
     console.log(permission);
     //if its a user level logged in
+    var url = "";
+    
     if (selectedSearch == "Quiz Tag") {
-        var url = "";
+        
         if (permission == 3) {//this means if its a user
             url = "quizmaster/account/" + id + "/results/quiz/bytag/" + searchValue;
 
@@ -96,17 +131,17 @@ function searchForResults() {
 
     }
     if (selectedSearch == "Date Range") {
-        var url = "quizmaster/results/bydate/" + searchValue;
-        getResults();
+        url = "quizmaster/account/" + globalId + "/results/bydate/" + minValue + "/" + maxValue;
+        getResults(url);
     }
     if (selectedSearch == "Score Range") {
-        var url = "quizmaster/quiz/byName/" + searchValue;
-        getResults();
+        url = "quizmaster/account/" + globalId + "/results/byscore/" + minValue + "/" + maxValue;
+        getResults(url);
     }
 
     if (selectedSearch == "User") {
-        var url = "quizmaster/quiz/byName/" + searchValue;
-        getResults();
+        url = "quizmaster/quiz/byName/" + searchValue;
+        getResults(url);
     }
 
 }
