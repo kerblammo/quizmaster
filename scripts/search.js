@@ -6,9 +6,9 @@ window.onload = function () {
     document.querySelector("#rightRadio").addEventListener("click", searchByResults);
     document.querySelector("#searchByQuizFilter").addEventListener("change", clearFields);
     document.querySelector('#searchbyResultsBtn').addEventListener('click', searchForResults)
-    
+
     //saveQuestion <-- what's this comment referring to?
-    
+
     if (localStorage.getItem("userLoggedIn") !== null) {
         console.log(localStorage.getItem('userLoggedIn'));
         document.querySelector("#loginOpt").innerHTML = "Log Out";
@@ -34,8 +34,8 @@ window.onload = function () {
             var option2 = document.createElement('option');
             option2.innerHTML = "Question Word";
             document.getElementById('searchByResultsFilter').appendChild(option2);
-            
-             loadSearchChoices();
+
+            loadSearchChoices();
 
         } else if (userPermission === 3) {
             loadSearchChoices();
@@ -90,6 +90,7 @@ function searchForResults() {
             url = "quizmaster/account/" + id + "/results/quiz/bytag/" + searchValue;
 
         } else {//this means its an admin or a super
+
             url = "quizmaster/results/quiz/bytag/" + searchValue;
         }
         getResults(url);
@@ -131,7 +132,25 @@ function getResults(url) {
     xmlhttp.send();
 }
 function showResults(resp) {
-    console.log(resp)
+    var data = JSON.parse(resp);
+    var html = "";
+    for (var i = 0; i < data.length; i++) {
+
+        var quizID = data[i].quizId;
+        var userID = data[i].userId;
+        var start = data[i].startTime;
+        var end = data[i].endTime;
+        var total = data[i].total * 100;
+
+        html += "<div id='outputData' class='column25'><div id='searchBox'><div id='quizID'><p>Quiz ID:" + quizID + "</p></div>";
+        html += "<div id='userID'><p>UserID:" + userID + "</p></div>";
+        html += "<div id='start'><p>Start Time:" + start + "</p></div>";
+        html += "<div id='end'><p>End Time:" + end + "</p></div>";
+        html += "<div id='score'><p>Score:" + total + "</p></div>";
+        html += "</div></div></div>";
+    }
+
+    document.querySelector("#output").innerHTML = html;
 }
 function clearFields() {
     document.querySelector("#searchTermInput").value = "";
