@@ -74,9 +74,14 @@ function changeOwnDelete(){
         var userToSearch="";
         if (userToSearch = getUser(urlName)==null) {
           var url = "quizmaster/account/" + userID;
+          
+    
     method = "DELETE";
     getMatchingAccounts(url);
     window.location = "login.php";
+    }
+    else{
+        //should be a method="POST" IF USER HAS TAKEN A QUIZ
     }
         
         
