@@ -59,7 +59,7 @@ Date:
             * This uses the same for BOTH quiz and question editor
             * THIS IS FOR QUESTIONS
             -->
-            <div id="questionEditorAll">
+<div id="questionEditorAll">
             <div id="questionSearch" class="row">
                 <div id="holderSmall">
                     <div id="sideLeft">
@@ -80,11 +80,14 @@ Date:
                             </div>
                             <div id="searchData">
                                 <ul id="highlightListQuestion">
+                                     
+                                    
+                              
                                 
                                 </ul>
                             </div>
                             <div id="searchDataButtons">
-                                <button id="btnDeleteQuestion">Delete</button><button>Edit</button>
+                                <button id="btnDeleteQuestion">Delete</button><button ID="edit">Load Question</button>
                             </div>
                         </div>
                     </div>
@@ -95,7 +98,7 @@ Date:
                             <div id="seachBox">
                                 <p>Question ID -- Question Name</p>
                                 <p><input id="questionID" type="text" value=""><input id="questionName" type="text" value=""></p>
-               questionID             </div>
+                        </div>
                             <div id="searchData">
                                 <p>Question Tags</p>
                                 <p><input id="questionTags"type="text" value=""></p>
@@ -103,7 +106,8 @@ Date:
                             <div id="searchDataButtons">
                                 <p>Question Description</p>
                                 <p><input id="questionDescription" type="text" value=""></p>
-                            </div>
+                            </div><button id="btnEditSelectedQuestion">Edit</button>
+                            
                         </div>
                     </div>
                 </div>
@@ -151,7 +155,7 @@ Date:
                             <p>Question Tags</p>
                             <p><input id="questionTag"type="text" value=""></p><span class="error" id="tagError"></span>
                             <p>Question Description</p>
-                            <p><input id="questionDescription" type="text" value=""></p><span class="error" id="descError"></span>
+                            <p><input id="addquestionDescription" type="text"></p><span class="error" id="descError"></span>
                             <button id="btnSaveQuestion">Save Question</button>
                         </div>
                     </div>
@@ -186,10 +190,7 @@ Date:
                             </div>
                             <div id="searchData">
                                 <ul id="highlightListQuiz">
-                                    <li>Result1</li>
-                                    <li>Result2</li>
-                                    <li>Result3</li>
-                                    <li>Result4</li>
+                                  
                                 </ul>
                             </div>
                             <div id="searchDataButtons">
@@ -280,10 +281,7 @@ Date:
                                 </div>
                                 <div id="quizSearchData">
                                     <ul id="highlightListAddToQuiz">
-                                        <li>Result1</li>
-                                        <li>Result2</li>
-                                        <li>Result3</li>
-                                        <li>Result4</li>
+                                       
                                     </ul>
                                 </div>
                                 <div id="searchDataButtons">
@@ -306,10 +304,7 @@ Date:
                                 </div>
                                 <div id="searchData">
                                     <ul id="highlightListInQuiz">
-                                        <li>Result1</li>
-                                        <li>Result2</li>
-                                        <li>Result3</li>
-                                        <li>Result4</li>
+                                       
                                     </ul>
                                 </div>
                                 <div id="searchDataButtons">

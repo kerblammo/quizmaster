@@ -52,13 +52,9 @@ Date:
                         <h1>Results</h1>
                         Search By:
                         <select id="searchByResultsFilter">
-                            <option>Quiz Tag</option>
-                            <option>Question Tag</option>
-                            <option>Date Range</option>
-                            <option>Score Range</option>
-                            <option>User</option>
+                           
                         </select>
-                        <p>Search Term:<input type="text" name="searchTermInput"><button id="searchQuiz">Search</button></p>
+                        <p>Search Term:<input type="text" id="searchTermResultsInput"><button id="searchbyResultsBtn">Search</button></p>
                     </div>
                 </div>
                 <div id="holderLarge">
