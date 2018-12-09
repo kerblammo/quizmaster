@@ -11,7 +11,7 @@ class ResultsAccessor {
     private $getUserResultsByQuizTitleStatementString = "SELECT * FROM quizresult r JOIN quiz q ON q.id = r.quizid WHERE r.userid = :userid AND q.title LIKE :title";
     private $getUserResultsByQuizTagStatementString = "SELECT * FROM quizresult r JOIN quiz q ON q.id = r.quizid WHERE r.userid = :userid AND q.tags LIKE :tags";
     private $getUserResultsByDateStatementString = "SELECT * FROM quizresult WHERE userid = :userid AND (endtime BETWEEN :start AND :end)";
-    private $getUserResultsByScoreStatementString = "SELECT * FROM quizresult WHERE userid = :userid AND (score BETWEEN :min AND :max)";
+    private $getUserResultsByScoreStatementString = "SELECT * FROM quizresult WHERE userid = :userid AND (total BETWEEN :min AND :max)";
     //all results
     private $getResultsByQuizTitleStatementString = "SELECT * FROM quizresult r JOIN quiz q ON q.id = r.quizid WHERE q.title LIKE :title";
     private $getResultsByQuizTagStatementString = "SELECT * FROM quizresult r JOIN quiz q ON q.id = r.quizid WHERE q.tags LIKE :tags";
@@ -148,8 +148,8 @@ class ResultsAccessor {
         } catch (Exception $ex) {
             $result = [];
         } finally {
-            if (!is_null($stmt)) {
-                $stmt->closeCursor();
+            if (!is_null($this->getUserResultsStatement)) {
+                $this->getUserResultsStatement->closeCursor();
             }
         }
         return $result;
@@ -157,7 +157,7 @@ class ResultsAccessor {
     
     public function getUserResultsByQuizTitle($userId, $title){
         $result = [];
-
+        $title = '%' . $title . '%';
         try {
             $this->getUserResultsByQuizTitleStatement->bindParam(":userid", $userId);
             $this->getUserResultsByQuizTitleStatement->bindParam(":title", $title);
@@ -178,8 +178,8 @@ class ResultsAccessor {
         } catch (Exception $ex) {
             $result = [];
         } finally {
-            if (!is_null($stmt)) {
-                $stmt->closeCursor();
+            if (!is_null($this->getUserResultsByQuizTitleStatement)) {
+                $this->getUserResultsByQuizTitleStatement->closeCursor();
             }
         }
         return $result;
@@ -187,7 +187,7 @@ class ResultsAccessor {
     
     public function getUserResultsByQuizTag($userId, $tag){
         $result = [];
-
+        $tag = '%' . $tag . '%';
         try {
             $this->getUserResultsByQuizTagStatement->bindParam(":userid", $userId);
             $this->getUserResultsByQuizTagStatement->bindParam(":tags", $tag);
@@ -239,8 +239,8 @@ class ResultsAccessor {
         } catch (Exception $ex) {
             $result = [];
         } finally {
-            if (!is_null($stmt)) {
-                $stmt->closeCursor();
+            if (!is_null($this->getUserResultsByDateStatement)) {
+                $this->getUserResultsByDateStatement->closeCursor();
             }
         }
         return $result;
@@ -251,11 +251,11 @@ class ResultsAccessor {
         $result = [];
 
         try {
-            $this->getUserResultsByDateStatement->bindParam(":userid", $userId);
-            $this->getUserResultsByDateStatement->bindParam(":min", $min);
-            $this->getUserResultsByDateStatement->bindParam(":max", $max);
-            $this->getUserResultsByDateStatement->execute();
-            $dbResults = $this->getUserResultsByDateStatement->fetchAll(PDO::FETCH_ASSOC);
+            $this->getUserResultsByScoreStatement->bindParam(":userid", $userId);
+            $this->getUserResultsByScoreStatement->bindParam(":min", $min);
+            $this->getUserResultsByScoreStatement->bindParam(":max", $max);
+            $this->getUserResultsByScoreStatement->execute();
+            $dbResults = $this->getUserResultsByScoreStatement->fetchAll(PDO::FETCH_ASSOC);
             foreach ($dbResults as $r) {
                 $id = $r['Id'];
                 $userId = $r['UserId'];
@@ -271,8 +271,8 @@ class ResultsAccessor {
         } catch (Exception $ex) {
             $result = [];
         } finally {
-            if (!is_null($stmt)) {
-                $stmt->closeCursor();
+            if (!is_null($this->getUserResultsByScoreStatement)) {
+                $this->getUserResultsByScoreStatement->closeCursor();
             }
         }
         return $result;
@@ -280,7 +280,7 @@ class ResultsAccessor {
     
     public function getResultsByQuizTitle($title){
         $result = [];
-
+        $title = '%' . $title . '%';
         try {
             $this->getResultsByQuizTitleStatement->bindParam(":title", $title);
             $this->getResultsByQuizTitleStatement->execute();
@@ -300,8 +300,8 @@ class ResultsAccessor {
         } catch (Exception $ex) {
             $result = [];
         } finally {
-            if (!is_null($stmt)) {
-                $stmt->closeCursor();
+            if (!is_null($this->getResultsByQuizTitleStatement)) {
+                $this->getResultsByQuizTitleStatement->closeCursor();
             }
         }
         return $result;
@@ -310,11 +310,11 @@ class ResultsAccessor {
     
     public function getResultsByQuizTag($tag){
         $result = [];
-
+        $tag = '%' . $tag . '%';
         try {
-            $this->getResultsByQuestionTagStatement->bindParam(":tags", $tag);
-            $this->getResultsByQuestionTagStatement->execute();
-            $dbResults = $this->getResultsByQuestionTagStatement->fetchAll(PDO::FETCH_ASSOC);
+            $this->getResultsByQuizTagStatement->bindParam(":tags", $tag);
+            $this->getResultsByQuizTagStatement->execute();
+            $dbResults = $this->getResultsByQuizTagStatement->fetchAll(PDO::FETCH_ASSOC);
             foreach ($dbResults as $r) {
                 $id = $r['Id'];
                 $userId = $r['UserId'];
@@ -330,8 +330,8 @@ class ResultsAccessor {
         } catch (Exception $ex) {
             $result = [];
         } finally {
-            if (!is_null($stmt)) {
-                $stmt->closeCursor();
+            if (!is_null($this->getResultsByQuizTagStatement)) {
+                $this->getResultsByQuizTagStatement->closeCursor();
             }
         }
         return $result;
@@ -339,11 +339,12 @@ class ResultsAccessor {
     
     public function getResultsByQuestionTitle($title){
         $result = [];
-
+        $title = '%' . $title . '%';
+        
         try {
-            $this->getResultsByQuestionTagStatement->bindParam(":questiontext", $title);
-            $this->getResultsByQuestionTagStatement->execute();
-            $dbResults = $this->getResultsByQuestionTagStatement->fetchAll(PDO::FETCH_ASSOC);
+            $this->getResultsByQuestionNameStatement->bindParam(":questiontext", $title);
+            $this->getResultsByQuestionNameStatement->execute();
+            $dbResults = $this->getResultsByQuestionNameStatement->fetchAll(PDO::FETCH_ASSOC);
             foreach ($dbResults as $r) {
                 $id = $r['Id'];
                 $userId = $r['UserId'];
@@ -359,8 +360,8 @@ class ResultsAccessor {
         } catch (Exception $ex) {
             $result = [];
         } finally {
-            if (!is_null($stmt)) {
-                $stmt->closeCursor();
+            if (!is_null($this->getResultsByQuestionNameStatement)) {
+                $this->getResultsByQuestionNameStatement->closeCursor();
             }
         }
         return $result;
@@ -369,7 +370,8 @@ class ResultsAccessor {
     
     public function getResultsByQuestionTag($tag){
         $result = [];
-
+        $tag = '%' . $tag . '%';
+        
         try {
             $this->getResultsByQuestionTagStatement->bindParam(":tags", $tag);
             $this->getResultsByQuestionTagStatement->execute();
@@ -419,8 +421,8 @@ class ResultsAccessor {
         } catch (Exception $ex) {
             $result = [];
         } finally {
-            if (!is_null($stmt)) {
-                $stmt->closeCursor();
+            if (!is_null($this->getResultsByDateStatement)) {
+                $this->getResultsByDateStatement->closeCursor();
             }
         }
         return $result;

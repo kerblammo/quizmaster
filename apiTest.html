@@ -21,11 +21,14 @@ and open the template in the editor.
                 var method = "GET";
                 //get id
                 var id = 2;
+                var userid = 1;
                 var questionText = 'What is my favorite colour?';
                 var choices = "yellow,blue,red,green";
                 var description = "This is an example of a subjective question";
                 var answer = "green";
                 var tags = "colours,easy";
+                var min = document.querySelector('#param1').value;
+                var max = document.querySelector('#param2').value;
                 //basic user object, may not be required with each call
                 var item = {
                     "id": id,
@@ -37,7 +40,7 @@ and open the template in the editor.
                 };
                 console.log('parameters set'); 
                 //ajax call
-                var url = "quizmaster/quiz/" + id;
+                var url = "quizmaster/results/bydate/" + min + '/' + max;
                 var xmlhttp = new XMLHttpRequest();
                 xmlhttp.onreadystatechange = function () {
                     if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
@@ -59,8 +62,8 @@ and open the template in the editor.
     <body>
         <p>Response will be logged in console</p>
 
-        <input id="param1"><br>
-        <input id="param2">
+        <input id="param1" type='date'><br>
+        <input id="param2" type='date'>
         <button id="submit">Submit</button>
     </body>
 </html>
