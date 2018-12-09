@@ -35,6 +35,9 @@ window.onload = function () {
             option2.innerHTML = "Question Word";
             document.getElementById('searchByResultsFilter').appendChild(option2);
 
+            var optionlast = document.createElement('option');
+            optionlast.innerHTML = "User";
+            document.getElementById('searchByResultsFilter').appendChild(optionlast);
             loadSearchChoices();
 
         } else if (userPermission === 3) {
@@ -84,7 +87,7 @@ function searchForResults() {
     var id = userObj.id;
     console.log(permission);
     //if its a user level logged in
-    
+
     /////THIS IS WORKING
     if (selectedSearch == "Quiz Tag") {
         var url = "";
@@ -98,13 +101,13 @@ function searchForResults() {
         getResults(url);
 
     }
-    ///THIS IS NOT WORKING
-      if (selectedSearch == "Question Tag") {
+    ///THIS IS WORKING
+    if (selectedSearch == "Question Tag") {
         var url = "";
-     
+
 //quizmaster/results/question/bytag/
-            url = "quizmaster/results/question/bytag/" + searchValue;
-                getResults(url);
+        url = "quizmaster/results/question/bytag/" + searchValue;
+        getResults(url);
 
     }
 ///THIS IS WORKING
@@ -120,25 +123,25 @@ function searchForResults() {
         getResults(url);
 
     }
-    
-    
-    ///THIS IS NOT WORKING
-      if (selectedSearch == "Question Word") {
-        var url = "";         
-//quizmaster/results/question/bytag/
-            url = "quizmaster/results/question/byname/" + searchValue;
-            getResults(url);
-        }
-        
 
-    
-    
+
+    ///THIS IS WORKING
+    if (selectedSearch == "Question Word") {
+        var url = "";
+//quizmaster/results/question/bytag/
+        url = "quizmaster/results/question/byname/" + searchValue;
+        getResults(url);
+    }
+
+
+
+
     ///THIS IS NOT WORKING
     if (selectedSearch == "Date Range") {
         var url = "quizmaster/results/bydate/" + searchValue;
         getResults(url);
     }
-    
+
     //THIS IS NOT WORKING
     if (selectedSearch == "Score Range") {
         var url = "quizmaster/quiz/byName/" + searchValue;
@@ -146,12 +149,47 @@ function searchForResults() {
     }
 //THIS IS NOT WORKING
     if (selectedSearch == "User") {
-        var url = "quizmaster/quiz/byName/" + searchValue;
-        getResults();
+        //quizmaster/account/([0-9]+)/results$
+        //need to get the id of the user
+        var username = searchValue;
+        console.log(username);
+        var urlName = "quizmaster/account/byName/" + username;
+        console.log(url);
+        //var url = "quizmaster/quiz/byName/" + searchValue;
+       var userToSearch=getUser(urlName);
+       
+      
+   
     }
 
 }
+var userId="";
+function getUser(url){
+       var method = "GET";
 
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+            var resp = xmlhttp.responseText;
+            
+            if (resp !== null) {
+                
+               var userObj=JSON.parse(resp);
+               userId=userObj[0].id;
+               console.log(userId);
+                var urlResults="quizmaster/account/"+userId+"/results";
+                console.log(urlResults);
+       //getResults(urlResults);
+              
+            } else {
+                alert("Sorry, please check user name and password")
+            }
+        }
+    };
+    xmlhttp.open(method, url, true);
+    xmlhttp.send();
+    
+}
 function getResults(url) {
     var method = "GET";
 
