@@ -12,6 +12,7 @@ Date:
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="css/index.css">
         <title>Quiz Webpage</title>
+        <script src="scripts/quiz.js"></script>
     </head>
     <body>
         
@@ -44,7 +45,7 @@ Date:
                     <input type="radio" name="choice" value="">Choice 4<br>
                 </div>
                 <div id="buttonHolder">
-                    <button>Back</button><button>Next</button><button>Submit</button>
+                    <button id="btnBack">Back</button><button id="btnNext">Next</button><button id="btnSubmit">Submit</button>
                 </div>
             </div>
         </div>

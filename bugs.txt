@@ -1,0 +1,3 @@
+GUEST can currently search for quiz by ID. They should not be allowed to.
+
+
