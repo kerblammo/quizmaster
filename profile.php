@@ -38,25 +38,28 @@ Date:
                 <div id="userSettings">
                     <div id="holderMedium">
                         <div id="sideLeft">
-                        <select id="userSettingsSelect">
-                            <option name="userOption" value="userSettingsUsername">View Your Username</option>
-                            <option name="userOption" value="userSettingsPassword">Change Your Password</option>
-                            <option name="userOption" value="userSettingsDelete">Delete Your Account</option>
-                        </select>
-                        <button id="btnUserGo">Go!</button>
-                        <div id="userSettingsUsername" class="hidden">
-                        <br>Username:<br>
-                        <input><br>
-                        </div>
-                        <div id="userSettingsPassword" class="hidden">
-                            <h2>Change Password:</h2>
-                            Old Password: <input><br>
-                            New Password: <input><br>
-                            Confirm Password: <input><br>
-                        </div>
-                        <div id="userSettingsDelete" class="hidden">
-                            <button>Delete Account</button>
-                        </div>
+                            <div id="userSettingsDesign">
+                                <select id="userSettingsSelect">
+                                    <!--<option name="userOption" value="userSettingsUsername">View Your Username</option>-->
+                                    <option name="userOption" value="userSettingsPassword">Change Your Password</option>
+                                    <option name="userOption" value="userSettingsDelete">Delete Your Account</option>
+                                </select>
+                                <button id="btnUserGo">Go!</button>
+                                <div id="userSettingsUsername" class="hidden">
+                                    <h2>Username:</h2>
+                                    <input id="txtUserUsername"><br>
+                                </div>
+                                <div id="userSettingsPassword" class="hidden">
+                                    <h2>Change Password:</h2>
+                                    New Password: <input id="userNewPassword"><br>
+                                    Confirm Password: <input id="userNewPasswordConfirm"><br>
+                                    <button id="btnUserPassword">Confirm</button>
+                                </div>
+                                <div id="userSettingsDelete" class="hidden">
+                                    <h2>Warning, this cannot be undone</h2>
+                                    <button id="btnUserDelete">Delete Account</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -72,7 +75,8 @@ Date:
                         <button id="btnSuperGo">Go!</button>
 
                         <div id="superSettingsCreate" class="hidden">
-                            <select name="permLevel">
+                            <h2>Create New Account</h2>
+                            <select id="permLevel">
                                 <option>User</option>
                                 <option>Admin</option>
                                 <option>Super</option>
@@ -80,29 +84,34 @@ Date:
                             <p>Username <input id="signUpUser" type="text" name="signUpUser"></p><span class="error" id="SignUpUseNameError"></span>
                             <p>Password <input id="signUpPass" type="text" name="signUpPass"></p><span class="error" id="signUppasswordError"></span>
                             <p>Confirm Password <input id="signUpConfirm" type="text" name="signUpConfirm"></p><span class="error" id="signUpconfirmPwdError"></span>
-                            <p><button id="createUser">Sign up!</button></p>
+                            <p><button id="btnSuperCreate">Create</button></p>
                         </div>
                         <div id="superSettingsPassword" class="hidden">
                             <div id="loadAllAccounts">
-                                <select name="allAccounts">
+                                <h2>Change Account Password</h2>
+                                <select id="allAccounts">
                                     <option>Username 1</option>
                                     <option>Username 2</option>
                                     <option>Username 3</option>
                                     <option>Username 4</option>
                                 </select>
+                                <br>
+                                New Password: <input id="superNewPassword"><br>
+                                Confirm Password: <input id="superNewPasswordConfirm"><br>
                             </div>
-                            <button id="changePassword">Change Password</button>
+                            <button id="btnSuperPassword">Change Password</button>
                         </div>
                         <div id="superSettingsDelete" class="hidden">
+                            <h2>Delete or Disable Account</h2>
                             <div id="loadAllAccounts">
-                                <select name="allAccounts">
+                                <select id="allAccounts">
                                     <option>Username 1</option>
                                     <option>Username 2</option>
                                     <option>Username 3</option>
                                     <option>Username 4</option>
                                 </select>
                             </div>
-                            <button id="deleteAccount">Delete</button>
+                            <button id="btnSuperDelete">Delete</button>
                         </div>
                         </div>
                     </div>

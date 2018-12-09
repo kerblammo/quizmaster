@@ -73,7 +73,7 @@ function handleDisplayLogin() {
         localStorage.clear();
         alert("Goodbye");
 
-         window.location.href="index.php";
+        window.location.href="index.php";
 
     }
 }

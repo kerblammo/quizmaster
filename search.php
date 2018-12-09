@@ -48,7 +48,7 @@ Date:
                     </div>
                 </div>
                 <div id="holderSmall">
-                    <div id="searchByResults">
+                    <div id="searchByResults" class="invisible">
                         <h1>Results</h1>
                         Search By:
                         <select id="searchByResultsFilter">

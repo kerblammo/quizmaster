@@ -46,7 +46,7 @@ Date:
                     </div>
                 </div>
             </div>
-            <div id="signup">
+            <div id="signup" class="hidden">
                 <div id="loginInnerTop">
                     <h2>Sign up</h2>
                 </div>

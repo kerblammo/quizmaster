@@ -402,9 +402,6 @@ function showMatchingQuizzes(resp) {
     for (var i = 0; i < data.length; i++) {
 
         var quizName = data[i].title;
-        var quizId = data[i].id;
-        var quizTags = data[i].tags;
-        var description = data[i].description;
         
         html += "<li id=\"selectQuizSearchResult\">" + quizName + "</li>";
         
@@ -438,7 +435,6 @@ function getOneQuiz(url) {
 function showOneQuiz(resp) {
     var data = JSON.parse(resp);
     var quizName = data.title;
-    var description = data.description;
 
     var html = "<li value=\"0\">" + quizName + "</li>";
 
@@ -474,6 +470,53 @@ function loadQuizInfo(){
 function editSelectedQuiz(){
     startedQuizEdit = 1;
     loadAreas();
+    loadQuestionsOnQuiz();
+    
+}
+
+function loadQuestionsOnQuiz(){
+    
+    var url = "quizmaster/question/" + questionId;
+    loadQuestionInfo(url);
+    
+    
+}
+
+function loadQuestionInfo(url) {
+
+    var method = "GET";
+    console.log("entered method");
+
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+            var resp = xmlhttp.responseText;
+            console.log(resp);
+            if (resp !== "null") {
+                console.log(resp);
+                loadOneQuestion(resp);
+            } else {
+                alert("Something went wrong")
+            }
+        }
+    };
+    xmlhttp.open(method, url, true);
+    xmlhttp.send();
+}
+
+function loadOneQuestion(resp) {
+   
+       var data = JSON.parse(resp);
+       var questionName=data.questionText;
+       var questionID=data.id;
+       var tags=data.tags;
+       var description=data.description;
+    document.querySelector("#questionName").value=questionName;
+    document.querySelector("#questionID").value=questionID;
+    document.querySelector("#questionTags").value=tags;
+    
+    document.querySelector("#questionDescription").value=description;
+    
 }
 
 /***********************************************************************

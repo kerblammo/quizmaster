@@ -496,13 +496,17 @@ th {
 
 #sideLeft{
     float: right;
+    text-align: right;
     padding: 1%;
     height: 100%;
+    width: 30%;
 }
 
 #sideRight{
     float: left;
     padding: 1%;
+    height: 100%;
+    width: 30%;
 }
 
 #btnCreateNew, #btnEditExisting{
@@ -615,4 +619,19 @@ th {
 .error{
     color: red;
     font-weight: bold;
+}
+
+/* 
+ * Profile Page css 
+ */
+
+#userSettingsDesign{
+    border: solid thin black;
+    background-color: red;
+    width: 100%;
+}
+
+#superSettings{
+    border: solid thin black;
+    background-color: blue;
 }
