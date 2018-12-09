@@ -65,10 +65,44 @@ function changeOwnPassword(){
 
 function changeOwnDelete(){
     console.log("Entering changeOwnDelete...");
-    var url = "quizmaster/account/" + userID;
+    
+      var username = localStorage.getItem("userLoggedIn");
+        console.log(username);
+        var urlName = "quizmaster/account/byName/" + username;
+        console.log(url);
+        //var url = "quizmaster/quiz/byName/" + searchValue;
+        var userToSearch="";
+        if (userToSearch = getUser(urlName)==null) {
+          var url = "quizmaster/account/" + userID;
     method = "DELETE";
     getMatchingAccounts(url);
     window.location = "login.php";
+    }
+        
+        
+        
+  
+}
+function getUser(url) {
+    var method = "GET";
+
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+            var resp = xmlhttp.responseText;
+
+            if (resp !== null) {
+
+               
+
+            } else {
+                alert("Sorry, please check user name and password")
+            }
+        }
+    };
+    xmlhttp.open(method, url, true);
+    xmlhttp.send();
+
 }
 
 function changeOtherCreate(){

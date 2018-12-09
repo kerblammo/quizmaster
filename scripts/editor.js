@@ -88,7 +88,6 @@ function deleteQuiz(){
 
             }
 
-
         }
     };
     xmlhttp.open("DELETE", url, true); // "DELETE" is the action, "url" is the entity
