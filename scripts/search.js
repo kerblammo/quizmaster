@@ -19,6 +19,7 @@ window.onload = function () {
         var userObj = JSON.parse(user);
         var userPermission = userObj.permissionId;
         globalId = userObj.id;
+        globalPermLevel = userPermission;
         console.log(userPermission);
         if (userPermission === 1 || userPermission === 2) {
             document.querySelector("#editor").classList.remove("hidden");
@@ -29,6 +30,8 @@ window.onload = function () {
             document.getElementById('searchByResultsFilter').appendChild(option4);
 
             document.getElementById('searchByResultsFilter').innerHTML = "";
+            
+            //I don't think these are editing the correct div...
             var option = document.createElement('option');
             option.innerHTML = "Question Tag";
             document.getElementById('searchByResultsFilter').appendChild(option);
@@ -57,6 +60,7 @@ window.onload = function () {
 }
 
 var globalId = 0;
+var globalPermLevel = 4;
 
 function loadSearchChoices() {
 
