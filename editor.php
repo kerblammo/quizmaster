@@ -64,10 +64,10 @@ Date:
                 <div id="holderSmall">
                     <div id="sideLeft">
                         <div id="searchPanel">
-                            <div id="seachBox">
+                            <div id="searchBox">
                                 <p>
                                     Search By:
-                                    <select id="searchbyQuestionFilter" name="seachBy">
+                                    <select id="searchbyQuestionFilter" name="searchBy">
                                         <option value="id">ID</option>
                                         <option value="tags">Tags</option>
                                         <option value="words">Words</option>
@@ -92,7 +92,7 @@ Date:
                 <div id="holderSmall">
                     <div id="sideRight">
                         <div id="infoPanel">
-                            <div id="seachBox">
+                            <div id="searchBox">
                                 <p>Question ID -- Question Name</p>
                                 <p><input id="questionID" type="text" value=""><input id="questionName" type="text" value=""></p>
                         </div>
@@ -119,7 +119,7 @@ Date:
                 <div id="holderSmall">
                     <div id="sideLeft">
                         <div id="searchPanel">
-                            <div id="seachBox">
+                            <div id="searchBox">
                               
                             <p>Question</p>
                             <p><input id="questionText" type="text" value=""><span class="error" id="questionError"></span>
@@ -171,10 +171,10 @@ Date:
                 <div id="holderSmall">
                     <div id="sideLeft">
                         <div id="searchPanel">
-                            <div id="seachBox">
+                            <div id="searchBox">
                                 <p>
                                     Search By:
-                                    <select id="searchByQuizFilter" name="seachBy">
+                                    <select id="searchByQuizFilter" name="searchBy">
                                         <option value="id">ID</option>
                                         <option value="tag">Tag</option>
                                         <option value="word">Word</option>
@@ -200,7 +200,7 @@ Date:
                 <div id="holderSmall">
                     <div id="sideRight">
                         <div id="infoPanel">
-                            <div id="seachBox">
+                            <div id="searchBox">
                                 <p>Quiz Name -- Quiz ID</p>
                                 <p><input id="quizResultName" type="text" value=""><input id="quizResultId" type="text" value=""></p>
                             </div>
@@ -233,10 +233,10 @@ Date:
                                 </div>
                             </div>
                             <div id="searchPanel">
-                                <div id="seachBox">
+                                <div id="searchBox">
                                     <p>
                                         Search By:
-                                        <select name="seachBy">
+                                        <select name="searchBy">
                                             <option value="id">ID</option>
                                             <option value="tag">Tag</option>
                                             <option value="word">Word</option>
@@ -271,7 +271,7 @@ Date:
                     <div id="holderSmall">
                         <div id="sideLeft">
                             <div id="quizQuestionSearch">
-                                <div id="seachBox">
+                                <div id="searchBox">
                                     <p>
                                         Question List
                                     </p>
@@ -296,7 +296,7 @@ Date:
                     <div id="holderSmall">
                         <div id="sideRight">
                             <div id="quizQuestionAdded">
-                                <div id="seachBox">
+                                <div id="searchBox">
                                     <p>Questions on Quiz</p>
                                 </div>
                                 <div id="searchData">

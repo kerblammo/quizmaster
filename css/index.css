@@ -85,7 +85,7 @@ th {
     background-image: url("../images/Green.jpg");
     height: 100%; 
     background-position: center;
-    background-repeat: no-repeat;
+    background-repeat: repeat;
     background-size: cover;
 }
 
@@ -93,7 +93,7 @@ th {
     background-image: url("../images/Purple.jpg");
     height: 100%; 
     background-position: center;
-    background-repeat: no-repeat;
+    background-repeat: repeat;
     background-size: cover;
 }
 
@@ -101,7 +101,7 @@ th {
     background-image: url("../images/Red.jpg");
     height: 100%; 
     background-position: center;
-    background-repeat: no-repeat;
+    background-repeat: repeat;
     background-size: cover;
 }
 
@@ -109,7 +109,7 @@ th {
     background-image: url("../images/White.jpg");
     height: 100%; 
     background-position: center;
-    background-repeat: no-repeat;
+    background-repeat: repeat;
     background-size: cover;
 }
 
@@ -117,7 +117,7 @@ th {
     background-image: url("../images/Yellow.jpg");
     height: 100%; 
     background-position: center;
-    background-repeat: no-repeat;
+    background-repeat: repeat;
     background-size: cover;
 }
 
@@ -426,6 +426,10 @@ th {
     margin: 5% auto;
     padding: 5%;
     position: relative; 
+}
+
+#searchBox input{
+    width: 75%;
 }
 
 #quizName{

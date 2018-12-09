@@ -1,7 +1,7 @@
 window.onload = function () {
 //user is saved in local storage as a user object
 //{"id":1,"permissionId":1,"username":"PeterAdam","password":"quizzmaster","deactivated":0}
-
+window.location = "search.php";
 
 document.querySelector("#loginOpt").addEventListener("click", handleDisplayLogin);
 
@@ -21,9 +21,6 @@ document.querySelector("#loginOpt").addEventListener("click", handleDisplayLogin
         if (userPermission === 1 || userPermission === 2) {
             document.querySelector("#editor").classList.remove("hidden");
         }
-
-
-
 
     }
     document.querySelector("#loginOpt").addEventListener("click", handleDisplayLogin);
