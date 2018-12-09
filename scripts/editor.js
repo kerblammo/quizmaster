@@ -42,6 +42,8 @@ window.onload = function () {
     document.querySelector("#editExistingSearch").addEventListener("click", searchExistingQuestion);
     document.querySelector("#btnLoadQuestionInfo").addEventListener("click", loadQuestionToEdit);
     document.querySelector("#btnEditSelectedQuestion").addEventListener("click", editSelectedQuestion);
+     document.querySelector("#deleteQuiz").addEventListener("click", deleteQuiz);
+    //deleteQuiz
     //editExistingSearch
     //first load, this will clear the proper divs, show buttons, and set default to quiz
     loadAreas();
@@ -68,6 +70,30 @@ window.onload = function () {
 
 var choiceArray = [];
 var cameFromEdit = false;
+
+function deleteQuiz(){
+    alert("DeleteBT");
+    
+    var id = document.querySelector("#searchExistingQuizInput").value;
+
+    var url = "quizmaster/quiz/" + id; // entity, not action
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+            var resp = xmlhttp.responseText;
+            if (resp == "true") {
+                console.log("worked");
+
+            } else {
+
+            }
+
+
+        }
+    };
+    xmlhttp.open("DELETE", url, true); // "DELETE" is the action, "url" is the entity
+    xmlhttp.send();
+}
 
 function editSelectedQuestion() {
     cameFromEdit = true;

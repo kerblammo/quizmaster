@@ -155,6 +155,7 @@ function changePassword(url) {
                 console.log(resp);
                 //showMatchingAccounts(resp);
             } else {
+                 console.log(resp);
                 alert("Sorry, accounts not loaded. Check permission level.")
             }
         }
