@@ -96,9 +96,43 @@ function searchForResults() {
         getResults(url);
 
     }
+    ///not working
+      if (selectedSearch == "Question Tag") {
+        var url = "";
+     
+//quizmaster/results/question/bytag/
+            url = "quizmaster/results/question/bytag/" + searchValue;
+                getResults(url);
+
+    }
+
+    if (selectedSearch == "Quiz Word") {
+        var url = "";
+        if (permission == 3) {//this means if its a user
+            url = "quizmaster/account/" + id + "/results/quiz/byname/" + searchValue;
+
+        } else {//this means its an admin or a super
+
+            url = "quizmaster/results/quiz/byname/" + searchValue;
+        }
+        getResults(url);
+
+    }
+    
+      if (selectedSearch == "Question Word") {
+        var url = "";         
+//quizmaster/results/question/bytag/
+            url = "quizmaster/results/question/byname/" + searchValue;
+            getResults(url);
+        }
+        
+
+    
+    
+    
     if (selectedSearch == "Date Range") {
         var url = "quizmaster/results/bydate/" + searchValue;
-        getResults();
+        getResults(url);
     }
     if (selectedSearch == "Score Range") {
         var url = "quizmaster/quiz/byName/" + searchValue;
