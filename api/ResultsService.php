@@ -22,6 +22,8 @@ function doGet() {
             userGetByDate();
         } else if (filter_has_var(INPUT_GET, 'min')){
             userGetByScore();
+        } else {
+            userAllResults();
         }
     } else {
         //all results
@@ -38,6 +40,17 @@ function doGet() {
         } else {
             getAll();
         }
+    }
+}
+
+function userAllResults(){
+    try {
+        $userId = filter_input(INPUT_GET, 'userid');
+        $acc = new ResultsAccessor();
+        $results = json_encode($acc->getUserResults($userId));
+        echo $results;
+    } catch (Exception $ex) {
+        echo "ERROR: " . $ex->getMessage();
     }
 }
 
@@ -78,7 +91,7 @@ function userGetByDate(){
     }
 }
 
-function userGetByScore(){
+function userGetByScore(){ 
     try {
         $userId = filter_input(INPUT_GET, 'userid');
         $min = filter_input(INPUT_GET, 'min');
