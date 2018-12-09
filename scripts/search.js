@@ -108,7 +108,9 @@ function searchForResults() {
         maxValue = document.querySelector("#maxDate").value;
     } else if (selectedSearch == "Score Range" ) {
         minValue = document.querySelector("#minScore").value;
+        minValue /= 100;
         maxValue = document.querySelector("#maxScore").value;
+        maxValue /= 100;
     } else {
         var searchValue = document.querySelector("#searchTermResultsInput").value;
     }
