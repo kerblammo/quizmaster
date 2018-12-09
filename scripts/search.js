@@ -179,7 +179,7 @@ function getUser(url){
                console.log(userId);
                 var urlResults="quizmaster/account/"+userId+"/results";
                 console.log(urlResults);
-       //getResults(urlResults);
+       getResults(urlResults);
               
             } else {
                 alert("Sorry, please check user name and password")
