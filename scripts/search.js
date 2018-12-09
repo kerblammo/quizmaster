@@ -84,6 +84,8 @@ function searchForResults() {
     var id = userObj.id;
     console.log(permission);
     //if its a user level logged in
+    
+    /////THIS IS WORKING
     if (selectedSearch == "Quiz Tag") {
         var url = "";
         if (permission == 3) {//this means if its a user
@@ -96,7 +98,7 @@ function searchForResults() {
         getResults(url);
 
     }
-    ///not working
+    ///THIS IS NOT WORKING
       if (selectedSearch == "Question Tag") {
         var url = "";
      
@@ -105,7 +107,7 @@ function searchForResults() {
                 getResults(url);
 
     }
-
+///THIS IS WORKING
     if (selectedSearch == "Quiz Word") {
         var url = "";
         if (permission == 3) {//this means if its a user
@@ -119,6 +121,8 @@ function searchForResults() {
 
     }
     
+    
+    ///THIS IS NOT WORKING
       if (selectedSearch == "Question Word") {
         var url = "";         
 //quizmaster/results/question/bytag/
@@ -129,16 +133,18 @@ function searchForResults() {
 
     
     
-    
+    ///THIS IS NOT WORKING
     if (selectedSearch == "Date Range") {
         var url = "quizmaster/results/bydate/" + searchValue;
         getResults(url);
     }
+    
+    //THIS IS NOT WORKING
     if (selectedSearch == "Score Range") {
         var url = "quizmaster/quiz/byName/" + searchValue;
         getResults();
     }
-
+//THIS IS NOT WORKING
     if (selectedSearch == "User") {
         var url = "quizmaster/quiz/byName/" + searchValue;
         getResults();
