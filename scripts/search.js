@@ -7,7 +7,7 @@ window.onload = function () {
     document.querySelector("#searchByQuizFilter").addEventListener("change", clearFields);
     document.querySelector('#searchbyResultsBtn').addEventListener('click', searchForResults);
     document.querySelector("#searchByResultsFilter").addEventListener("change", showHideRangeSelector);
-    
+
     //saveQuestion <-- what's this comment referring to?
 
     if (localStorage.getItem("userLoggedIn") !== null) {
@@ -30,7 +30,7 @@ window.onload = function () {
             document.getElementById('searchByResultsFilter').appendChild(option4);
 
             document.getElementById('searchByResultsFilter').innerHTML = "";
-            
+
             //I don't think these are editing the correct div...
             var option = document.createElement('option');
             option.innerHTML = "Question Tag";
@@ -85,20 +85,20 @@ function loadSearchChoices() {
 
 }
 
-function showHideRangeSelector(){
+function showHideRangeSelector() {
     var isDate = document.querySelector("#searchByResultsFilter").value;
     console.log(isDate);
     var html = "";
-    if (isDate == "Date Range" ) {
+    if (isDate == "Date Range") {
         html = "<p>Min: <input type=\"date\" id=\"minDate\"> \n\
                 Max: <input type=\"date\" id=\"maxDate\">";
-    } else if (isDate == "Score Range" ) {
+    } else if (isDate == "Score Range") {
         html = "<p>Min: <input type=\"number\" id=\"minScore\" min=0> \n\
                 Max: <input type=\"number\" id=\"maxScore\" max=100>";
     } else {
         html = "<p>Search Term:<input type=\"text\" id=\"searchTermResultsInput\">";
     }
-    
+
     document.querySelector("#searchRange").innerHTML = html;
 }
 
@@ -107,10 +107,10 @@ function searchForResults() {
     var minValue = 0;
     var maxValue = 0;
     console.log(selectedSearch);
-    if (selectedSearch == "Date Range" ) {
+    if (selectedSearch == "Date Range") {
         minValue = document.querySelector("#minDate").value;
         maxValue = document.querySelector("#maxDate").value;
-    } else if (selectedSearch == "Score Range" ) {
+    } else if (selectedSearch == "Score Range") {
         minValue = document.querySelector("#minScore").value;
         minValue /= 100;
         maxValue = document.querySelector("#maxScore").value;
@@ -127,10 +127,10 @@ function searchForResults() {
     console.log(permission);
     //if its a user level logged in
     var url = "";
-    
+
     /////THIS IS WORKING
     if (selectedSearch == "Quiz Tag") {
-        
+
         if (permission == 3) {//this means if its a user
             url = "quizmaster/account/" + id + "/results/quiz/bytag/" + searchValue;
 
@@ -187,14 +187,14 @@ function searchForResults() {
         url = "quizmaster/account/" + globalId + "/results/byscore/" + minValue + "/" + maxValue;
         getResults(url);
     }
-    
+
 //THIS IS NOT WORKING
     if (selectedSearch == "User") {
-    
+
 //    OLD STUFF HERE, not sure if either is working yet
 //        url = "quizmaster/quiz/byName/" + searchValue;
 //        getResults(url);
-        
+
         //quizmaster/account/([0-9]+)/results$
         //need to get the id of the user
         var username = searchValue;
@@ -202,31 +202,31 @@ function searchForResults() {
         var urlName = "quizmaster/account/byName/" + username;
         console.log(url);
         //var url = "quizmaster/quiz/byName/" + searchValue;
-       var userToSearch=getUser(urlName);
-       
+        var userToSearch = getUser(urlName);
+
     }
 
 }
 
-var userId="";
+var userId = "";
 
-function getUser(url){
-       var method = "GET";
+function getUser(url) {
+    var method = "GET";
 
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
             var resp = xmlhttp.responseText;
-            
+
             if (resp !== null) {
-                
-               var userObj=JSON.parse(resp);
-               userId=userObj[0].id;
-               console.log(userId);
-                var urlResults="quizmaster/account/"+userId+"/results";
+
+                var userObj = JSON.parse(resp);
+                userId = userObj[0].id;
+                console.log(userId);
+                var urlResults = "quizmaster/account/" + userId + "/results";
                 console.log(urlResults);
                 getResults(urlResults);
-              
+
             } else {
                 alert("Sorry, please check user name and password")
             }
@@ -234,7 +234,7 @@ function getUser(url){
     };
     xmlhttp.open(method, url, true);
     xmlhttp.send();
-    
+
 }
 function getResults(url) {
     var method = "GET";
@@ -258,13 +258,18 @@ function getResults(url) {
 function showResults(resp) {
     var data = JSON.parse(resp);
     var html = "";
+    var totalAll = 0;
+    var arrScores = new Array();
+
     for (var i = 0; i < data.length; i++) {
 
         var quizID = data[i].quizId;
         var userID = data[i].userId;
         var start = data[i].startTime;
         var end = data[i].endTime;
-        var total = data[i].total * 100;
+        var total = Number(data[i].total * 100);
+        arrScores.push(total);
+        totalAll = total + totalAll;
 
         html += "<div id='outputData' class='column25'><div id='searchBox'><div id='quizID'><p>Quiz ID:" + quizID + "</p></div>";
         html += "<div id='userID'><p>UserID:" + userID + "</p></div>";
@@ -273,6 +278,24 @@ function showResults(resp) {
         html += "<div id='score'><p>Score:" + total + "</p></div>";
         html += "</div></div></div>";
     }
+    var average = totalAll / data.length;
+    var arr = arrScores;
+    var min = arr[0];
+    var max = arr[0];
+    for (var i = 0; i < arr.length; i++) {
+        if (arr[i] < min) {
+            min = arr[i];
+        } else if (arr[i] > max) {
+            max = arr[i];
+        }
+    }
+
+    html += "<div id='outputData' class='column25'><div id='searchBox'><p>Average: " + average + "</p>";
+    html += "<p>Min: " + min + "</p>";
+    html += "<p>Max: " + max + "</p>";
+    html += "</div></div>";
+
+
 
     document.querySelector("#output").innerHTML = html;
 }
