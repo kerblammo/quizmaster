@@ -6,13 +6,9 @@ window.onload = function () {
     document.querySelector("#rightRadio").addEventListener("click", searchByResults);
     document.querySelector("#searchByQuizFilter").addEventListener("change", clearFields);
     document.querySelector('#searchbyResultsBtn').addEventListener('click', searchForResults)
-
-
-    //saveQuestion
-
-
-
-
+    
+    //saveQuestion <-- what's this comment referring to?
+    
     if (localStorage.getItem("userLoggedIn") !== null) {
         console.log(localStorage.getItem('userLoggedIn'));
         document.querySelector("#loginOpt").innerHTML = "Log Out";
@@ -24,9 +20,6 @@ window.onload = function () {
         console.log(userPermission);
         if (userPermission === 1 || userPermission === 2) {
             document.querySelector("#editor").classList.remove("hidden");
-
-           
-
 
             var option4 = document.createElement('option');
             option4.innerHTML = "User";
@@ -61,9 +54,6 @@ function loadSearchChoices() {
 
     //Search for own quiz results by quiz title words or tags, by date range, or by score range.
 
-
-
-
     var option3 = document.createElement('option');
     option3.innerHTML = "Date Range";
 
@@ -80,9 +70,6 @@ function loadSearchChoices() {
     var option6 = document.createElement('option');
     option6.innerHTML = "Quiz Word";
     document.getElementById('searchByResultsFilter').appendChild(option6);
-
-
-
 
 }
 
@@ -106,10 +93,6 @@ function searchForResults() {
             url = "quizmaster/results/quiz/bytag/" + searchValue;
         }
         getResults(url);
-
-
-
-
 
     }
     if (selectedSearch == "Date Range") {
@@ -162,7 +145,6 @@ function handleDisplayLogin() {
     }
 }
 
-
 function submitHandler() {
 
     var selectedSearch = document.querySelector("#searchByQuizFilter").value;
@@ -171,7 +153,6 @@ function submitHandler() {
     if (selectedSearch == "id") {
         var url = "quizmaster/quiz/" + searchValue;
         getOneQuiz(url);
-
     }
     if (selectedSearch == "tag") {
         var url = "quizmaster/quiz/byTag/" + searchValue;
@@ -181,7 +162,6 @@ function submitHandler() {
         var url = "quizmaster/quiz/byName/" + searchValue;
         getMatchingQuizzes(url);
     }
-
 }
 
 function getMatchingQuizzes(url) {
@@ -203,6 +183,7 @@ function getMatchingQuizzes(url) {
     xmlhttp.open(method, url, true);
     xmlhttp.send();
 }
+
 function showMatchingQuizzes(resp) {
     var data = JSON.parse(resp);
     var html = "";
@@ -246,7 +227,6 @@ function showOneQuiz(resp) {
     var html = "<div id='outputData' class='column25'><div id='searchBox'><div id='quizName'>" + quizName + "</div>";
     html += "<div id='quizDescription'><p>" + description + "</p></div>";
     html += "<div id='btnTakeQuiz'><a href='quiz.php?id=" + data.id + "'><button>Take Quiz</button></a></div></div></div></div>";
-
 
     document.querySelector("#output").innerHTML = html;
     console.log(data.id);

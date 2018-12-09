@@ -59,7 +59,7 @@ Date:
             * This uses the same for BOTH quiz and question editor
             * THIS IS FOR QUESTIONS
             -->
-<div id="questionEditorAll">
+            <div id="questionEditorAll">
             <div id="questionSearch" class="row">
                 <div id="holderSmall">
                     <div id="sideLeft">
@@ -81,9 +81,6 @@ Date:
                             <div id="searchData">
                                 <ul id="highlightListQuestion">
                                      
-                                    
-                              
-                                
                                 </ul>
                             </div>
                             <div id="searchDataButtons">

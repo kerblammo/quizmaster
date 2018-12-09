@@ -41,7 +41,8 @@ window.onload = function () {
     document.querySelector("#editExistingSearch").addEventListener("click", searchExistingQuestion);
     document.querySelector("#edit").addEventListener("click", loadQuestionToEdit);
     document.querySelector("#btnEditSelectedQuestion").addEventListener("click", editSelectedQuestion);
-    //edit
+    //editExistingSearch
+    //first load, this will clear the proper divs, show buttons, and set default to quiz
     loadAreas();
 
     if (localStorage.getItem("userLoggedIn") !== null) {
@@ -119,9 +120,9 @@ function loadQuestionToEdit() {
             document.querySelector("#questionID").value = searchQuestionResultsArr[i].id;
             document.querySelector("#questionID").disabled=true;
             document.querySelector("#questionTags").value = searchQuestionResultsArr[i].tags;
-             document.querySelector("#questionTags").disabled=true;
+            document.querySelector("#questionTags").disabled=true;
             document.querySelector("#questionDescription").value = searchQuestionResultsArr[i].description;
-               document.querySelector("#questionDescription").disabled=true;
+            document.querySelector("#questionDescription").disabled=true;
             questionBeingEdited = searchQuestionResultsArr[i];
 
         }
@@ -220,19 +221,11 @@ function getOneQuestion(url) {
 
 function showOneQuestion(resp) {
 
-
-
-
     var data = JSON.parse(resp);
     var questionName = data.questionText;
     var html = "<li value=\"0\">" + questionName + "</li>";
     document.querySelector("#highlightListQuestion").innerHTML = html;
     searchQuestionResultsArr.push(data);
-
-
-
-
-
 
 }
 
@@ -251,12 +244,7 @@ function addChoice() {
     document.getElementById('qA').appendChild(option);
     choiceArray.push(el.innerHTML);
     document.querySelector("#choiceToAdd").value = "";
-
-
 }
-
-
-
 
 function saveQuestion() {
     document.querySelector("#questionError").innerHTML = "";
@@ -297,18 +285,11 @@ function saveQuestion() {
                 var resp = xmlhttp.responseText;
                 
                 clearQuestionFields();
-             
-         
-       
-               
-         
             }
         };
         xmlhttp.open(method, url, true);
         xmlhttp.send(JSON.stringify(questionObj));
     }
-     
-    
 }
 
 function formIsValid() {
@@ -352,7 +333,7 @@ function formIsValid() {
 }
 
 function clearQuestionFields() {
-    document.querySelector("#searchbyQuestionFilter").value = "";
+   document.querySelector("#searchbyQuestionFilter").value = "";
    document.querySelector("#searchTermQuestionInput").value = "";
    document.querySelector("#highlightListQuestion").value = "";
    document.querySelector("#questionID").value = "";
@@ -547,7 +528,7 @@ function getMatchingQuizzes(url) {
                 console.log(resp);
                 showMatchingQuizzes(resp);
             } else {
-                alert("Sorry, please check user name and password")
+                alert("Sorry, please check user name and password");
             }
         }
     };
@@ -588,7 +569,7 @@ function getOneQuiz(url) {
                 console.log(JSON.parse(resp));
                 showOneQuiz(resp);
             } else {
-                alert("Sorry, please check user name and password")
+                alert("Sorry, please check user name and password");
             }
         }
     };
@@ -660,7 +641,7 @@ function loadQuestionInfo(url) {
                 console.log(resp);
                 loadOneQuestion(resp);
             } else {
-                alert("Something went wrong")
+                alert("Something went wrong");
             }
         }
     };
