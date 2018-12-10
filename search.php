@@ -68,7 +68,9 @@ Date:
                 </div>
                 <div id="holderLarge">
                     <div id="output">
-                        
+                    
+                    </div>
+                </div>
         </div>
         <div id="botMenu">
             <div class="navLeft">

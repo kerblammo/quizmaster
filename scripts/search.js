@@ -278,7 +278,7 @@ function showResults(resp) {
         arrScores.push(total);
         totalAll = total + totalAll;
 
-        html += "<div id='outputData' class='column25'><div id='searchBox'><div id='quizID'><p>Quiz ID:" + quizID + "</p></div>";
+        html += "<div id='outputData' class='column25'><div id='outputPanel'><div id='quizID'><p>Quiz ID:" + quizID + "</p></div>";
         html += "<div id='userID'><p>UserID:" + userID + "</p></div>";
         html += "<div id='start'><p>Start Time:" + start + "</p></div>";
         html += "<div id='end'><p>End Time:" + end + "</p></div>";
@@ -297,7 +297,7 @@ function showResults(resp) {
         }
     }
 
-    html += "<div id='outputData' class='column25'><div id='searchBox'><p>Average: " + average + "</p>";
+    html += "<div id='outputData' class='column25'><div id='outputPanel'><p>Average: " + average + "</p>";
     html += "<p>Min: " + min + "</p>";
     html += "<p>Max: " + max + "</p>";
     html += "</div></div>";
@@ -368,7 +368,7 @@ function showMatchingQuizzes(resp) {
 
         var quizName = data[i].title;
         var description = data[i].description;
-        html += "<div id='outputData' class='column25'><div id='searchBox'><div id='quizName'>" + quizName + "</div>";
+        html += "<div id='outputData' class='column25'><div id='outputPanel'><div id='quizName'>" + quizName + "</div>";
         html += "<div id='quizDescription'><p>" + description + "</p></div>";
         html += "<div id='btnTakeQuiz'><a href='quiz.php?id=" + data[i].id + "'><button>Take Quiz</button></a></div></div></div></div>";
     }
@@ -401,7 +401,7 @@ function showOneQuiz(resp) {
     var quizName = data.title;
     var description = data.description;
 
-    var html = "<div id='outputData' class='column25'><div id='searchBox'><div id='quizName'>" + quizName + "</div>";
+    var html = "<div id='outputData' class='column25'><div id='outputPanel'><div id='quizName'>" + quizName + "</div>";
     html += "<div id='quizDescription'><p>" + description + "</p></div>";
     html += "<div id='btnTakeQuiz'><a href='quiz.php?id=" + data.id + "'><button>Take Quiz</button></a></div></div></div></div>";
 

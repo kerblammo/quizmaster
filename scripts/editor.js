@@ -10,6 +10,7 @@ var startedQuizEdit = 0;
 var startedQuestionEdit = 0;
 var searchQuizResultsArr = [];
 var searchQuestionResultsArr = [];
+var loadOnQuiz = 0;
 
 window.onload = function () {
     document.querySelector("#leftRadio").addEventListener("click", hideQuestion);
@@ -27,6 +28,8 @@ window.onload = function () {
     //for create quiz
     document.querySelector("#btnSend").addEventListener("click", sendQuestion);
     document.querySelector("#btnRemove").addEventListener("click", removeQuestion);
+    
+    document.querySelector("#btnSearchQuestionsToAdd").addEventListener("click", searchExistingQuestion);
 
     //for create question
     document.querySelector("#btnRemoveChoice").addEventListener("click", removeChoice);
@@ -115,6 +118,7 @@ function editSelectedQuestion() {
 }
 
 var questionBeingEdited = "";
+
 function loadQuestionToEdit() {
 
     var arrIndex = document.querySelector(".highlighted").innerHTML;
@@ -137,15 +141,24 @@ function loadQuestionToEdit() {
 
     }
 }
+
 function searchExistingQuestion() {
 
-    var selectedSearch = document.querySelector("#searchbyQuestionFilter").value;
-    var searchValue = document.getElementById("searchTermQuestionInput").value;
+    var selectedSearch = "";
+    var searchValue = "";
+
+    if (editMode == "quiz") {
+        selectedSearch = document.querySelector("#searchByQuestionsToAdd").value;
+    } else { //else in question editor mode
+        selectedSearch = document.querySelector("#searchbyQuestionFilter").value;
+        searchValue = document.getElementById("searchTermQuestionInput").value;
+    }
+    
+    
     console.log(searchValue);
     if (selectedSearch == "id") {
         var url = "quizmaster/question/" + searchValue;
         getOneQuestion(url);
-
     }
     if (selectedSearch == "tags") {
         var url = "quizmaster/question/ByTag/" + searchValue;
@@ -153,6 +166,10 @@ function searchExistingQuestion() {
     }
     if (selectedSearch == "words") {
         var url = "quizmaster/question/ByName/" + searchValue;
+        getMatchingQuestions(url);
+    }
+    if (selectedSearch == "allQuestions") {
+        var url = "quizmaster/question";
         getMatchingQuestions(url);
     }
 }
@@ -199,7 +216,13 @@ function showMatchingQuestions(resp) {
         searchQuestionResultsArr.push(data[i]);
 
     }
-    document.querySelector("#highlightListQuestion").innerHTML = html;
+    
+    if (editMode == "quiz") {
+        document.querySelector("#highlightListAddToQuiz").innerHTML = html;
+    } else { //else in question editor mode
+        document.querySelector("#highlightListQuestion").innerHTML = html;
+    }
+    
     console.log(data[0]);
 
 }
@@ -232,7 +255,14 @@ function showOneQuestion(resp) {
     var data = JSON.parse(resp);
     var questionName = data.questionText;
     var html = "<li value=\"0\">" + questionName + "</li>";
-    document.querySelector("#highlightListQuestion").innerHTML = html;
+    
+    if (editMode == "quiz" && loadOnQuiz == 1) {
+        document.getElementById('highlightListInQuiz').appendChild(html);
+        //document.querySelector("#highlightListInQuiz").innerHTML = html;
+    } else {
+        document.querySelector("#highlightListQuestion").innerHTML = html;
+    }
+    
     searchQuestionResultsArr.push(data);
 
 }
@@ -512,7 +542,6 @@ function searchExistingQuiz() {
     if (selectedSearch == "id") {
         var url = "quizmaster/quiz/" + searchValue;
         getOneQuiz(url);
-
     }
     if (selectedSearch == "tag") {
         var url = "quizmaster/quiz/byTag/" + searchValue;
@@ -520,6 +549,10 @@ function searchExistingQuiz() {
     }
     if (selectedSearch == "word") {
         var url = "quizmaster/quiz/byName/" + searchValue;
+        getMatchingQuizzes(url);
+    }
+    if (selectedSearch == "allQuizzes") {
+        var url = "quizmaster/quiz";
         getMatchingQuizzes(url);
     }
 
@@ -556,7 +589,7 @@ function showMatchingQuizzes(resp) {
         var quizId = data[i].id;
         var quizTags = data[i].tags;
         var description = data[i].description;
-        html += "<li id=\"selectQuizSearchResult\">" + quizName + "</li>";
+        html += "<li id=\"selectQuizSearchResult\" value=\"" + i + "\">" + quizName + "</li>";
 
         searchQuizResultsArr.push(data[i]);
 
@@ -600,6 +633,8 @@ function showOneQuiz(resp) {
 
 
 function loadQuizInfo() {
+    loadOnQuiz = 1;
+    console.log("This is when we get to loadQuizInfo");
     var arrIndex = document.querySelector(".highlighted").innerHTML;
     //alert("loadQuizInfo");
 
@@ -614,6 +649,7 @@ function loadQuizInfo() {
             document.querySelector("#quizNewName").value = searchQuizResultsArr[i].title;
             document.querySelector("#quizNewTags").value = searchQuizResultsArr[i].tags;
             document.querySelector("#quizNewDesc").value = searchQuizResultsArr[i].description;
+            
         }
         //console.log(searchQuizResultsArr[i].title);
     }
@@ -628,11 +664,25 @@ function editSelectedQuiz() {
     
 }
 
+var globalQuizIndex = 0;
+
 function loadQuestionsOnQuiz(){
     
-    var url = "quizmaster/question/" + questionId;
-    loadQuestionInfo(url);
+    var html = "";
+    for (var j = 0; j < searchQuizResultsArr[globalQuizIndex].questions.length; j++) {highlightListInQuiz
+        var question = searchQuizResultsArr[globalQuizIndex].questions[j].questionId;
+        var url = "quizmaster/question/" + question;
+        getOneQuestion(url);
+        //html += "<li>" + question + "</li>";
+    }
     
+    
+    
+//    console.log(searchQuizResultsArr[0]);
+//    var url = "quizmaster/question/" + questionId;
+//    loadQuestionInfo(url);
+    console.log(html);
+    document.querySelector("#highlightListInQuiz").innerHTML = html;
     
 }
 
