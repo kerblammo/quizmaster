@@ -37,7 +37,7 @@ Date:
                 </div>
                 <div id="loginInner">
                     <p>Username <input id="loginUser" type="text" name="loginUser"></p><span class="error" id="UseNameError"></span>
-                    <p>Password <input id="loginPass" type="text" name="loginPass"></p><span class="error" id="passwordError"></span>
+                    <p>Password <input id="loginPass" type="password" name="loginPass"></p><span class="error" id="passwordError"></span>
                     <div id="loginInnerBot">
                         <p><button id="loginBtn">Log in!</button></p>
                         <hr>
@@ -52,7 +52,7 @@ Date:
                 </div>
                 <div id="loginInner">
                     <p>Username <input id="signUpUser" type="text" name="signUpUser"></p><span class="error" id="SignUpUseNameError"></span>
-                    <p>Password <input id="signUpPass" type="text" name="signUpPass"></p><span class="error" id="signUppasswordError"></span>
+                    <p>Password <input id="signUpPass" type="password" name="signUpPass"></p><span class="error" id="signUppasswordError"></span>
                     <p>Confirm Password <input id="signUpConfirm" type="text" name="signUpConfirm"></p><span class="error" id="signUpconfirmPwdError"></span>
                     <div id="loginInnerBot">
                         <p><button id="createUser">Sign up!</button></p>

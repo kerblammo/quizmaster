@@ -11,6 +11,7 @@ var startedQuestionEdit = 0;
 var searchQuizResultsArr = [];
 var searchQuestionResultsArr = [];
 var loadOnQuiz = 0;
+var userId = 0;
 
 window.onload = function () {
     document.querySelector("#leftRadio").addEventListener("click", hideQuestion);
@@ -46,7 +47,9 @@ window.onload = function () {
     document.querySelector("#editExistingSearch").addEventListener("click", searchExistingQuestion);
     document.querySelector("#btnLoadQuestionInfo").addEventListener("click", loadQuestionToEdit);
     document.querySelector("#btnEditSelectedQuestion").addEventListener("click", editSelectedQuestion);
-     document.querySelector("#deleteQuiz").addEventListener("click", deleteQuiz);
+    
+    document.querySelector("#btnSaveQuiz").addEventListener("click", saveQuiz);
+    //document.querySelector("#deleteQuiz").addEventListener("click", deleteQuiz);
     //deleteQuiz
     //editExistingSearch
     //first load, this will clear the proper divs, show buttons, and set default to quiz
@@ -60,6 +63,7 @@ window.onload = function () {
         console.log(user);
         var userObj = JSON.parse(user);
         username = userObj.username;
+        userId = userObj.id;
         var html = "Hey " + username + ", check our these quizzes!";
 //        document.querySelector("#greeting").innerHTML = html;
         var userPermission = userObj.permissionId;
@@ -91,7 +95,6 @@ function deleteQuiz(){
             } else {
 
             }
-
         }
     };
     xmlhttp.open("DELETE", url, true); // "DELETE" is the action, "url" is the entity
@@ -221,6 +224,7 @@ function getMatchingQuestions(url) {
     xmlhttp.send();
 
 }
+
 function showMatchingQuestions(resp) {
 
     searchQuestionResultsArr = [];
@@ -253,7 +257,6 @@ function showMatchingQuestions(resp) {
 
 }
 
-
 function getOneQuestion(url) {
 
     var method = "GET";
@@ -280,7 +283,10 @@ function showOneQuestion(resp) {
 
     var data = JSON.parse(resp);
     var questionName = data.questionText;
-    var html = "<li value=\"0\">" + questionName + "</li>";
+    //var html = "<li value=\"0\">" + questionName + "</li>";
+    var html = document.createElement('li');
+    html.textContent = questionName;
+    
     
     if (editMode == "quiz" && loadOnQuiz == 1) {
         document.getElementById('highlightListInQuiz').appendChild(html);
@@ -308,6 +314,56 @@ function addChoice() {
     document.getElementById('qA').appendChild(option);
     choiceArray.push(el.innerHTML);
     document.querySelector("#choiceToAdd").value = "";
+}
+
+function saveQuiz() {
+    console.log("We are in | saveQuiz");
+    document.querySelector("#questionError").innerHTML = "";
+    document.querySelector("#tagError").innerHTML = "";
+    document.querySelector("#descError").innerHTML = "";
+    document.querySelector("#choiceError").innerHTML = "";
+    //quizResultName
+    
+    var id;
+    if (cameFromEditQuiz == true) {
+        id = document.querySelector("#quizResultId").value = "";
+    } else {
+        id = "99999";
+    }
+    //Is called when used clicks on Question Editor, and then create new, and then clicks save
+    //get the data from the editor page and checks to see if it is valid, and then build a question
+    //if (formIsValid()) {//check if everything is valid, then creates a question object and then make ajax call
+
+        var quizObj = {
+            "id": id,
+            "authorId": userId,
+            "title": document.querySelector("#quizNewName").value,
+            "description": document.querySelector("#quizNewDesc").value,
+            "tags": document.querySelector("#quizNewTags").value
+
+        };
+        console.log("quizObj | " + quizObj);
+        //make an ajax call to add the question
+        var url = "quizmaster/quiz";
+        var method;
+        if (cameFromEditQuiz == true) {
+            method = "PUT";
+        } else {
+            method = "POST";
+        }
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+                var resp = xmlhttp.responseText;
+                
+                clearQuestionFields();
+            }
+        };
+        xmlhttp.open(method, url, true);
+        xmlhttp.send(JSON.stringify(quizObj));
+        console.log("method, url | " + method + " | " + url);
+    //}
+    //window.location = "editor.php";
 }
 
 function saveQuestion() {
@@ -682,6 +738,7 @@ function showOneQuiz(resp) {
     //document.querySelector("#searchByQuizFilter").addEventListener("change", clearFields);
 }
 
+var cameFromEditQuiz = false;
 
 function loadQuizInfo() {
     document.querySelector("#btnEditSelectedQuiz").disabled=false;
@@ -711,6 +768,7 @@ function loadQuizInfo() {
 }
 
 function editSelectedQuiz() {
+    cameFromEditQuiz = true;
     startedQuizEdit = 1;
     loadAreas();
     loadQuestionsOnQuiz();

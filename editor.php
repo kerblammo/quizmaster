@@ -249,7 +249,7 @@ Date:
                                     </p>
                                     <p>
                                         Search Term:
-                                        <input type="text" value="SearchTerm"><button id="btnSearchQuestionsToAdd">Search</button>
+                                        <input type="text" value=""><button id="btnSearchQuestionsToAdd">Search</button>
                                     </p>
                                 </div>
                             </div>
@@ -312,7 +312,7 @@ Date:
                                     </ul>
                                 </div>
                                 <div id="searchDataButtons">
-                                    <button>Save Quiz</button>
+                                    <button id="btnSaveQuiz">Save Quiz</button>
                                 </div>
                                 </div>
                             </div>

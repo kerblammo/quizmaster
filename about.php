@@ -21,7 +21,7 @@ Date:
             </div>
             <div id="topMenuNav">
                 <div class="navLeft">
-                    <a href="index.php"><button>Home</button></a><a href="search.php"><button>Search</button></a><a href="editor.php"><button>Editor</button></a>
+                    <a href="index.php"><button>Home</button></a><a href="search.php"><button>Search</button></a><a href="editor.php"><button class="hidden">Editor</button></a>
                 </div>
                 <div class="navRight">
                     <a href="login.php"><button id="loginOpt">Login</button></a><a href="profile.php"><button id="profile" class="hidden">Profile</button></a>
