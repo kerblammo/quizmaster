@@ -65,29 +65,18 @@ function changeOwnPassword(){
 
 function changeOwnDelete(){
     console.log("Entering changeOwnDelete...");
-    
-      var username = localStorage.getItem("userLoggedIn");
-        console.log(username);
-        var urlName = "quizmaster/account/byName/" + username;
-        console.log(url);
-        //var url = "quizmaster/quiz/byName/" + searchValue;
-        var userToSearch="";
-        if (userToSearch = getUser(urlName)==null) {
-          var url = "quizmaster/account/" + userID;
-          
-    
+     console.log("Entering changeOwnDelete...");
+    var url = "quizmaster/account/" + userID;
     method = "DELETE";
     getMatchingAccounts(url);
     window.location = "login.php";
-    }
-    else{
-        //should be a method="POST" IF USER HAS TAKEN A QUIZ
+     
     }
         
         
         
   
-}
+
 function getUser(url) {
     var method = "GET";
 
