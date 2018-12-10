@@ -193,7 +193,9 @@ Date:
                                 </ul>
                             </div>
                             <div id="searchDataButtons">
-                                
+                                <!-- Moved button
+                                <button id="deleteQuiz">Delete Quiz</button>
+                                -->
                                 <button id="btnLoadQuizInfo">Load Quiz</button>
                             </div>
                             </div>
