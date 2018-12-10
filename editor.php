@@ -139,7 +139,7 @@ Date:
                             <div id="questionAnswer">
                                 Answer:
                                     <select id="qA">
-                                     
+                                    
                                     </select>
                             </div>
                             </div>
@@ -193,7 +193,7 @@ Date:
                                 </ul>
                             </div>
                             <div id="searchDataButtons">
-                                <button>Delete Quiz</button>
+                                
                                 <button id="btnLoadQuizInfo">Load Quiz</button>
                             </div>
                             </div>
@@ -205,14 +205,15 @@ Date:
                         <div id="infoPanel">
                             <div id="searchBox">
                                 <p>Quiz Name -- Quiz ID</p>
-                                <p><input id="quizResultName" type="text" value=""><input id="quizResultId" type="text" value=""></p>
+                                <p><input id="quizResultName" type="text" value="" disabled><input id="quizResultId" type="text" value="" disabled></p>
                                 <p>Quiz Tags (Comma Seperated)</p>
-                                <p><input id="quizResultTags" type="text" value=""></p>                            
+                                <p><input id="quizResultTags" type="text" value="" disabled></p>                            
                                 <p>Quiz Description</p>
-                                <p><input id="quizResultDesc" type="text" value=""></p>
-                            <div id="searchDataButtons">
-                                <button id="btnEditSelectedQuiz">Edit</button>
-                            </div>
+                                <p><input id="quizResultDesc" type="text" value="" disabled></p>
+                                <div id="searchDataButtons">
+                                    <button id="btnEditSelectedQuiz" disabled>Edit</button>
+                                    <button id="btnDeleteQuiz">Delete Quiz</button>
+                                </div>
                             </div>
                         </div>
                     </div>

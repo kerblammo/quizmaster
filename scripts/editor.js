@@ -40,6 +40,7 @@ window.onload = function () {
     document.querySelector("#searchExistingQuiz").addEventListener("click", searchExistingQuiz);
 
     document.querySelector("#btnLoadQuizInfo").addEventListener("click", loadQuizInfo);
+    document.querySelector("#btnDeleteQuiz").addEventListener("click", deleteQuiz);
     document.querySelector("#btnEditSelectedQuiz").addEventListener("click", editSelectedQuiz);
 
     document.querySelector("#editExistingSearch").addEventListener("click", searchExistingQuestion);
@@ -502,9 +503,34 @@ function deleteQuestion() {
     };
     xmlhttp.open("DELETE", url, true); // "DELETE" is the action, "url" is the entity
     xmlhttp.send();
-
+    window.location = "editor.php";
 }
 
+function deleteQuiz() {
+    var id = document.querySelector("#quizResultId").value;
+    if (id == "") {
+        alert("Please Load Quiz before Deleting");
+    } else {
+        var url = "quizmaster/quiz/" + id; // entity, not action
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+                var resp = xmlhttp.responseText;
+                if (resp == "true") {
+                    clearQuestionEditInputs();
+
+                } else {
+
+                }
+
+
+            }
+        };
+        xmlhttp.open("DELETE", url, true); // "DELETE" is the action, "url" is the entity
+        xmlhttp.send();
+        window.location = "editor.php";
+    }
+}
 
 function clearQuestionEditInputs() {
 
@@ -633,6 +659,8 @@ function showOneQuiz(resp) {
 
 
 function loadQuizInfo() {
+    document.querySelector("#btnEditSelectedQuiz").disabled=false;
+    document.querySelector("#btnDeleteQuiz").disabled=false;
     loadOnQuiz = 1;
     console.log("This is when we get to loadQuizInfo");
     var arrIndex = document.querySelector(".highlighted").innerHTML;
